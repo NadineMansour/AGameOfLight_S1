@@ -5,7 +5,8 @@ class CreateStudents < ActiveRecord::Migration
     	t.string :student_class
     	t.string :grade
     	t.string :student_name
-        t.timestamps null: false
+       	t.boolean :verified, default: false
+	t.timestamps null: false
     end
   end
 end
