@@ -1,0 +1,22 @@
+<p>
+	<% if flash.present? %>
+		<% flash.each do |type, message| %>
+				<% @type2 = type.titleize %>
+				<% if @type2 == "notice" %>
+					<div class="alert alert-success"> 
+						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+     				 		&times;
+   						</button>
+						<%= message %>
+					</div>
+				<% else %>
+					<div class="alert alert-warning">
+						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+     						 &times;
+   						</button>
+						<%= message %>
+					</div>
+				<% end %>
+		<% end %>
+	<% end %>
+</p>
