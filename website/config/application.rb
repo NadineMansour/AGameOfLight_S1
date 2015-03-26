@@ -22,5 +22,6 @@ module Website
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+    config.override_gem_home = false
   end
 end
