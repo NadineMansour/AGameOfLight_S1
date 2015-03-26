@@ -1,17 +1,8 @@
 <h2>Sign up</h2>
+
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :student_name %>
-  </div>
-
-   <div class="field">
-    <%= f.label :student_class %><br />
-    <%= f.text_field :student_class %>
-  </div>
-
+<center>
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true %>
@@ -35,15 +26,10 @@
     <%= f.text_field :school%>
   </div>
 
-  <div class="field">
-    <%= f.label :grade %><br />
-    <%= f.text_field :grade%>
-  </div>
-
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
-
+</center>
 <% end %>
-<%= render "devise/shared/links" %>
-<!-- added the extra fields to sign up in the view " class , grade , school name " -->
+
+<%= render "school_admins/shared/links" %>

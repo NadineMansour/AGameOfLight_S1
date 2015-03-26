@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
 
   devise_for :students
-
+  devise_for :school_admins
 
   namespace :api, defaults: { format: :json } do
       resources :records do
