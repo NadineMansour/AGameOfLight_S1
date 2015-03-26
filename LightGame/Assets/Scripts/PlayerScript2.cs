@@ -51,6 +51,7 @@ public class PlayerScript2 : MonoBehaviour {
 	}
 
 	void EndGame(){
+
 	}
 
 	void calculateScore()
@@ -58,6 +59,11 @@ public class PlayerScript2 : MonoBehaviour {
 		score = (120 - timeInLevel) * 100 + (5 - clicks) * 50;
 		if (score <= 50) //to exclude negative scores
 			score = 50;
+	}
+
+	public static bool isGameOver()
+	{
+		return gameOver;
 	}
 
 	void detector()
