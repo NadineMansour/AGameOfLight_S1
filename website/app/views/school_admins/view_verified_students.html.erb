@@ -1,0 +1,84 @@
+<div class="row">
+  <br>
+  <br>
+  <br>
+</div>
+<div class="row">
+  <div class="col-md-2">
+    <div class="list-group" width="70px;">
+      <a href="#" class="list-group-item">View verified students</a>
+      <a href="#" class="list-group-item">View students records</a>
+      <a href="#" class="list-group-item">Third item</a>
+      <a href="#" class="list-group-item">Fourth item</a>
+      <a href="#" class="list-group-item">Fifth item</a>
+    </div>
+  </div>
+  <div class="col-md-8">
+	    <!-- just for now -->
+	<% @current_school_admin_id = 1 %>
+
+	<p>Please select the sorting method</p>
+	<%= form_tag("/school_admins/" + @current_school_admin_id.to_s + "/view_verified_students", method: :get)  do %>
+		<select name="sort_method">
+		  <option value="">Please select</option>
+		  <option value="1">by grade asc</option>
+		  <option value="2">by grade desc</option>
+		  <option value="3">alphabetically asc</option>
+		  <option value="4">alphabetically desc</option>
+		</select>
+		<%= button_tag(type: "submit", class: "btn btn-primary") do %>
+	    	Sort <i class="icon-repeat"></i>
+		<% end %>
+	<% end %>
+
+	 
+	<% if @students %>
+		<table class="table table-hover">
+		   <caption>verified students</caption>
+		   <thead>
+		      <tr>
+		         <th>Name</th>
+		         <th>Email</th>
+		         <th>Garde</th>
+		         <th>Class</th>
+		         <th>School</th>
+		         <th>Remove</th>
+		      </tr>
+		   </thead>
+		   <tbody>
+			   <% @students.each do |student| %>
+					<tr>
+						<td><% if student[:student_name] %> 
+							<%= student[:student_name] %>
+						<% else %>
+						*No name yet
+						<% end %>
+						</td>
+
+						<td><%= student[:email] %> </td>
+						<td><%= student[:grade] %> </td>
+						<td><%= student[:student_class] %> </td>
+						<td><%= student[:school] %>  </td>
+						<td>
+							<%= form_tag("/school_admins/" + @current_school_admin_id.to_s + 
+							"/remove_verified_student/" + student[:id].to_s, method: :put)  do %>
+								<%= button_tag(type: "submit", class: "btn btn-primary") do %>
+							    	Remove
+								<% end %>
+							<% end %>
+						</td>
+					</tr>
+				<% end %>
+		   </tbody>
+		</table>
+	<% else %>
+	No Students to display.
+	<% end %>
+  </div>
+</div>
+
+
+
+
+
+
