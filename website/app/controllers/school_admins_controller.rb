@@ -23,4 +23,13 @@ class SchoolAdminsController < ApplicationController
 	end
 
 
+	def view_students_records
+		# get the school admin from the url till now
+		@current_admin = SchoolAdmin.find(params[:id])
+		# get students of their school who are verified to display their scores in the view
+		@students = Student.where("school = ? AND verified = ?" , 
+			@current_admin.school, true)
+	end
+
+
 end

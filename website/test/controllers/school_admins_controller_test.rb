@@ -61,4 +61,14 @@ class SchoolAdminsControllerTest < ActionController::TestCase
   end
 
 
+  test "should get view students records" do
+    get( :view_students_records, {'id' => school_admins(:one).id})
+    assert_response :success
+    assert_not_nil assigns(:current_admin)
+    assert_not_nil assigns(:students)
+    assert_template :view_students_records
+    assert_template layout: "layouts/application"
+  end
+
+
 end

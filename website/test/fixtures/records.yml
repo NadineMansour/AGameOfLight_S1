@@ -1,7 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  email: MyString
+  email: marammm@gmail.com
   level: 1
   time: 1
   score: 1
@@ -9,7 +9,7 @@ one:
 
 
 two:
-  email: MyString
+  email: marwamm@gmail.com
   level: 1
   time: 1
   score: 1
