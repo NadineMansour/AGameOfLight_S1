@@ -6,6 +6,7 @@ one:
   time: 1
   score: 1
   clicks: 1
+  logs: MyString
 
 
 two:
@@ -14,3 +15,4 @@ two:
   time: 1
   score: 1
   clicks: 1
+  logs: MyString2
