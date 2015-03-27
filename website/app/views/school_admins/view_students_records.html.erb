@@ -1,0 +1,73 @@
+<div class="row">
+  <br>
+  <br>
+  <br>
+</div>
+<div class="row">
+  <div class="col-md-2">
+    <div class="list-group" width="70px;">
+      <a href="#" class="list-group-item">First item</a>
+      <a href="#" class="list-group-item">Second item</a>
+      <a href="#" class="list-group-item">Third item</a>
+      <a href="#" class="list-group-item">Fourth item</a>
+      <a href="#" class="list-group-item">Fifth item</a>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <table class="table table-hover">
+       <caption>Students' records</caption>
+       <thead>
+          <tr>
+             <th>Name</th>
+             <th>Email</th>
+             <th>Class</th>
+             <th>Grade</th>
+             <th>Records</th>
+          </tr>
+       </thead>
+       <tbody>
+         <% @students.each do |s| %>
+         <tr>
+         <td><%= s[:student_name] %></td>
+         <td><%= s[:email] %></td>
+         <td><%= s[:student_class] %></td>
+         <td><%= s[:grade] %></td>
+         <td>
+          <% @records = Record.where(email: s[:email]) %>
+          <table class="table table-striped">
+           <thead>
+              <tr>
+                 <th>Level</th>
+                 <th>Clicks</th>
+                 <th>Score</th>
+                 <th>time</th>
+                 <th>logs</th>
+              </tr>
+           </thead>
+           <tbody>
+            <% @records.each do |r| %>
+              <tr>
+                <td><%= r[:level] %></td>
+                <td><%= r[:clicks] %></td>
+                <td><%= r[:score] %></td>
+                <td><%= r[:time] %></td>
+                <td>No logs now</td>
+              </tr>
+            <% end %>
+           </tbody>
+        </table>
+         </td>
+         </tr>
+      <% end %>
+       </tbody>
+    </table>
+  </div>
+</div>
+
+
+
+
+
+
+
+

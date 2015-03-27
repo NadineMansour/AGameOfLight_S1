@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :school_admins do
     member do
       get 'view_verified_students'
+      get 'view_students_records'
     end
   end
   devise_for :admin_users, ActiveAdmin::Devise.config
