@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
 
-  devise_for :school_admins
+  devise_for :school_admins 
+  resources :school_admins do
+    member do
+      get 'view_verified_students'
+    end
+  end
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :students

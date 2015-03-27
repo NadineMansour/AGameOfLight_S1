@@ -7,6 +7,7 @@ one:
   score: 1
   clicks: 1
 
+
 two:
   email: MyString
   level: 1
