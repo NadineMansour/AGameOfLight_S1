@@ -24,6 +24,7 @@ public class PlayerScript : MonoBehaviour {
 	public float FinishTime;
 	public int timeInLevel;
 	public static int clicks;
+	public static string log;
 	public int score;
 	public int level;
 
@@ -103,8 +104,10 @@ public class PlayerScript : MonoBehaviour {
 
 	public static void UpTrue()
 	{
-		if (!up)
+		if (!up) {
 			clicks++;
+			log+= "Up-";
+		}
 		up = true;
 	}
 
@@ -117,8 +120,10 @@ public class PlayerScript : MonoBehaviour {
 
 	public static void DownTrue()
 	{
-		if(!down)
+		if (!down) {
 			clicks++;
+			log+= "Down-";
+		}
 		down = true;
 	}
 
@@ -131,8 +136,10 @@ public class PlayerScript : MonoBehaviour {
 
 	public static void RUpTrue()
 	{
-		if (!RUp)
+		if (!RUp) {
 			clicks++;
+			log+= "Counterclockwise rotation-";
+		}
 		RUp = true;
 	}
 
@@ -145,8 +152,10 @@ public class PlayerScript : MonoBehaviour {
 
 	public static void RDownTrue()
 	{
-		if (!RDown)
+		if (!RDown) {
 			clicks++;
+			log+= "Clockwise rotation-";
+		}
 		RDown = true;
 	}
 
@@ -260,7 +269,7 @@ public class PlayerScript : MonoBehaviour {
 					FinishTime = Time.realtimeSinceStartup;
 					timeInLevel = (int)FinishTime - (int)StartTime;
 					calculateScore(); //score now has its right value
-					//Mariam, at this point -> Clicks, score, timeInLevel & level are all ready. Good luck
+					//Mariam, at this point -> Clicks, score, timeInLevel, log & level are all ready. Good luck
 					//Insert Post records method here.
 					StartCoroutine(save_record());
 
