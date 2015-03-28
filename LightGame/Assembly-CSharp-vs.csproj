@@ -48,11 +48,18 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\ButtonLogin.cs" />
      <Compile Include="Assets\Scripts\DownMove.cs" />
+     <Compile Include="Assets\Scripts\GoLeftScript.cs" />
+     <Compile Include="Assets\Scripts\GoRightScript.cs" />
      <Compile Include="Assets\Scripts\PlayerScript.cs" />
+     <Compile Include="Assets\Scripts\PlayerScript2.cs" />
+     <Compile Include="Assets\Scripts\Player_Level5_nadine.cs" />
      <Compile Include="Assets\Scripts\R1Move.cs" />
+     <Compile Include="Assets\Scripts\R1_Level5.cs" />
      <Compile Include="Assets\Scripts\R2Move.cs" />
+     <Compile Include="Assets\Scripts\R2_Level5.cs" />
      <Compile Include="Assets\Scripts\SimpleJSON.cs" />
      <Compile Include="Assets\Scripts\TextScript.cs" />
+     <Compile Include="Assets\Scripts\TextScript2.cs" />
      <Compile Include="Assets\Scripts\ToLevels.cs" />
      <Compile Include="Assets\Scripts\UpMove.cs" />
      <Compile Include="Assets\Scripts\load.cs" />
