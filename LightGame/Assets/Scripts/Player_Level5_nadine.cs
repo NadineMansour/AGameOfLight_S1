@@ -21,10 +21,12 @@ public class Player_Level5_nadine : MonoBehaviour
 		linePositions = linePos;
 	}
 
+
 	public static List<Vector3> getLinePositions()
 	{
 		return linePositions;
 	}
+
 
 	// Use this for initialization
 	void Start () 
