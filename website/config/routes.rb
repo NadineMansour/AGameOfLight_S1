@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     member do
       get 'view_verified_students'
       get 'view_students_records'
+      get 'view_requests'
     end
   end
   devise_for :admin_users, ActiveAdmin::Devise.config
