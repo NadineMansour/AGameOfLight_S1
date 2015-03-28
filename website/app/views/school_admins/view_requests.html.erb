@@ -16,8 +16,6 @@
   <div class="col-md-8">
 	    <!-- just for now -->
 	<% @current_school_admin_id = 1 %>
-
-	 
 	<% if @students %>
 		<table class="table table-hover">
 		   <caption>Unverified students</caption>
@@ -34,9 +32,9 @@
 		   </thead>
 		   <tbody>
 			   <% @students.each do |student| %>
-					<tr>
-						<td><% if student[:student_name] %> 
-							<%= student[:student_name] %>
+				<tr>
+					<td><% if student[:student_name] %> 
+						<%= student[:student_name] %>
 						<% else %>
 						*No name yet
 						<% end %>
