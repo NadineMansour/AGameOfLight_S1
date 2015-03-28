@@ -69,6 +69,18 @@ class SchoolAdminsControllerTest < ActionController::TestCase
     assert_template :view_students_records
     assert_template layout: "layouts/application"
   end
+  
+
+  test "view requests as school admin" do
+    get( :view_requests, {'id' => school_admins(:one).id})
+    assert_response :success
+    assert_not_nil assigns(:current_admin)
+    assert_not_nil assigns(:students)
+    #onlu one student in the fixtures is unverified
+    assert_equal 1, assigns(:students).count
+    assert_template :view_requests
+    assert_template layout: "layouts/application"
+  end
 
 
 end
