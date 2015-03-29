@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   devise_for :school_admins 
   resources :school_admins do
-    member do
+    collection do
       get 'view_verified_students'
       get 'view_students_records'
       get 'view_requests'
@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :students
+  resources :students
 
 
   namespace :api, defaults: { format: :json } do
