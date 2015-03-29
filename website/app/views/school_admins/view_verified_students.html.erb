@@ -25,7 +25,7 @@
   </div>
   <div class="col-md-8">
 	<p>Please select the sorting method</p>
-	<%= form_tag("/school_admins/" + @current_school_admin_id.to_s + "/view_verified_students", method: :get)  do %>
+	<%= form_tag("/school_admins/view_verified_students", method: :get)  do %>
 		<select name="sort_method">
 		  	<option value="">Please select</option>
 		  	<option value="1">by grade asc</option>
