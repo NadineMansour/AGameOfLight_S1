@@ -25,7 +25,7 @@ public class Player_Level5_nadine : MonoBehaviour
 		Vector3 mid = start;					
 		mid.y = 0;
 		Vector3 end = start;
-		end.y = -5;                             
+		end.y = -6;                             
 		linePositions.Add (start);              //adding shooter's position as start point to light beam
 		linePositions.Add (mid);                //adding the mid point to light beams points list
 		linePositions.Add (end);                //adding the end point to light beams points list
@@ -122,7 +122,7 @@ public class Player_Level5_nadine : MonoBehaviour
 		float AI = angle1;                                                //incidense angle
 		float AR = ((float)Math.Asin(Math.Sin (AI) * NI / NR));           //angle of refraction
 		Vector3 pivotPoint2 = linePositions [1];
-		Vector3 pointToRotate2 = new Vector3 (linePositions[1].x, linePositions [1].y-4, linePositions [1].z);
+		Vector3 pointToRotate2 = new Vector3 (linePositions[1].x, linePositions [1].y-6, linePositions [1].z);
 		float Nx2 = (pointToRotate2.x - pivotPoint2.x);
 		float Ny2 = (pointToRotate2.y - pivotPoint2.y);
 		linePositions[2] = new Vector3((float)(Mathf.Cos(AR) * Nx2 - Mathf.Sin(AR) * Ny2 + pivotPoint2.x), (float)(Mathf.Sin(AR) * Nx2 + Mathf.Cos(AR) * Ny2 + pivotPoint2.y), 0);
