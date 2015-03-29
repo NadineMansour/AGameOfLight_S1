@@ -10,10 +10,22 @@ public class Player_Level5_nadine : MonoBehaviour
 	public static bool RLeft;					 // true if the rotate anti clockwise is pressed 
 	//public  static int numOfClicks;            --> not needed now 
 	public LineRenderer lightBeam;               //Lightbeam gameobject to edit positions and end points
-	private List <Vector3> linePositions;        //array containing lightbeam points for setting and editing
+	private static List <Vector3> linePositions;        //array containing lightbeam points for setting and editing
 	private float angle ;                        //degree of rotation of light beam
 	float NI = 1.000293f;						 //
 	float NR = 1.3330f;
+
+
+	public static void setLinePositions(List<Vector3> linePos)
+	{
+		linePositions = linePos;
+	}
+
+
+	public static List<Vector3> getLinePositions()
+	{
+		return linePositions;
+	}
 
 
 	// Use this for initialization
@@ -43,6 +55,8 @@ public class Player_Level5_nadine : MonoBehaviour
 		{
 			RotateRight();
 		}	
+
+		SetLightBeam ();
 	}
 
 

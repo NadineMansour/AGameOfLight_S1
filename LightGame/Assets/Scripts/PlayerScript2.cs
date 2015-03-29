@@ -11,7 +11,6 @@ public class PlayerScript2 : MonoBehaviour {
 	public float FinishTime;
 	public int timeInLevel;
 	private static bool gameOver;
-	private List <Vector3> linePositions;        //array containing lightbeam points for setting and editing
 	public static int clicks;
 	public int level;
 	public int score;
@@ -21,11 +20,6 @@ public class PlayerScript2 : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		linePositions = new List<Vector3> ();
-		//Dummy data so that the detection method doesnt have an error
-		linePositions.Add (transform.position);
-		linePositions.Add (transform.position);
-		linePositions.Add (transform.position);
 		//Initializing default values
 		left = false;
 		right = false;
@@ -84,6 +78,7 @@ public class PlayerScript2 : MonoBehaviour {
 		if (!gameOver) 
 		{
 			RaycastHit hit;
+			List<Vector3> linePositions = Player_Level5_nadine.getLinePositions();
 			if (Physics.Linecast (linePositions [1], linePositions [2], out hit)) 
 			{
 				if (hit.collider.tag == "Target") 
@@ -107,9 +102,16 @@ public class PlayerScript2 : MonoBehaviour {
 	{
 		if (transform.position.x < 5 && !gameOver) 
 		{
+
 			transform.position = transform.position + (new Vector3 (0.05f, 0 ,0));
 			//Change line positions here
 			//Tip: Just add "new Vector3 (0.05f, 0 ,0)" to every point
+			List<Vector3> linePositions = Player_Level5_nadine.getLinePositions();
+			for(int i = 0; i < linePositions.Count; i++)
+			{
+				linePositions[i] = linePositions[i] + new Vector3 (0.05f, 0 ,0);
+			}
+			Player_Level5_nadine.setLinePositions(linePositions);
 		}
 	}
 
@@ -121,6 +123,12 @@ public class PlayerScript2 : MonoBehaviour {
 			transform.position = transform.position - (new Vector3 (0.05f, 0 ,0));
 			//Change line positions here
 			//Tip: Just subtract "new Vector3 (0.05f, 0 ,0)" to every point
+			List<Vector3> linePositions = Player_Level5_nadine.getLinePositions();
+			for(int i = 0; i < linePositions.Count; i++)
+			{
+				linePositions[i] = linePositions[i] - new Vector3 (0.05f, 0 ,0);
+			}
+			Player_Level5_nadine.setLinePositions(linePositions);
 		}	
 	}
 
