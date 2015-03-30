@@ -55,16 +55,14 @@
 						<td><%= student[:student_class] %> </td>
 						<td><%= student[:school] %>  </td>
 						<td>
-							<%= form_tag("/school_admins/" + 
-							"/accept/" + student[:id].to_s, method: :put)  do %>
+							<%= form_tag("/school_admins/accept_verification/" + student[:id].to_s, method: :put)  do %>
 								<%= button_tag(type: "submit", class: "btn btn-primary") do %>
 							    	Accept
 								<% end %>
 							<% end %>
 						</td>
 						<td>
-							<%= form_tag("/school_admins/"  + 
-							"/reject/" + student[:id].to_s, method: :put)  do %>
+							<%= form_tag("/school_admins/reject_verification/" + student[:id].to_s, method: :put)  do %>
 								<%= button_tag(type: "submit", class: "btn btn-primary") do %>
 							    	Reject
 								<% end %>

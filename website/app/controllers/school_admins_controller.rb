@@ -74,4 +74,30 @@ class SchoolAdminsController < ApplicationController
 	end
 
 
+	def accept_verification
+		# find the student who should been verified using the id in the params
+		@student = Student.find(params[:student_id])
+		@student.verified = true
+		# change the flash method according to the save action
+		if @student.save
+			redirect_to view_requests_school_admins_path, notice: 'The student has been verified successfully.'
+		else
+			redirect_to view_requests_school_admins_path, alert: 'The student has not been verified successfully.'
+		end
+	end
+
+
+	def reject_verification
+		# find the student who should been unverified using the id in the params
+		@student = Student.find(params[:student_id])
+		@student.verified = nil
+		# change the flash method according to the save action
+		if @student.save
+			redirect_to view_requests_school_admins_path, notice: 'The verification request has been removed successfully.'
+		else
+			redirect_to view_requests_school_admins_path, alert: 'The verification request has not been removed successfully.'
+		end
+	end
+
+
 end
