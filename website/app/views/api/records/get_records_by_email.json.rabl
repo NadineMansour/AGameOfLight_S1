@@ -1,2 +1,2 @@
 collection @records
-attributes :level , :time, :score, :clicks
+attributes :level , :time, :score, :clicks, :logs
