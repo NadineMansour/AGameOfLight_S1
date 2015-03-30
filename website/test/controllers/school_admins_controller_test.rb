@@ -100,4 +100,11 @@ class SchoolAdminsControllerTest < ActionController::TestCase
   end
 
 
+  test "viewall subjects of school admin" do
+    get (:view_school_subjects)
+    assert_not_nil assigns(:subjects)
+    assert_equal 1, assigns(:subjects).count
+  end
+
+
 end

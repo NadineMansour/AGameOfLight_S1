@@ -3,7 +3,9 @@
 one:
   name: MyString
   code: MyString
+  school_admin: one
 
 two:
   name: MyString
-  code: MyString
+  code: MyString2
+  school_admin: two
