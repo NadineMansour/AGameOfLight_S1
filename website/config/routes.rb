@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :subjects
+
   devise_for :school_admins 
   resources :school_admins do
     collection do
@@ -7,6 +9,8 @@ Rails.application.routes.draw do
       get 'view_students_records'
       get 'view_requests'
       put 'remove_verified_student/:student_id' => :remove_verified_student
+      get 'add_subject'
+      get 'view_school_subjects'
     end
   end
   devise_for :admin_users, ActiveAdmin::Devise.config

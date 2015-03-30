@@ -62,4 +62,16 @@ class SchoolAdminsController < ApplicationController
 	end
 
 
+	def add_subject
+		#create an instance of subject to pass it to the partial view local variables
+		@subject = Subject.new
+	end
+
+
+	def view_school_subjects
+		# show all subjects that the school admin has created
+		@subjects = Subject.where(school_admin_id: current_school_admin.id)
+	end
+
+
 end
