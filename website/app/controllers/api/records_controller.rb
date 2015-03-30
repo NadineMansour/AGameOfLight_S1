@@ -36,8 +36,9 @@ class Api::RecordsController < Api::BaseController
 		@level = params[:level]
 		@clicks = params[:clicks]
 		@email = params[:email]
+		@logs = params[:logs]
 		#create new record
-		@record = Record.new(time: @time, score: @score, level: @level, clicks: @clicks, email: @email)
+		@record = Record.new(time: @time, score: @score, level: @level, clicks: @clicks, email: @email, logs: @logs)
 		#if the recordsis save , respond with OK , else rrespond with  error status(errors in parametrs)
 		if @record.save 
 			render status: 201
@@ -50,9 +51,9 @@ class Api::RecordsController < Api::BaseController
 
   
     def get_level
-	  	@email = params[:email]
+		@email = params[:email]
 	  	@records = Record.where(email: @email)
-	  	@record=@records.last
+	  	@record = @records.last
 	end
 
 
