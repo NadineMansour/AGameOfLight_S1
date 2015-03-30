@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       get 'view_verified_students'
       get 'view_students_records'
       get 'view_requests'
+      put 'remove_verified_student/:student_id' => :remove_verified_student
     end
   end
   devise_for :admin_users, ActiveAdmin::Devise.config

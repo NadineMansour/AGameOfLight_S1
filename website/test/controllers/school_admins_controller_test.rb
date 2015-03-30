@@ -88,4 +88,16 @@ class SchoolAdminsControllerTest < ActionController::TestCase
   end
 
 
+  test "student should be removed from verified students" do
+    assert_equal true, students(:two).verified
+    students3 = Student.where(school: school_admins(:one).school, verified: true)
+    assert_equal 2, students3.count
+    put(:remove_verified_student, {'student_id' => students(:two).id })
+    assert_not_nil assigns(:current_admin)
+    assert_not_nil assigns(:student)
+    students2 = Student.where(school: school_admins(:one).school, verified: true)
+    assert_equal 1, students2.count
+  end
+
+
 end
