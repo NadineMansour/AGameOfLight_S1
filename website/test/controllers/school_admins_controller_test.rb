@@ -13,15 +13,15 @@ class SchoolAdminsControllerTest < ActionController::TestCase
 
   test "should get view verified students" do
     # start the request
-  	get( :view_verified_students)
-  	assert_response :success
-  	assert_not_nil assigns(:current_admin)
-  	assert_not_nil assigns(:students)
-  	assert_nil assigns(:method)
+    get( :view_verified_students)
+    assert_response :success
+    assert_not_nil assigns(:current_admin)
+    assert_not_nil assigns(:students)
+    assert_nil assigns(:method)
     # we have only 2 verified students in the fixtures
     assert_equal 2, assigns(:students).count
-  	assert_template :view_verified_students
-  	assert_template layout: "layouts/application"
+    assert_template :view_verified_students
+    assert_template layout: "layouts/application"
   end
 
 
@@ -40,15 +40,15 @@ class SchoolAdminsControllerTest < ActionController::TestCase
 
   #sort by grade asc
   test "should get view verified students and sort by grade asc" do
-  	get( :view_verified_students, {'sort_method' => '1'})
-  	assert_response :success
-  	assert_not_nil assigns(:students)
-  	assert_not_nil assigns(:current_admin)
-  	assert_not_nil assigns(:method)
+    get( :view_verified_students, {'sort_method' => '1'})
+    assert_response :success
+    assert_not_nil assigns(:students)
+    assert_not_nil assigns(:current_admin)
+    assert_not_nil assigns(:method)
     assert_equal 2, assigns(:students).count
     assert_equal "5", assigns(:students).first.grade
-  	assert_template :view_verified_students
-  	assert_template layout: "layouts/application"
+    assert_template :view_verified_students
+    assert_template layout: "layouts/application"
   end
 
 
@@ -104,6 +104,26 @@ class SchoolAdminsControllerTest < ActionController::TestCase
     get (:view_school_subjects)
     assert_not_nil assigns(:subjects)
     assert_equal 1, assigns(:subjects).count
+  end
+
+
+  test "verification request is accepted" do
+    students = Student.where(school: school_admins(:one).school, verified: true)
+    assert_equal 2, students.count
+    put(:accept_verification, {'student_id' => students(:three).id })
+    students = Student.where(school: school_admins(:one).school, verified: true)
+    assert_equal 3, students.count
+    assert_redirected_to view_requests_school_admins_path
+  end
+
+
+  test "verification request is rejected" do
+    students = Student.where(school: school_admins(:one).school, verified: true)
+    assert_equal 2, students.count
+    put(:reject_verification, {'student_id' => students(:three).id })
+    students = Student.where(school: school_admins(:one).school, verified: true)
+    assert_equal 2, students.count
+    assert_redirected_to view_requests_school_admins_path
   end
 
 

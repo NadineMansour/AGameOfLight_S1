@@ -11,6 +11,8 @@ Rails.application.routes.draw do
       put 'remove_verified_student/:student_id' => :remove_verified_student
       get 'add_subject'
       get 'view_school_subjects'
+      put 'accept_verification/:student_id' => :accept_verification
+      put 'reject_verification/:student_id' => :reject_verification
     end
   end
   devise_for :admin_users, ActiveAdmin::Devise.config
