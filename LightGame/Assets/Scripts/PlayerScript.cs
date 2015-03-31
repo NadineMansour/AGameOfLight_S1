@@ -61,6 +61,9 @@ public class PlayerScript : MonoBehaviour {
 	{
 		targetHalo.SetActive (true); //enables target halo, indicatingt that light reached it
 		toLevelsButton.SetActive(true); //enables the button that's used to redirect to other scene (Levels/Level 2)
+		// added by mariam in sprint 1
+		StartCoroutine (save_record ());
+		// end
 	}
 
 
@@ -297,6 +300,9 @@ public class PlayerScript : MonoBehaviour {
 		form.AddField ("score", score);
 		form.AddField ("time", timeInLevel);
 		form.AddField ("clicks", clicks);
+		// added in sprint 1
+		form.AddField ("logs", log);
+		// end
 		WWW w = new WWW(urlMessage, form);
 		yield return w;
 		if (!string.IsNullOrEmpty (w.error)) {
