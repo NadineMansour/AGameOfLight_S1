@@ -309,7 +309,8 @@ public class PlayerScript : MonoBehaviour {
 			// value >= 400 which means error in authentication or connection or server is down
 			Debug.Log("The record is not saved");
 		} 
-		else {
+		else 
+		{
 			// if the response has OK status
 		}
 	}
