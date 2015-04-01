@@ -59,6 +59,7 @@ public class PlayerScript : MonoBehaviour {
 
 	void EndGame()
 	{
+		StartCoroutine (save_record ()); // save the record when the game ends
 		targetHalo.SetActive (true); //enables target halo, indicatingt that light reached it
 		toLevelsButton.SetActive(true); //enables the button that's used to redirect to other scene (Levels/Level 2)
 	}
@@ -287,26 +288,31 @@ public class PlayerScript : MonoBehaviour {
 		}
 	}
 
-	IEnumerator save_record() {
+
+	IEnumerator save_record() 
+	{
 		string urlMessage = "https://k12-mariammohamed.c9.io/api/records/save_record";
 		WWWForm form = new WWWForm ();
-		// pass the email and passsword for authentication
+		// pass the email authentication
 		string user_email = ButtonLogin.user_email;
 		form.AddField ("email", user_email);
 		form.AddField ("level", level);
 		form.AddField ("score", score);
 		form.AddField ("time", timeInLevel);
 		form.AddField ("clicks", clicks);
+		form.AddField ("logs", log);
 		WWW w = new WWW(urlMessage, form);
 		yield return w;
-		if (!string.IsNullOrEmpty (w.error)) {
+		if (!string.IsNullOrEmpty (w.error)) 
+		{
 			// this is done if the authentication is rejected or the response has
 			// value >= 400 which means error in authentication or connection or server is down
 			Debug.Log("The record is not saved");
-		} else {
+		} 
+		else {
 			// if the response has OK status
 		}
-		
 	}
-	
+
+
 }
