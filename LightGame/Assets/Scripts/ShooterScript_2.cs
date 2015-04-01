@@ -16,10 +16,12 @@ public class ShooterScript_2 : MonoBehaviour {
 	public GameObject nextButton;
 	public GameObject Tip3;
 
+
 	public static List<Vector3> linePositions; //for holding the line renderer points
 	public static float angle; //for rotating the line renderer
 	public static bool gameover;
 	public static int state;
+
 
 	//variables for score
 	public static int clicks;
@@ -54,7 +56,8 @@ public class ShooterScript_2 : MonoBehaviour {
 			nextButton.SetActive(false);
 			float factor = 2.844702467f;
 			angle = Mathf.Rad2Deg * spotLight.transform.rotation.x * factor;
-			if (!gameover) {
+			if (!gameover) 
+			{
 				if (up && transform.position.y < 4)
 					MoveUp ();
 				if (down && transform.position.y > -2)
