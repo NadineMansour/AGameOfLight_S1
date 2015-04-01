@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 
 
-
 public class ShooterScript_2 : MonoBehaviour {
 
 	//for movement
@@ -67,7 +66,16 @@ public class ShooterScript_2 : MonoBehaviour {
 			}
 			detector ();
 			beamSetter ();
+			lightRange ();
 		}
+	}
+
+
+	void lightRange()
+	{
+		Vector3 diff = linePositions[0] - linePositions[1];
+		float Distance = Mathf.Sqrt((diff.x*diff.x + diff.y*diff.y));
+		spotLight.GetComponent<Light>().range = Distance;
 	}
 
 
@@ -164,6 +172,7 @@ public class ShooterScript_2 : MonoBehaviour {
 		nextButton.SetActive (true);
 	}
 
+
 	void extender()
 	{
 		if (linePositions[1].x < 10){
@@ -176,8 +185,7 @@ public class ShooterScript_2 : MonoBehaviour {
 			linePositions[1] = point2;
 		}
 	}
-
-
+	
 
 	void beamSetter()
 	{
