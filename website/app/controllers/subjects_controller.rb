@@ -15,6 +15,10 @@ class SubjectsController < ApplicationController
 			redirect_to add_subject_school_admins_path, alert: 'There is an error while saving this subject, please use another code as it shpuld be unique one. Thanks.'
 		end 
 	end
+	
+	def show
+	 @subject = Subject.find(params[:id]) 
+end
 
   private
 
