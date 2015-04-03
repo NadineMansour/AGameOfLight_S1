@@ -44,10 +44,11 @@ class SubjectsControllerTest < ActionController::TestCase
     assert_redirected_to add_subject_school_admins_path
   end
 
-  # test "should show subject" do
-  #   get :show, id: @subject
-  #   assert_response :success
-  # end
+   test "should show subject" do
+      @subject = subjects(:one)
+       get :show, id: @subject
+        assert_response :success
+   end
 
   # test "should get edit" do
   #   get :edit, id: @subject

@@ -1,14 +1,19 @@
+
 <p id="notice"><%= notice %></p>
+<p> 
 
-<p>
-  <strong>Name:</strong>
-  <%= @subject.name %>
+<strong>Name:</strong>
+<%= @subject.name %>
 </p>
 
 <p>
-  <strong>Code:</strong>
-  <%= @subject.code %>
+<strong>Code:</strong>
+<%= @subject.code %>
 </p>
 
-<%= link_to 'Edit', edit_subject_path(@subject) %> |
-<%= link_to 'Back', subjects_path %>
+<p>
+<strong>School:</strong>
+<%= @subject.school_admin.school %>
+</p>
+
+<%= link_to 'Back', view_school_subjects_school_admins_path %>
