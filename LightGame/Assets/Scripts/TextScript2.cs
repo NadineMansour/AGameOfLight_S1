@@ -5,15 +5,7 @@ using UnityEngine.UI;
 
 public class TextScript2 : MonoBehaviour {
 
-
-	public float StartTime;
-
-
-	void Start () {
-		StartTime = Time.realtimeSinceStartup;
-	}
-
-
+	
 	public void SetText(string text) 
 	{
 		// you can try to get this component
@@ -30,9 +22,9 @@ public class TextScript2 : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
 	{
-		if (!PlayerScript2.isGameOver ()) 
+		if (!ShooterScript5.gameOver) 
 		{
-
+			SetText(" ");
 		}
 		else
 		{

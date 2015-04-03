@@ -12,7 +12,7 @@ public class Player_Level5_nadine : MonoBehaviour
 	public LineRenderer lightBeam;               //Lightbeam gameobject to edit positions and end points
 	private static List <Vector3> linePositions;        //array containing lightbeam points for setting and editing
 	private float angle ;                        //degree of rotation of light beam
-	float NI = 1.000293f;						 //
+	float NI = 1.000293f;						 
 	float NR = 1.3330f;
 
 
@@ -55,7 +55,6 @@ public class Player_Level5_nadine : MonoBehaviour
 		{
 			RotateRight();
 		}	
-
 		SetLightBeam ();
 	}
 
@@ -63,8 +62,8 @@ public class Player_Level5_nadine : MonoBehaviour
 	//rotate the player clockwise 
 	void RotateRight()
 	{
-		float zz = transform.eulerAngles.z;
-		if ((zz < 60 || zz >=300)) 
+		float zCoordinate = transform.eulerAngles.z;
+		if ((zCoordinate < 60 || zCoordinate >=300)) 
 		{
 			transform.Rotate (new Vector3(0,0,0.5f));
 			angle+= 0.5f;
@@ -76,8 +75,8 @@ public class Player_Level5_nadine : MonoBehaviour
 	//rotate the player anti clockwise
 	void RotateLeft()
 	{
-		float zz = transform.eulerAngles.z;
-		if ((zz<=61 || zz > 301)) 
+		float zCoordinate = transform.eulerAngles.z;
+		if ((zCoordinate<=61 || zCoordinate > 301)) 
 		{
 			transform.Rotate (new Vector3(0,0,-0.5f));
 			angle-= 0.5f;
