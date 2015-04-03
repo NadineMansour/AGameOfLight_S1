@@ -122,9 +122,9 @@ public class ShooterScript5 : MonoBehaviour {
 		if (position.x > -8)
 		{
 			transform.position = transform.position - (new Vector3 (0.05f, 0, 0));
-		for (int i = 0; i < linePositions.Count; i++) 
+			for (int i = 0; i < linePositions.Count; i++) 
 			{
-			linePositions [i] = linePositions [i] - new Vector3 (0.05f, 0, 0);
+				linePositions [i] = linePositions [i] - new Vector3 (0.05f, 0, 0);
 			}	
 		}
 	}
