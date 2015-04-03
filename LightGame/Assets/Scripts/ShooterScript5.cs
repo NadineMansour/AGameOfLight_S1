@@ -51,6 +51,7 @@ public class ShooterScript5 : MonoBehaviour {
 		linePositions.Add (end);                //adding the end point to light beams points list
 	}
 
+
 	void endExtender()
 	{
 		if (linePositions[2].y > -7.0f)
@@ -69,6 +70,7 @@ public class ShooterScript5 : MonoBehaviour {
 			}
 		}
 	}
+
 
 	// Update is called once per frame
 	void Update () {
@@ -184,14 +186,14 @@ public class ShooterScript5 : MonoBehaviour {
 			if(!right)
 			{
 				clicks++;
-//				log += "-Moving right, xStart: " + transform.position.x;
+				log += "-Moving right, xStart: " + transform.position.x;
 			}
 			right = true;
 			break;
 		case 2:
 			if (right)
 			{
-//				log += ", xEnd: " + transform.position.x;
+				log += ", xEnd: " + transform.position.x;
 			}
 			right = false;
 			break;
@@ -199,14 +201,14 @@ public class ShooterScript5 : MonoBehaviour {
 			if(!left)
 			{
 				clicks++;
-//				log+= "-Moving left, xStart: " + transform.position.x;
+				log+= "-Moving left, xStart: " + transform.position.x;
 			}
 			left = true;
 			break;
 		case 4:
 			if (left)
 			{
-//				log += ", xEnd: " + transform.position.x;
+				log += ", xEnd: " + transform.position.x;
 			}
 			left = false;
 			break;
@@ -214,14 +216,14 @@ public class ShooterScript5 : MonoBehaviour {
 			if(!RRight)
 			{
 				clicks++;
-//				log += "-Rotation ccw, zStart: " + transform.rotation.z;
+				log += "-Rotation ccw, zStart: " + transform.rotation.z;
 			}
 			RRight = true;
 			break;
 		case 6:
 			if (RRight)
 			{
-//				log += ", zEnd: " + transform.rotation.x;
+				log += ", zEnd: " + transform.rotation.x;
 			}
 			RRight = false;
 			break;
@@ -229,14 +231,14 @@ public class ShooterScript5 : MonoBehaviour {
 			if(!RLeft)
 			{
 				clicks++;
-//				log += "-Rotation cw, zStart: " + transform.rotation.z;
+				log += "-Rotation cw, zStart: " + transform.rotation.z;
 			}
 			RLeft = true;
 			break;
 		case 8:
 			if (RLeft)
 			{
-//				log += ", zEnd: " + transform.rotation.x;
+				log += ", zEnd: " + transform.rotation.x;
 			}
 			RLeft = false;
 			break;
