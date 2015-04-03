@@ -29,24 +29,26 @@
         <tr>
           <th>Name</th>
           <th>Code</th>
+
           <th colspan="3"></th>
         </tr>
       </thead>
 
       <tbody>
+      
         <% @subjects.each do |subject| %>
           <tr>
             <td><%= subject.name %></td>
             <td><%= subject.code %></td>
-
              <td><%= link_to 'Show', subject %></td>
           </tr>
-        <% end %>
-      </tbody>
-      
-    </table>
+        <% end %> 
+        
+      </tbody> 
+
+     </table>
   </div>
-</div>
+  </div>
 
 
 
