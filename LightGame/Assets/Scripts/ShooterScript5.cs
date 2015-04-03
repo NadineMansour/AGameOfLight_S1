@@ -3,7 +3,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
+
 public class ShooterScript5 : MonoBehaviour {
+
 
 	//For movement & rotation
 	public static bool left;
@@ -17,10 +19,11 @@ public class ShooterScript5 : MonoBehaviour {
 	public int score;
 	public static string log;
 	//Other variables for state recognition and calculations
+	public static Vector3 position;
 	public static bool gameOver;
 	public LineRenderer lightBeam;               //Lightbeam gameobject to edit positions and end points
 	private static List <Vector3> linePositions;        //array containing lightbeam points for setting and editing
-	private float angle ;                        //degree of rotation of light beam
+	private static float angle ;                        //degree of rotation of light beam
 	float NI = 1.000293f;						 
 	float NR = 1.3330f;
 
@@ -39,6 +42,7 @@ public class ShooterScript5 : MonoBehaviour {
 			level = 5;
 		else
 			level = 6;
+		position = transform.position;
 		//Initializing light beam
 		linePositions = new List<Vector3> ();   //a list that contains the main three points od the light beam 
 		Vector3 start = transform.position;     // the starting point at the center of the player 
@@ -74,6 +78,7 @@ public class ShooterScript5 : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		position = transform.position;
 		if (!gameOver) 
 		{
 			if (right)
@@ -101,21 +106,27 @@ public class ShooterScript5 : MonoBehaviour {
 
 	void moveRight()
 	{
-		transform.position = transform.position + (new Vector3 (0.05f, 0 ,0));
-		for(int i = 0; i < linePositions.Count; i++)
+		if (position.x < 6.5) 
 		{
-			linePositions[i] = linePositions[i] + new Vector3 (0.05f, 0 ,0);
-		}		
+			transform.position = transform.position + (new Vector3 (0.05f, 0, 0));
+			for (int i = 0; i < linePositions.Count; i++) 
+			{
+				linePositions [i] = linePositions [i] + new Vector3 (0.05f, 0, 0);
+			}	
+		}
 	}
 
 
 	void moveLeft()
 	{
-		transform.position = transform.position - (new Vector3 (0.05f, 0 ,0));
-		for(int i = 0; i < linePositions.Count; i++)
+		if (position.x > -8)
 		{
-			linePositions[i] = linePositions[i] - new Vector3 (0.05f, 0 ,0);
-		}	
+			transform.position = transform.position - (new Vector3 (0.05f, 0, 0));
+		for (int i = 0; i < linePositions.Count; i++) 
+			{
+			linePositions [i] = linePositions [i] - new Vector3 (0.05f, 0, 0);
+			}	
+		}
 	}
 
 
@@ -180,20 +191,21 @@ public class ShooterScript5 : MonoBehaviour {
 
 	public static void movement(int x)
 	{
+
 		switch(x)
 		{
 		case 1: 
 			if(!right)
 			{
 				clicks++;
-				log += "-Moving right, xStart: " + transform.position.x;
+				log += "-Moving right, xStart: " + position.x;
 			}
 			right = true;
 			break;
 		case 2:
 			if (right)
 			{
-				log += ", xEnd: " + transform.position.x;
+				log += ", xEnd: " + position.x;
 			}
 			right = false;
 			break;
@@ -201,14 +213,14 @@ public class ShooterScript5 : MonoBehaviour {
 			if(!left)
 			{
 				clicks++;
-				log+= "-Moving left, xStart: " + transform.position.x;
+				log+= "-Moving left, xStart: " + position.x;
 			}
 			left = true;
 			break;
 		case 4:
 			if (left)
 			{
-				log += ", xEnd: " + transform.position.x;
+				log += ", xEnd: " + position.x;
 			}
 			left = false;
 			break;
@@ -216,14 +228,14 @@ public class ShooterScript5 : MonoBehaviour {
 			if(!RRight)
 			{
 				clicks++;
-				log += "-Rotation ccw, zStart: " + transform.rotation.z;
+				log += "-Rotation ccw, zStart: " + angle;
 			}
 			RRight = true;
 			break;
 		case 6:
 			if (RRight)
 			{
-				log += ", zEnd: " + transform.rotation.x;
+				log += ", zEnd: " + angle;
 			}
 			RRight = false;
 			break;
@@ -231,19 +243,19 @@ public class ShooterScript5 : MonoBehaviour {
 			if(!RLeft)
 			{
 				clicks++;
-				log += "-Rotation cw, zStart: " + transform.rotation.z;
+				log += "-Rotation cw, zStart: " + angle;
 			}
 			RLeft = true;
 			break;
 		case 8:
 			if (RLeft)
 			{
-				log += ", zEnd: " + transform.rotation.x;
+				log += ", zEnd: " + angle;
 			}
 			RLeft = false;
 			break;
-
 		}
+
 	}
 
 
@@ -259,6 +271,7 @@ public class ShooterScript5 : MonoBehaviour {
 		//to exclude negative scores
 		if (score <= 50) score = 50;
 	}
+
 
 	void PointRotator()
 	{

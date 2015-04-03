@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 public class ShooterScript_1 : MonoBehaviour {
 
+
 	//for movement
 	public static bool up;
 	public static bool down;
@@ -26,7 +27,7 @@ public class ShooterScript_1 : MonoBehaviour {
 	//variables for score
 	public static int clicks;
 	public static string log;
-	int score;
+	public int score;
 	int time;
 	int level;
 
@@ -162,6 +163,7 @@ public class ShooterScript_1 : MonoBehaviour {
 		nextButton.SetActive (true);
 	}
 
+
 	void extender()
 	{
 		if (linePositions[1].x < 10){
@@ -174,7 +176,6 @@ public class ShooterScript_1 : MonoBehaviour {
 			linePositions[1] = point2;
 		}
 	}
-
 
 
 	void beamSetter()
