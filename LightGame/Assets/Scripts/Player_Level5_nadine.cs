@@ -62,8 +62,8 @@ public class Player_Level5_nadine : MonoBehaviour
 	//rotate the player clockwise 
 	void RotateRight()
 	{
-		float zz = transform.eulerAngles.z;
-		if ((zz < 60 || zz >=300)) 
+		float zCoordinate = transform.eulerAngles.z;
+		if ((zCoordinate < 60 || zCoordinate >=300)) 
 		{
 			transform.Rotate (new Vector3(0,0,0.5f));
 			angle+= 0.5f;
@@ -75,8 +75,8 @@ public class Player_Level5_nadine : MonoBehaviour
 	//rotate the player anti clockwise
 	void RotateLeft()
 	{
-		float zz = transform.eulerAngles.z;
-		if ((zz<=61 || zz > 301)) 
+		float zCoordinate = transform.eulerAngles.z;
+		if ((zCoordinate<=61 || zCoordinate > 301)) 
 		{
 			transform.Rotate (new Vector3(0,0,-0.5f));
 			angle-= 0.5f;
