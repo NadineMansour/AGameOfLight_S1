@@ -37,37 +37,40 @@
        </thead>
        <tbody>
          <% @students.each do |s| %>
-         <tr>
-         <td><%= s[:student_name] %></td>
-         <td><%= s[:email] %></td>
-         <td><%= s[:student_class] %></td>
-         <td><%= s[:grade] %></td>
-         <td>
-          <% @records = Record.where(email: s[:email]) %>
-          <table class="table table-striped">
-           <thead>
-              <tr>
-                 <th>Level</th>
-                 <th>Clicks</th>
-                 <th>Score</th>
-                 <th>time</th>
-                 <th>logs</th>
-              </tr>
-           </thead>
-           <tbody>
-            <% @records.each do |r| %>
-              <tr>
-                <td><%= r[:level] %></td>
-                <td><%= r[:clicks] %></td>
-                <td><%= r[:score] %></td>
-                <td><%= r[:time] %></td>
-                <td><%= r[:logs] %></td>
-              </tr>
-            <% end %>
-           </tbody>
-        </table>
-         </td>
-         </tr>
+           <% @records = Record.where(email: s[:email]) %>
+           <% if @records.count > 0 %>
+             <tr>
+             <td><%= s[:student_name] %></td>
+             <td><%= s[:email] %></td>
+             <td><%= s[:student_class] %></td>
+             <td><%= s[:grade] %></td>
+             <td>
+              
+              <table class="table table-striped">
+               <thead>
+                  <tr>
+                     <th>Level</th>
+                     <th>Clicks</th>
+                     <th>Score</th>
+                     <th>time</th>
+                     <th>logs</th>
+                  </tr>
+               </thead>
+               <tbody>
+                <% @records.each do |r| %>
+                  <tr>
+                    <td><%= r[:level] %></td>
+                    <td><%= r[:clicks] %></td>
+                    <td><%= r[:score] %></td>
+                    <td><%= r[:time] %></td>
+                    <td><%= r[:logs] %></td>
+                  </tr>
+                <% end %>
+               </tbody>
+            </table>
+             </td>
+             </tr>
+           <% end %>
       <% end %>
        </tbody>
     </table>
