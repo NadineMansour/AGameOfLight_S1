@@ -18,12 +18,12 @@ class SubjectsController < ApplicationController
 	
 	def show
 	 @subject = Subject.find(params[:id]) 
-end
+        end
 
   private
 
     def subject_params
       params.require(:subject).permit(:name, :code)
     end
-end
+ end  
 
