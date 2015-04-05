@@ -14,6 +14,10 @@ Rails.application.routes.draw do
       put 'accept_verification/:student_id' => :accept_verification
       put 'reject_verification/:student_id' => :reject_verification
     end
+    member do
+      get 'accept_school_admin'
+      get 'reject_school_admin'
+    end
   end
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
