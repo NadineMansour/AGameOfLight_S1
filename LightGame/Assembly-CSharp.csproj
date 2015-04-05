@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scenes\AddingMirror.cs" />
      <Compile Include="Assets\Scripts\ButtonLogin.cs" />
      <Compile Include="Assets\Scripts\DownMove.cs" />
      <Compile Include="Assets\Scripts\DownMove_1.cs" />
@@ -63,6 +64,7 @@
      <Compile Include="Assets\Scripts\R2Move_1.cs" />
      <Compile Include="Assets\Scripts\R2Move_2.cs" />
      <Compile Include="Assets\Scripts\R2_Level5.cs" />
+     <Compile Include="Assets\Scripts\ShooterScript5.cs" />
      <Compile Include="Assets\Scripts\ShooterScript_1.cs" />
      <Compile Include="Assets\Scripts\ShooterScript_2.cs" />
      <Compile Include="Assets\Scripts\SimpleJSON.cs" />
@@ -75,6 +77,8 @@
      <Compile Include="Assets\Scripts\load.cs" />
      <Compile Include="Assets\Scripts\nextButton_MM.cs" />
      <Compile Include="Assets\Scripts\nextButton_MM_2.cs" />
+     <Compile Include="Assets\Scripts\reflection_level_3.cs" />
+     <Compile Include="Assets\Scripts\rotateButtons.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
