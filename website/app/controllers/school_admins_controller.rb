@@ -100,4 +100,28 @@ class SchoolAdminsController < ApplicationController
 	end
 
 
+	def accept_school_admin
+		# get the school admin from the id in the url
+		@school_admin = SchoolAdmin.find(params[:id])
+		# update the attribute
+		@school_admin.verified = true
+		# save 
+		@school_admin.save
+		# redirect to the dash board of the admin
+		redirect_to admin_dashboard_path
+	end
+
+
+	def reject_school_admin
+		# get the school admin from the id in the url
+		@school_admin = SchoolAdmin.find(params[:id])
+		# update the attribute
+		@school_admin.verified = nil
+		# save 
+		@school_admin.save
+		# redirect to the dash board of the admin
+		redirect_to admin_dashboard_path
+	end
+
+
 end
