@@ -22,13 +22,14 @@ public class ShooterScript_2 : MonoBehaviour {
 	public static float angle; //for rotating the line renderer
 	public static bool gameover;
 	public static int state;
+	public static int startTime;
 
 
 	//variables for score
 	public static int clicks;
 	public static string log;
 	int score;
-	int time;
+	public static int time;
 	int level;
 
 	

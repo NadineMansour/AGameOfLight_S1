@@ -15,7 +15,7 @@ public class ShooterScript5 : MonoBehaviour {
 
 
 	//For score
-	public int timeInLevel;
+	public static int timeInLevel;
 	public static int clicks;
 	public int level;
 	public int score;
