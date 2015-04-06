@@ -23,6 +23,15 @@ class StudentsController < ApplicationController
   end
 
 
+  def show_my_school_subjects
+    @subjects = Subject.where(school: current_student.school)
+  end
+
+
+  def show_one_subject
+    @subject = Subject.find(params[:subject_id])
+  end
+
 
   private
     def user_params

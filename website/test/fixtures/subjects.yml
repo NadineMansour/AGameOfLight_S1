@@ -4,8 +4,10 @@ one:
   name: MyString
   code: MyString
   school_admin: one
+  school: guc
 
 two:
   name: MyString
   code: MyString2
   school_admin: two
+  school: auc
