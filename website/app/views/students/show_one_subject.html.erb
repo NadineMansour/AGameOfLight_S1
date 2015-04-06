@@ -1,0 +1,26 @@
+<div class="row">
+  <br>
+  <br>
+  <br>
+</div>
+<div class="row">
+  <div class="col-md-2">
+    <%= render "student_menu" %>
+  </div>
+  <div class="col-md-8">
+    <div>
+      <p>Subject name : <%= @subject.name %></p><br>
+      <p>Subject code : <%= @subject.code %></p><br>
+      <p>Subject school : <%= @subject.school %></p><br>
+      <% @school_admin = SchoolAdmin.find(@subject[:school_admin_id]) %>
+      <p>Subject school admin email : <%= @school_admin.email %></p><br>
+    </div>
+    <% if current_student.verified %>
+      <p>The course game: </p>
+      <br>
+      <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="/LightG.html" width="800px;" height="700px;"> </iframe>
+      </div>
+    <% end %>
+  </div>
+</div>

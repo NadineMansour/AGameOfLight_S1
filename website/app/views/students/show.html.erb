@@ -5,19 +5,8 @@
 </div>
 <div class="row">
   <div class="col-md-2">
-    <div class="list-group" width="70px;">
-      <a href="#" class="list-group-item">First item</a>
-      <a href="#" class="list-group-item">Second item</a>
-      <a href="#" class="list-group-item">Third item</a>
-      <a href="#" class="list-group-item">Fourth item</a>
-      <a href="#" class="list-group-item">Fifth item</a>
-    </div>
+    <%= render "student_menu" %>
   </div>
   <div class="col-md-8">
-    <% if current_student.verified %>
-      <div class="embed-responsive embed-responsive-16by9">
-        <iframe class="embed-responsive-item" src="/LightG.html" width="800px;" height="700px;"> </iframe>
-      </div>
-    <% end %>
   </div>
 </div>

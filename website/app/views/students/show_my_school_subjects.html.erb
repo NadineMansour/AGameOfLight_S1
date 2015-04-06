@@ -1,0 +1,38 @@
+<div class="row">
+  <br>
+  <br>
+  <br>
+</div>
+<div class="row">
+  <div class="col-md-2">
+    <%= render "student_menu" %>
+  </div>
+  <div class="col-md-8">
+    <div>
+      <table class="table table-striped">
+         <caption>My school subjects</caption>
+         <thead>
+            <tr>
+               <th>Subject name</th>
+               <th>Subject code</th>
+               <th>Subject school</th>
+               <th>Subject school admin email</th>
+               <th>Show</th>
+            </tr>
+         </thead>
+         <tbody>
+          <% @subjects.each do |subject| %>
+            <tr>
+              <td><%= subject[:name] %></td>
+              <td><%= subject[:code] %></td>
+              <td><%= subject[:school] %></td>
+              <% @school_admin = SchoolAdmin.find(subject[:school_admin_id]) %>
+              <td><%= @school_admin.email %></td>
+              <td><%= link_to 'Show', show_one_subject_students_path(subject_id: subject[:id]) %></td>
+            </tr>
+          <% end %>
+         </tbody>
+      </table>
+    </div>
+  </div>
+</div>
