@@ -12,12 +12,16 @@ public class ShooterScript5 : MonoBehaviour {
 	public static bool right;
 	public static bool RRight;					
 	public static bool RLeft;
+
+
 	//For score
 	public int timeInLevel;
 	public static int clicks;
 	public int level;
 	public int score;
 	public static string log;
+
+
 	//Other variables for state recognition and calculations
 	public static Vector3 position;
 	public static bool gameOver;
@@ -26,6 +30,9 @@ public class ShooterScript5 : MonoBehaviour {
 	private static float angle ;                        //degree of rotation of light beam
 	float NI = 1.000293f;						 
 	float NR = 1.3330f;
+
+	//gameObjects
+	public GameObject numOfClicks;
 
 
 	// Use this for initialization
@@ -101,6 +108,9 @@ public class ShooterScript5 : MonoBehaviour {
 			detector ();
 			SetLightBeam();
 		} 
+		//display the number of moves/clicks
+		TextMesh textObject = numOfClicks.GetComponent<TextMesh>();
+		textObject.text = "Moves: "+clicks;
 	}
 
 

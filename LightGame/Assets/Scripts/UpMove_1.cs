@@ -28,7 +28,7 @@ public class UpMove_1 : MonoBehaviour {
 	
 	public void OnMouseDown() 
 	{
-		if (!ShooterScript_1.up) 
+		if (!ShooterScript_1.up && ShooterScript_1.state==2) 
 		{
 			ShooterScript_1.clicks++;
 			ShooterScript_1.log += "-Moving up, yStart: " + Shooter.transform.position.y;

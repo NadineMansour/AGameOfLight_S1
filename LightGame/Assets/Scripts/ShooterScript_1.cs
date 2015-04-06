@@ -16,6 +16,7 @@ public class ShooterScript_1 : MonoBehaviour {
 	public LineRenderer lightBeam;
 	public GameObject nextButton;
 	public GameObject Tip3;
+	public GameObject numOfClicks;
 
 
 	public static List<Vector3> linePositions; //for holding the line renderer points
@@ -71,6 +72,9 @@ public class ShooterScript_1 : MonoBehaviour {
 			detector ();
 			beamSetter ();
 		}
+		//display the number of moves/clicks
+		TextMesh textObject = numOfClicks.GetComponent<TextMesh>();
+		textObject.text = "Moves: "+clicks;
 	}
 
 

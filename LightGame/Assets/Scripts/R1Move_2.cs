@@ -27,7 +27,7 @@ public class R1Move_2 : MonoBehaviour {
 
 	public void OnMouseDown() 
 	{
-		if (!ShooterScript_2.RUp) 
+		if (!ShooterScript_2.RUp && ShooterScript_2.state==1) 
 		{
 			ShooterScript_2.clicks++;
 			ShooterScript_2.log += "-Rotation ccw, started: " + ShooterScript_2.angle;
