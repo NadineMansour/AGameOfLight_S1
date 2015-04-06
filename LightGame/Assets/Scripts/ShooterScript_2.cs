@@ -31,7 +31,7 @@ public class ShooterScript_2 : MonoBehaviour {
 	int time;
 	int level;
 
-
+	
 	// Use this for initialization
 	void Start () 
 	{
@@ -75,6 +75,14 @@ public class ShooterScript_2 : MonoBehaviour {
 		//display the number of moves/clicks
 		TextMesh textObject = numOfClicks.GetComponent<TextMesh>();
 		textObject.text = "Moves: "+clicks;
+	}
+
+
+	void calculateScore()
+	{
+		score = (120 - time) * 100 + (5 - clicks) * 50;
+		//to exclude negative scores
+		if (score <= 50) score = 50;
 	}
 
 
@@ -157,6 +165,7 @@ public class ShooterScript_2 : MonoBehaviour {
 				linePositions [1] = hit.point;
 				gameover = true;
 				time = (int)Time.timeSinceLevelLoad;
+				calculateScore();
 				//clicks, log, time and level are ready here.
 				EndGame();
 			}
@@ -175,6 +184,7 @@ public class ShooterScript_2 : MonoBehaviour {
 	void EndGame()
 	{
 		Tip3.SetActive (true);
+		StartCoroutine(save_record());
 		state = 2;
 		nextButton.SetActive (true);
 	}
@@ -198,5 +208,32 @@ public class ShooterScript_2 : MonoBehaviour {
 	{
 		lightBeam.SetPosition(0, linePositions[0]);
 		lightBeam.SetPosition(1, linePositions[1]);
+	}
+
+
+	IEnumerator save_record() 
+	{
+		string urlMessage = "https://k12-mariammohamed.c9.io/api/records/save_record";
+		WWWForm form = new WWWForm ();
+		// pass the email authentication
+		string user_email = ButtonLogin.user_email;
+		form.AddField ("email", user_email);
+		form.AddField ("level", level);
+		form.AddField ("score", score);
+		form.AddField ("time", time);
+		form.AddField ("clicks", clicks);
+		form.AddField ("logs", log);
+		WWW w = new WWW(urlMessage, form);
+		yield return w;
+		if (!string.IsNullOrEmpty (w.error)) 
+		{
+			// this is done if the authentication is rejected or the response has
+			// value >= 400 which means error in authentication or connection or server is down
+			Debug.Log("The record is not saved");
+		} 
+		else 
+		{
+			// if the response has OK status
+		}
 	}
 }
