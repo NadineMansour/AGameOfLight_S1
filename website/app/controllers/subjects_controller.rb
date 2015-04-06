@@ -8,6 +8,7 @@ class SubjectsController < ApplicationController
 	def create
 		@subject_params = subject_params
 		@subject_params[:school_admin_id] = current_school_admin.id
+		@subject_params[:school] = current_school_admin.school
 		@subject = Subject.new(@subject_params)
 		if @subject.save
 			redirect_to view_school_subjects_school_admins_path

@@ -1,0 +1,25 @@
+
+<p id="notice"><%= notice %></p>
+<p> 
+
+<strong>Name:</strong>
+<%= @subject.name %>
+</p>
+
+<p>
+<strong>Code:</strong>
+<%= @subject.code %>
+</p>
+
+<p>
+<strong>School:</strong>
+<%= @subject.school_admin.school %>
+</p>
+
+<p>
+<strong>Game:</strong>
+<iframe class="embed-responsive-item" src="/LightG.html" width="800px;" height="700px;"></iframe>
+</p>
+
+<%= link_to 'Back', view_courses_students_path %>
+
