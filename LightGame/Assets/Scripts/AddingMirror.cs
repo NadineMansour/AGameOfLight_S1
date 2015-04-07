@@ -2,7 +2,8 @@
 using System.Collections;
 
 
-public class AddingMirror : MonoBehaviour {
+public class AddingMirror : MonoBehaviour 
+{
 	public Rigidbody Mirror;
 	public float MirrorCount;
 	private Vector3 screenPoint;

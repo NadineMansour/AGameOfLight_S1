@@ -4,9 +4,8 @@ using System.Collections;
 using System.Collections.Generic;
 
 
-public class reflection_level_4 : MonoBehaviour {
-
-
+public class reflection_level_4 : MonoBehaviour 
+{
 	//booleans to rotate left and right
 	public static bool rotateRight;
 	public static bool rotateLeft;
@@ -29,7 +28,8 @@ public class reflection_level_4 : MonoBehaviour {
 
 	
 	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
 		//setting light points  
 		linePositions = new List<Vector3> ();
 		Vector3 start = transform.position;
@@ -74,7 +74,8 @@ public class reflection_level_4 : MonoBehaviour {
 	
 
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+	{
 		if (!gameOver) 
 		{
 			if (rotateRight) 
@@ -114,11 +115,15 @@ public class reflection_level_4 : MonoBehaviour {
 					//Insert Post records method here.
 					StartCoroutine (save_record ());
 				}
+
+
 				//check if the light hitted an obstacle
 				if (hit.collider.tag == "Obstacle") 
 				{
 					linePositions [4] = hit.point;
 				}
+
+
 				// check if the light hitted a horizontal mirror the reflection is done on the x-axis
 				if (hit.collider.tag == "horizontal mirror")
 				{
@@ -134,6 +139,7 @@ public class reflection_level_4 : MonoBehaviour {
 
 					}
 					else
+					{
 						//this condition is checking if there is only one collision. two midpoints are at the start point
 						//if there is one collision only and another mirror is added point 3 is = to point 4 and point 4 is = to point of collision
 						if (linePositions [2] == linePositions [0]) 
@@ -142,17 +148,22 @@ public class reflection_level_4 : MonoBehaviour {
 							linePositions [3] = collision;
 							x = 2*(collision.x - linePositions [2].x)+linePositions[2].x;
 							linePositions [4] = new Vector3 (x, linePositions[2].y, 0);
-						} else
-
+						}
+						else
+						{
 							//this condition if there is two collision points. one point is at the start point 
 							//if there is two collision points and a third mirror is add point 2 is = to point 3 and point 3 is = to point 4 and point 4 is = to collision point
-							if (linePositions [1] == linePositions [0]) {
-							linePositions [1] = linePositions [2];
-							linePositions [2] = linePositions [3];
-							linePositions [3] = collision;
-							x = 2*(collision.x - linePositions [2].x) + linePositions[2].x;
-							linePositions [4] = new Vector3 (x, linePositions[2].y, 0);
+							if (linePositions [1] == linePositions [0]) 
+							{
+								linePositions [1] = linePositions [2];
+								linePositions [2] = linePositions [3];
+								linePositions [3] = collision;
+								x = 2*(collision.x - linePositions [2].x) + linePositions[2].x;
+								linePositions [4] = new Vector3 (x, linePositions[2].y, 0);
+							}
 						}
+					}	 
+
 					extendLightX();
 				}
 
@@ -170,27 +181,30 @@ public class reflection_level_4 : MonoBehaviour {
 						linePositions [4] = new Vector3 (linePositions[0].x, -y, 0);
 					}
 					else 
-
+					{
 						if (linePositions [2] == linePositions [0]) 
-					{
-						linePositions [2] = linePositions [3];
-						linePositions [3] = collision;
-						y = 2*(linePositions[2].y - collision.y)+linePositions[2].y;
-						linePositions [4] = new Vector3 (linePositions[2].x, -y, 0);
-					}
-					else 
-
-						if (linePositions [1] == linePositions [0]) 
-					{
-						linePositions [1] = linePositions [2];
-						linePositions [2] = linePositions [3];
-						linePositions [3] = collision;
-						y = 2*(linePositions[2].y - collision.y) + linePositions[2].y;
-						linePositions [4] = new Vector3 (linePositions[2].x, -y, 0);
+						{
+							linePositions [2] = linePositions [3];
+							linePositions [3] = collision;
+							y = 2*(linePositions[2].y - collision.y)+linePositions[2].y;
+							linePositions [4] = new Vector3 (linePositions[2].x, -y, 0);
+						}
+						else 
+						{
+							if (linePositions [1] == linePositions [0]) 
+							{
+								linePositions [1] = linePositions [2];
+								linePositions [2] = linePositions [3];
+								linePositions [3] = collision;
+								y = 2*(linePositions[2].y - collision.y) + linePositions[2].y;
+								linePositions [4] = new Vector3 (linePositions[2].x, -y, 0);
+							}
+						}
 					}
 					extendLightY();
 				}
 			}
+
 
 			//to be continued***************************** 
 			/*else 
@@ -222,12 +236,12 @@ public class reflection_level_4 : MonoBehaviour {
 
 	void extendLightX()
 	{
-			if (linePositions [4].y < 6) 
+		if (linePositions [4].y < 6) 
 		{
-				Vector3 point1 = linePositions [3];
-				Vector3 point2 = linePositions [4];
-				float slope = (point2.y - point1.y) / (point2.x - point1.x);
-				float yIntercept = point1.y - slope * point1.x;
+			Vector3 point1 = linePositions [3];
+			Vector3 point2 = linePositions [4];
+			float slope = (point2.y - point1.y) / (point2.x - point1.x);
+			float yIntercept = point1.y - slope * point1.x;
 			if(linePositions[3].x < linePositions[4].x)
 			{
 				linePositions [4] = new Vector3 (15, 15 * slope + yIntercept, 0);
@@ -236,8 +250,7 @@ public class reflection_level_4 : MonoBehaviour {
 			{
 				linePositions[4] = new Vector3 (-15,-15*slope + yIntercept,0);
 			}
-
-			}
+		}
 	}
 
 
