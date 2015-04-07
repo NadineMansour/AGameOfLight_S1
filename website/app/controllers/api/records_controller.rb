@@ -23,7 +23,7 @@ class Api::RecordsController < Api::BaseController
 		#get the email that identifies the user
 		@email = params[:email]
 		#logic goes here to get @records
-		@records = Record.where(email: @email) ### code here
+		@records = Record.where(email: @email).order(created_at: :desc) ### code here
 		respond_with @records
 	end
 
