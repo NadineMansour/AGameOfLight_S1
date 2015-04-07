@@ -24,6 +24,7 @@ public class nextButton_MM : MonoBehaviour {
 		if (ShooterScript_1.state == 1) 
 		{
 			Tip2.SetActive(false);
+			ShooterScript_1.startTime = (int)Time.timeSinceLevelLoad;
 			ShooterScript_1.state = 2;
 		}
 		if (ShooterScript_1.state == 0) 

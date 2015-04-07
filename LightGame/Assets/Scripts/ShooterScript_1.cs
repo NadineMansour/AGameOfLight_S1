@@ -23,13 +23,14 @@ public class ShooterScript_1 : MonoBehaviour {
 	public static float angle; //for rotating the line renderer
 	public static bool gameover;
 	public static int state;
+	public static int startTime;
 
 
 	//variables for score
 	public static int clicks;
 	public static string log;
 	public int score;
-	int time;
+	public static int time;
 	int level;
 
 
@@ -156,7 +157,7 @@ public class ShooterScript_1 : MonoBehaviour {
 			{
 				linePositions [1] = hit.point;
 				gameover = true;
-				time = (int)Time.timeSinceLevelLoad;
+				time = (int)Time.timeSinceLevelLoad - startTime;
 				calculateScore();
 				//clicks, log, time and level are ready here.
 				EndGame();
