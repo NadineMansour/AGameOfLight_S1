@@ -14,12 +14,12 @@ end
 
 test "should get subjects of school" do
 # start the request
-get( :show_my_school_subjects)
+get( :view_courses)
 assert_response :success
 assert_not_nil assigns(:subjects)
 # we have only 1 subject of their school
 assert_equal 1, assigns(:subjects).count
-assert_template :show_my_school_subjects
+assert_template :view_courses
 assert_template layout: "layouts/application"
 end
 
