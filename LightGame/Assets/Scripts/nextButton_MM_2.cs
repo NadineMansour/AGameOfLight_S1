@@ -18,9 +18,9 @@ public class nextButton_MM_2 : MonoBehaviour {
 	{
 		if (ShooterScript_2.state == 2) 
 		{
-			//Uncomment following level and remove the level 5 one when level 3 is done.
-			//Application.LoadLevel("Level3");
-			Application.LoadLevel("Level5");
+			int Current = Application.loadedLevel;
+			Current += 1;
+			Application.LoadLevel (Current);
 		}
 		if (ShooterScript_2.state == 0) 
 		{

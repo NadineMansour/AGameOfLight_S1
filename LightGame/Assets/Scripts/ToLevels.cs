@@ -1,26 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ToLevels : MonoBehaviour {
-	
-	void Start () {
-	}
+public class ToLevels : MonoBehaviour 
+{
 
 
-
-	public void OnMouseDown() {
-		if (Application.loadedLevelName == "Level1") {
-			Application.LoadLevel("Level2");
-		}
-		if (Application.loadedLevelName == "Level2") {
-			Application.LoadLevel("END");
-		}
-	}
-	
-	
-
-	// Update is called once per frame
-	void Update () {
-		
+	public void OnMouseDown() 
+	{
+		int Current = Application.loadedLevel;
+		Current += 1;
+		Application.LoadLevel (Current);
 	}
 }
