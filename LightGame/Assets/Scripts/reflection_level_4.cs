@@ -13,14 +13,14 @@ public class reflection_level_4 : MonoBehaviour
 	public LineRenderer lightBeam; 
 	private List <Vector3> linePositions;
 	private float angle;
-	private static bool gameOver;
+	public static bool gameOver;
 	public GameObject target;
 	public GameObject bam;
 	public GameObject to_next_level;
 	//Variables for records table
 	public float StartTime;
 	public float FinishTime;
-	public int timeInLevel;
+	public static int timeInLevel;
 	public static int clicks;
 	public static string log;
 	public int score;
