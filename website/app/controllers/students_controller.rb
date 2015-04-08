@@ -9,6 +9,13 @@ class StudentsController < ApplicationController
     @user = Student.new
   end
 
+  def view_courses
+   @subjects = Subject.where(school: current_student.school)
+  end
+
+  def show_course
+   @subject = Subject.find(params[:subject_id])
+  end
 
 
   def create

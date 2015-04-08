@@ -22,7 +22,13 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :students
-  resources :students
+  resources :students do
+    collection do
+      get 'view_courses'
+      get 'show_course'
+    end
+  end
+
 
 
   namespace :api, defaults: { format: :json } do
