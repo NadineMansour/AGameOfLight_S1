@@ -10,14 +10,14 @@ public class reflection_level_3 : MonoBehaviour
 	public LineRenderer lightBeam;//Lightbeam gameobject to edit positions and end points
 	private List <Vector3> linePositions;//array containing lightbeam points for setting and editing
 	private float angle;//degree of rotation of light beam
-	private static bool gameOver;//check whether target is reached or not
+	public static bool gameOver;//check whether target is reached or not
 	public GameObject target;
 	public GameObject bam;
 	public GameObject toLevelsButton; //button that redirect to levels menu after winning
 	//Variables for records table
 	public float StartTime;
 	public float FinishTime;
-	public int timeInLevel;
+	public static int timeInLevel;
 	public static int clicks;
 	public static string log;
 	public int score;

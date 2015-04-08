@@ -29,24 +29,70 @@ public class Stopwatch : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		if (ShooterScript5.gameOver) 
-		{
-			int mins = (int)(ShooterScript5.timeInLevel / 60.0f);
-			int secs = (int)(ShooterScript5.timeInLevel) - (mins * 60);
-			if (secs / 10 == 0)
-				SetText (mins + ":0" + secs);
-			else
-				SetText(mins+":"+secs);
+		if (Application.loadedLevelName.Equals ("Level5") || Application.loadedLevelName.Equals ("Level6")) {
+			if (ShooterScript5.gameOver) 
+			{
+				int mins = (int)(ShooterScript5.timeInLevel / 60.0f);
+				int secs = (int)(ShooterScript5.timeInLevel) - (mins * 60);
+				if (secs / 10 == 0)
+					SetText (mins + ":0" + secs);
+				else
+					SetText (mins + ":" + secs);
+			} 
+			else 
+			{
+				int mins = (int)(Time.timeSinceLevelLoad / 60.0f);
+				int secs = (int)(Time.timeSinceLevelLoad) - (mins * 60);
+				if (secs / 10 == 0)
+					SetText (mins + ":0" + secs);
+				else
+					SetText (mins + ":" + secs);
+			}
 		} 
 		else 
 		{
-			int mins = (int)(Time.timeSinceLevelLoad / 60.0f);
-			int secs = (int)(Time.timeSinceLevelLoad) - (mins * 60);
-			if (secs / 10 == 0)
-				SetText (mins + ":0" + secs);
+			if (Application.loadedLevelName.Equals("Level3"))
+			{
+				if (reflection_level_3.gameOver) 
+				{
+					int mins = (int)(reflection_level_3.timeInLevel / 60.0f);
+					int secs = (int)(reflection_level_3.timeInLevel) - (mins * 60);
+					if (secs / 10 == 0)
+						SetText (mins + ":0" + secs);
+					else
+						SetText (mins + ":" + secs);
+				} 
+				else 
+				{
+					int mins = (int)(Time.timeSinceLevelLoad / 60.0f);
+					int secs = (int)(Time.timeSinceLevelLoad) - (mins * 60);
+					if (secs / 10 == 0)
+						SetText (mins + ":0" + secs);
+					else
+						SetText (mins + ":" + secs);
+				}
+			}
 			else
-				SetText(mins+":"+secs);
+			{
+				if (reflection_level_4.gameOver) 
+				{
+					int mins = (int)(reflection_level_4.timeInLevel / 60.0f);
+					int secs = (int)(reflection_level_4.timeInLevel) - (mins * 60);
+					if (secs / 10 == 0)
+						SetText (mins + ":0" + secs);
+					else
+						SetText (mins + ":" + secs);
+				} 
+				else 
+				{
+					int mins = (int)(Time.timeSinceLevelLoad / 60.0f);
+					int secs = (int)(Time.timeSinceLevelLoad) - (mins * 60);
+					if (secs / 10 == 0)
+						SetText (mins + ":0" + secs);
+					else
+						SetText (mins + ":" + secs);
+				}
+			}
 		}
-
 	}
 }
