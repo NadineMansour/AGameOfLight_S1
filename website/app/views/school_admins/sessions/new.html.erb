@@ -15,6 +15,7 @@
                 <%= f.password_field :password, autocomplete: "off", placeholder: 'Password', class: 'form-control' %>
               </div>
               <%= f.submit 'Login', class: 'btn btn-lg btn-success btn-block' %>
+              <%= link_to 'Sign up', new_school_admin_registration_path , class: 'btn btn-lg btn-success btn-block' %>
             </fieldset>
           <% end %>
         </div>
