@@ -5,4 +5,5 @@ class SchoolAdmin < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   #associations
   has_many :subjects
+  before_save { |student| student.school.downcase! }
 end
