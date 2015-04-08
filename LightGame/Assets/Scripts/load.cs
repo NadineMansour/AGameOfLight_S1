@@ -14,6 +14,11 @@ public class load : MonoBehaviour {
 	//3Dtext for levels in World1 scene
 	public bool level1 = false;
 	public bool level2 = false;
+	public bool level3 = false;
+	public bool level4 = false;
+	public bool level5 = false;
+	public bool level6 = false;
+
 
 	//3Dtext for scores in scores scene
 	public bool score1;
@@ -47,15 +52,32 @@ public class load : MonoBehaviour {
 		//level1 is loaded
 		if (level1 == true)
 		{
-			Application.LoadLevel("Level1");
+			Application.LoadLevel(3);
 		}
 		//checks if the level is unlocked and finished
 		// if true level2 is loaded
 		if (level2 == true && (levels.Contains(2) == true || levels.Contains(1)))
 		{
-
-			Application.LoadLevel("Level2");
+			Application.LoadLevel(4);
 		}
+		if (level3 == true && (levels.Contains(3) == true || levels.Contains(2)))
+		{
+			Application.LoadLevel(5);
+		}
+		if (level4 == true && (levels.Contains(4) == true || levels.Contains(3)))
+		{
+			Application.LoadLevel(6);
+		}
+		if (level5 == true && (levels.Contains(5) == true || levels.Contains(4)))
+		{
+			Application.LoadLevel(7);
+		}
+		if (level6 == true && (levels.Contains(6) == true || levels.Contains(5)))
+		{
+			Application.LoadLevel(8);
+		}
+
+
 	}
 
 
@@ -72,10 +94,12 @@ public class load : MonoBehaviour {
 		yield return w;
 
 
-		if (!string.IsNullOrEmpty(w.error)) {
+		if (!string.IsNullOrEmpty(w.error))
+		{
 			Debug.Log(w.error);
 		}
-		else {
+		else 
+		{
 			var N = JSON.Parse(w.text);
 			int i = 0;
 			while (true) {
@@ -136,7 +160,24 @@ public class load : MonoBehaviour {
 				i = i + 1;
 			}
 			//Checks if level 2 is finished
-			if (level2 == true && levels.Contains(2)==false && levels.Contains(1)==false){
+			if (level2 == true && levels.Contains(2)==false && levels.Contains(1)==false)
+			{
+				GetComponent<TextMesh>().text = "LOCKED";
+			}
+			if (level3 == true && levels.Contains(3)==false && levels.Contains(2)==false)
+			{
+				GetComponent<TextMesh>().text = "LOCKED";
+			}
+			if (level4 == true && levels.Contains(4)==false && levels.Contains(3)==false)
+			{
+				GetComponent<TextMesh>().text = "LOCKED";
+			}
+			if (level5 == true && levels.Contains(5)==false && levels.Contains(4)==false)
+			{
+				GetComponent<TextMesh>().text = "LOCKED";
+			}
+			if (level6 == true && levels.Contains(6)==false && levels.Contains(5)==false)
+			{
 				GetComponent<TextMesh>().text = "LOCKED";
 			}
 		}
