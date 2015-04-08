@@ -33,11 +33,13 @@ public class ShooterScript5 : MonoBehaviour {
 
 	//gameObjects
 	public GameObject numOfClicks;
+	public GameObject nextLevel;
 
 
 	// Use this for initialization
 	void Start () {
 		//Initializing variables
+		nextLevel.SetActive (false);
 		left = false;
 		right = false;
 		RRight = false;
@@ -272,7 +274,7 @@ public class ShooterScript5 : MonoBehaviour {
 
 	void EndGame()
 	{
-		
+		nextLevel.SetActive (true);
 	}
 	
 	
