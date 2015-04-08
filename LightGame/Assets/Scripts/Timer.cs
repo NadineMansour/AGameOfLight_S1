@@ -1,34 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEngine.UI;
 
-
-public class Stopwatch : MonoBehaviour {
-
-
-	public void SetText(string text) 
-	{
-		// you can try to get this component
-		var myText = gameObject.GetComponent<Text>();
-		// but it can be null, so you might want to add it
-		if (myText == null) 
-		{
-			myText = gameObject.AddComponent<Text>();
-		}
-		myText.text = text;
-	}
-
+public class Timer : MonoBehaviour {
 
 	// Use this for initialization
-	void Start () 
-	{
+	void Start () {
 	
 	}
-
-
+	
 	// Update is called once per frame
-	void Update () 
-	{
+	void Update () {
+		TextMesh textObject = GetComponent<TextMesh>();
+
 		if (Application.loadedLevelName.Equals ("Level5") || Application.loadedLevelName.Equals ("Level6")) 
 		{
 			if (ShooterScript5.gameOver) 
@@ -36,18 +19,18 @@ public class Stopwatch : MonoBehaviour {
 				int mins = (int)(ShooterScript5.timeInLevel / 60.0f);
 				int secs = (int)(ShooterScript5.timeInLevel) - (mins * 60);
 				if (secs / 10 == 0)
-					SetText (mins + ":0" + secs);
+					textObject.text = (mins + ":0" + secs);
 				else
-					SetText (mins + ":" + secs);
+					textObject.text = (mins + ":" + secs);
 			} 
 			else 
 			{
 				int mins = (int)(Time.timeSinceLevelLoad / 60.0f);
 				int secs = (int)(Time.timeSinceLevelLoad) - (mins * 60);
 				if (secs / 10 == 0)
-					SetText (mins + ":0" + secs);
+					textObject.text = (mins + ":0" + secs);
 				else
-					SetText (mins + ":" + secs);
+					textObject.text = (mins + ":" + secs);
 			}
 		} 
 		else 
@@ -59,18 +42,18 @@ public class Stopwatch : MonoBehaviour {
 					int mins = (int)(reflection_level_3.timeInLevel / 60.0f);
 					int secs = (int)(reflection_level_3.timeInLevel) - (mins * 60);
 					if (secs / 10 == 0)
-						SetText (mins + ":0" + secs);
+						textObject.text = (mins + ":0" + secs);
 					else
-						SetText (mins + ":" + secs);
+						textObject.text = (mins + ":" + secs);
 				} 
 				else 
 				{
 					int mins = (int)(Time.timeSinceLevelLoad / 60.0f);
 					int secs = (int)(Time.timeSinceLevelLoad) - (mins * 60);
 					if (secs / 10 == 0)
-						SetText (mins + ":0" + secs);
+						textObject.text = (mins + ":0" + secs);
 					else
-						SetText (mins + ":" + secs);
+						textObject.text = (mins + ":" + secs);
 				}
 			}
 			//Level 4
@@ -81,18 +64,18 @@ public class Stopwatch : MonoBehaviour {
 					int mins = (int)(reflection_level_4.timeInLevel / 60.0f);
 					int secs = (int)(reflection_level_4.timeInLevel) - (mins * 60);
 					if (secs / 10 == 0)
-						SetText (mins + ":0" + secs);
+						textObject.text = (mins + ":0" + secs);
 					else
-						SetText (mins + ":" + secs);
+						textObject.text = (mins + ":" + secs);
 				} 
 				else 
 				{
 					int mins = (int)(Time.timeSinceLevelLoad / 60.0f);
 					int secs = (int)(Time.timeSinceLevelLoad) - (mins * 60);
 					if (secs / 10 == 0)
-						SetText (mins + ":0" + secs);
+						textObject.text = (mins + ":0" + secs);
 					else
-						SetText (mins + ":" + secs);
+						textObject.text = (mins + ":" + secs);
 				}
 			}
 		}
