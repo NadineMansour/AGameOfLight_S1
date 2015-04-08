@@ -14,6 +14,7 @@ public class reflection_level_3 : MonoBehaviour
 	public GameObject target;
 	public GameObject bam;
 	public GameObject toLevelsButton; //button that redirect to levels menu after winning
+	public GameObject numOfClicks;
 	//Variables for records table
 	public float StartTime;
 	public float FinishTime;
@@ -65,6 +66,9 @@ public class reflection_level_3 : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
+		TextMesh textObject = numOfClicks.GetComponent<TextMesh>();
+		textObject.text = "Moves: " + clicks;
+
 		//To prevent shooter from moving if game is over (light reached target).
 		if (!gameOver) 
 		{

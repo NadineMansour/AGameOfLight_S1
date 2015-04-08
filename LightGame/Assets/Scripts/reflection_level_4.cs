@@ -17,6 +17,7 @@ public class reflection_level_4 : MonoBehaviour
 	public GameObject target;
 	public GameObject bam;
 	public GameObject to_next_level;
+	public GameObject numOfClicks;
 	//Variables for records table
 	public float StartTime;
 	public float FinishTime;
@@ -76,6 +77,8 @@ public class reflection_level_4 : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
+		TextMesh textObject = numOfClicks.GetComponent<TextMesh>();
+		textObject.text = "Moves: " + clicks;
 		if (!gameOver) 
 		{
 			if (rotateRight) 
