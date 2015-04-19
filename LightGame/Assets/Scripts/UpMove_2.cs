@@ -26,6 +26,7 @@ public class UpMove_2 : MonoBehaviour {
 		}
 	}
 	
+	
 	public void OnMouseDown() 
 	{
 		if (!ShooterScript_2.up && ShooterScript_2.state==1) 

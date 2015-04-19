@@ -67,7 +67,6 @@ public class reflection_level_4 : MonoBehaviour
 
 	void EndGame()
 	{
-		StartCoroutine (save_record ()); // save the record when the game ends
 		target.SetActive (false); //enables target halo, indicatingt that light reached it
 		bam.SetActive(true); //enables target halo, indicatingt that light reached it
 		to_next_level.SetActive (true);
@@ -379,7 +378,7 @@ public class reflection_level_4 : MonoBehaviour
 
 	IEnumerator save_record() 
 	{
-		string urlMessage = "https://k12-mariammohamed.c9.io/api/records/save_record";
+		string urlMessage = "https://ilearn-td.herokuapp.com/api/records/save_record";
 		WWWForm form = new WWWForm ();
 		// pass the email authentication
 		string user_email = ButtonLogin.user_email;
