@@ -87,7 +87,7 @@ public class load : MonoBehaviour {
 		clicks.Clear ();
 		times.Clear ();
 		scores.Clear ();
-		string urlMessage = "https://k12-mariammohamed.c9.io/api/records/get_records_by_email";
+		string urlMessage = "http://ilearn-td.herokuapp.com/api/records/get_records_by_email";
 		WWWForm form = new WWWForm();
 		form.AddField("email", user_email);
 		WWW w = new WWW(urlMessage, form);
