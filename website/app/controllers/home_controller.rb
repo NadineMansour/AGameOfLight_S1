@@ -5,6 +5,8 @@ class HomeController < ApplicationController
 			redirect_to current_school_admin
 		elsif current_student
 			redirect_to current_student
+		elsif current_teacher
+			redirect_to current_teacher
 		else
 			redirect_to new_student_session_path
 		end
