@@ -2,6 +2,13 @@ Rails.application.routes.draw do
 
 
   devise_for :teachers
+  resources :teachers do
+    collection do
+      get 'view_game_records'
+    end
+  end
+
+
   resources :subjects
 
   devise_for :school_admins 
