@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  _id: 
+  _id: 
+  mess: MyString
+  reply: MyString
+
+two:
+  _id: 
+  _id: 
+  mess: MyString
+  reply: MyString

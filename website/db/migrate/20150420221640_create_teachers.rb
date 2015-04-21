@@ -5,6 +5,7 @@ class CreateTeachers < ActiveRecord::Migration
     	t.boolean :verified, default: false
     	t.string :school
       t.timestamps null: false
+      t.belongs_to :school_admin
     end
   end
 end

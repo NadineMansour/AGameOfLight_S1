@@ -4,6 +4,8 @@ class CreateSubjects < ActiveRecord::Migration
       t.string :name
       t.string :code
       t.belongs_to :school_admin
+      t.string :grade
+      t.string :school
       t.timestamps null: false
     end
   end

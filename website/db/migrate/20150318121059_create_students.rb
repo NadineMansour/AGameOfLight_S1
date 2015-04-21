@@ -7,6 +7,7 @@ class CreateStudents < ActiveRecord::Migration
     	t.string :student_name
     	t.boolean :verified, default: false
         t.timestamps null: false
+        t.belongs_to :school_admin
     end
   end
 end
