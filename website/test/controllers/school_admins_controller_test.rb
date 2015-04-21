@@ -127,4 +127,11 @@ class SchoolAdminsControllerTest < ActionController::TestCase
   end
 
 
+  test 'view teachers subjects' do
+    get(:view_teachers_subjects)
+    assert_not_nil assigns(:verified_teachers)
+    assert_equal 1, assigns(:verified_teachers).count 
+  end
+
+
 end
