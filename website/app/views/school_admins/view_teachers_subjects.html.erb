@@ -1,0 +1,73 @@
+<div class="row">
+  <br>
+  <br>
+  <br>
+</div>
+<div class="row">
+  <div class="col-md-2">
+    <div class="list-group" width="70px;">
+      <%= link_to controller: "school_admins", action: "view_verified_students"  do %>
+        <i class="list-group-item">View verified students</i> 
+    <% end %>
+    <%= link_to controller: "school_admins", action: "view_students_records"  do %>
+        <i class="list-group-item">View students records</i> 
+    <% end %>
+    <%= link_to controller: "school_admins", action: "view_requests"  do %>
+        <i class="list-group-item">View requests</i> 
+    <% end %>
+    <%= link_to controller: "school_admins", action: "add_subject"  do %>
+        <i class="list-group-item">Add new subject</i> 
+    <% end %>
+    <%= link_to controller: "school_admins", action: "view_school_subjects"  do %>
+        <i class="list-group-item">View school subjects</i> 
+    <% end %>
+    <%= link_to controller: "school_admins", action: "view_teachers_subjects"  do %>
+        <i class="list-group-item">View teachers' subjects</i> 
+    <% end %>
+    </div>
+  </div>
+  <div class="col-md-8">
+     <table class="table table-hover">
+         
+         <thead>
+            <tr>
+               <th>Name</th>
+               <th>Email</th>
+               <th>Verified subjects</th>
+            </tr>
+         </thead>
+         <tbody>
+           <% @verified_teachers.each do |s| %>
+             <% @subjects_requests_verified = TeacherRequestSubject.where("teacher_id = ? AND verified = ?", s[:id], true) %>
+             <% if @subjects_requests_verified.count > 0 %>
+               <tr>
+               <td><%= s[:teacher_name] %></td>
+               <td><%= s[:email] %></td>
+               <td>
+                <table class="table table-striped">
+                 <thead>
+                    <tr>
+                       <th>Subject id</th>
+                       <th>Subject name</th>
+                       <th>Subject code</th>
+                    </tr>
+                 </thead>
+                 <tbody>
+                  <% @subjects_requests_verified.each do |r| %>
+                    <% @subject = Subject.find(r[:subject_id]) %>
+                    <tr>
+                      <td><%= @subject.id %></td>
+                      <td><%= @subject.name %></td>
+                      <td><%= @subject.code %></td>
+                    </tr>
+                  <% end %>
+                 </tbody>
+              </table>
+               </td>
+               </tr>
+             <% end %>
+        <% end %>
+       </tbody>
+    </table>
+  </div>
+</div>
