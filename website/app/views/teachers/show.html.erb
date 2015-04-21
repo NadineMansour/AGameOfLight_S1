@@ -6,9 +6,12 @@
 <div class="row">
   <div class="col-md-2">
     <div class="list-group" width="70px;">
-      <%= link_to controller: "teachers", action: "view_game_records"  do %>
-        <i class="list-group-item">View game records</i> 
-      <% end %>    
+        <%= link_to controller: "teachers", action: "view_game_records"  do %>
+          <i class="list-group-item">View game records</i> 
+        <% end %> 
+        <%= link_to controller: "teachers", action: "view_school_verified_students"  do %>
+          <i class="list-group-item">View verified students</i> 
+        <% end %>   
     </div>
   </div>
   <div class="col-md-8">

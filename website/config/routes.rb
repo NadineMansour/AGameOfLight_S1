@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :teachers do
     collection do
       get 'view_game_records'
+      get 'view_school_verified_students'
     end
   end
 

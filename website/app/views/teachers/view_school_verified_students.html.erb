@@ -1,0 +1,76 @@
+<div class="row">
+  <br>
+  <br>
+  <br>
+</div>
+<div class="row">
+  <div class="col-md-2">
+    <div class="list-group" width="70px;">
+    	<%= link_to controller: "teachers", action: "view_game_records"  do %>
+        	<i class="list-group-item">View game records</i> 
+      	<% end %> 
+      	<%= link_to controller: "teachers", action: "view_school_verified_students"  do %>
+        	<i class="list-group-item">View verified students</i> 
+      	<% end %> 
+    </div>
+  </div>
+  <div class="col-md-8">
+	<p>Please select the sorting method</p>
+	<%= form_tag("/teachers/view_school_verified_students", method: :get)  do %>
+		<select name="sort_method">
+		  	<option value="">Filter by</option>
+		  	<option value="1">Grade</option>
+		  	<option value="2">name</option>
+		  	<option value="3">signing up date</option>
+		</select>
+		<select name="order_method">
+		  	<option value="">order</option>
+		  	<option value="1">Ascendingly</option>
+		  	<option value="2">Descendingly</option>
+		</select>
+		<%= button_tag(type: "submit", class: "btn btn-primary") do %>
+	    	Sort <i class="icon-repeat"></i>
+		<% end %>
+	<% end %>
+
+	 
+	<% if @students %>
+		<table class="table table-hover">
+		   <caption>verified students</caption>
+		   <thead>
+		      	<tr>
+			        <th>Name</th>
+			        <th>Email</th>
+			        <th>Grade</th>
+			        <th>Class</th>
+			        <th>School</th>
+		     	 </tr>
+		   </thead>
+		   <tbody>
+			   <% @students.each do |student| %>
+					<tr>
+						<td><% if student[:student_name] %> 
+							<%= student[:student_name] %>
+						<% else %>
+							*No name yet
+						<% end %>
+						</td>
+						<td><%= student[:email] %> </td>
+						<td><%= student[:grade] %> </td>
+						<td><%= student[:student_class] %> </td>
+						<td><%= student[:school] %>  </td>
+					</tr>
+				<% end %>
+		   </tbody>
+		</table>
+	<% else %>
+		No Students to display.
+	<% end %>
+  </div>
+</div>
+
+
+
+
+
+
