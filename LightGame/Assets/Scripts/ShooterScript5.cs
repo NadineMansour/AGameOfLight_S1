@@ -38,6 +38,8 @@ public class ShooterScript5 : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		angle = 0;
+		gameOver = false;
 		//Initializing variables
 		nextLevel.SetActive (false);
 		left = false;
@@ -51,7 +53,6 @@ public class ShooterScript5 : MonoBehaviour {
 			level = 5;
 		else
 			level = 6;
-		position = transform.position;
 		//Initializing light beam
 		linePositions = new List<Vector3> ();   //a list that contains the main three points od the light beam 
 		Vector3 start = transform.position;     // the starting point at the center of the player 
@@ -62,6 +63,7 @@ public class ShooterScript5 : MonoBehaviour {
 		linePositions.Add (start);              //adding shooter's position as start point to light beam
 		linePositions.Add (mid);                //adding the mid point to light beams points list
 		linePositions.Add (end);                //adding the end point to light beams points list
+		SetLightBeam ();
 	}
 
 
@@ -87,7 +89,6 @@ public class ShooterScript5 : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		position = transform.position;
 		if (!gameOver) 
 		{
 			if (right)
@@ -331,7 +332,7 @@ public class ShooterScript5 : MonoBehaviour {
 
 	IEnumerator save_record() 
 	{
-		string urlMessage = "https://k12-mariammohamed.c9.io/api/records/save_record";
+		string urlMessage = "https://ilearn-td.herokuapp.com/api/records/save_record";
 		WWWForm form = new WWWForm ();
 		// pass the email authentication
 		string user_email = ButtonLogin.user_email;

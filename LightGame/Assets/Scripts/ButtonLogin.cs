@@ -19,10 +19,7 @@ public class ButtonLogin : MonoBehaviour {
 			StartCoroutine(user_login());
 		}
 	}
-
-
-
-
+	
 
 	IEnumerator user_login() {
 
@@ -33,7 +30,7 @@ public class ButtonLogin : MonoBehaviour {
 		Debug.Log (email);
 		Debug.Log (password);
 		// we use cloud9 for now, this will change when deploying on heroko
-		string urlMessage = "https://k12-mariammohamed.c9.io/api/records/user_login";
+		string urlMessage = "http://ilearn-td.herokuapp.com/api/records/user_login";
 		WWWForm form = new WWWForm ();
 		// pass the email and passsword for authentication
 		form.AddField ("email", email);

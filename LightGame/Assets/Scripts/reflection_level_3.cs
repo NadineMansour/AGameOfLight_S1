@@ -56,7 +56,6 @@ public class reflection_level_3 : MonoBehaviour
 
 	void EndGame()
 	{
-		StartCoroutine (save_record ()); // save the record when the game ends
 		target.SetActive (false); //enables target halo, indicatingt that light reached it
 		toLevelsButton.SetActive(true); //enables the button that's used to redirect to other scene
 		bam.SetActive(true); //enables target halo, indicatingt that light reached it
@@ -125,8 +124,22 @@ public class reflection_level_3 : MonoBehaviour
 					float DistanceY  = collision.y - linePositions[0].y;//Calculating the distance due to the reflection
 					DistanceY = collision.y + (2*DistanceY);
 					linePositions[2] = new Vector3 (linePositions[0].x,DistanceY,0);
+					//extender();
 				}
 			}
+		}
+	}
+
+	
+	void extender()
+	{
+		if (linePositions [2].y > -4) {
+			Vector3 P0 = linePositions[1];
+			Vector3 P1 = linePositions[2];
+			float slope = (P1.y - P0.y) / (P1.x - P1.x);
+			float yIntercept = P1.y - slope*P1.x;
+			float newX = (-4 - yIntercept) / slope;
+			linePositions[2] = new Vector3 (newX, -4, 0); 
 		}
 	}
 
@@ -205,7 +218,7 @@ public class reflection_level_3 : MonoBehaviour
 	void PointRotator()
 	{
 		Vector3 pivotPoint = linePositions [0];
-		Vector3 pointToRotate = new Vector3 (0, -3, 0);
+		Vector3 pointToRotate = new Vector3 (0, -4, 0);
 		Vector3 midpointToRotate = new Vector3 (linePositions [0].x, 0, 0);
 		float Nx = (pointToRotate.x - pivotPoint.x);
 		float Ny = (pointToRotate.y - pivotPoint.y);
@@ -214,19 +227,6 @@ public class reflection_level_3 : MonoBehaviour
 		float angle1 = angle * Mathf.PI / 180.0f;
 		linePositions[2] = new Vector3((float)(Mathf.Cos(angle1) * Nx - Mathf.Sin(angle1) * Ny + pivotPoint.x), (float)(Mathf.Sin(angle1) * Nx + Mathf.Cos(angle1) * Ny + pivotPoint.y), 0);
 		linePositions [1]  = new Vector3((float)(Mathf.Cos(angle1) * mx - Mathf.Sin(angle1) * my + pivotPoint.x), (float)(Mathf.Sin(angle1) * mx + Mathf.Cos(angle1) * my + pivotPoint.y), 0);
-	}
-
-
-	void PointChecker()
-	{
-		Vector3 endP = linePositions [2];
-		if (endP.y >0) 
-		{
-			Vector3 startP = linePositions[0];
-			float slope = (endP.y - startP.y)/(endP.x - startP.x);
-			float newX =  startP.x-(startP.y / slope);
-			linePositions[1] = new Vector3(newX, 0.0f, 0.0f);
-		}	
 	}
 
 
@@ -240,7 +240,7 @@ public class reflection_level_3 : MonoBehaviour
 	
 	IEnumerator save_record() 
 	{
-		string urlMessage = "https://k12-mariammohamed.c9.io/api/records/save_record";
+		string urlMessage = "https://ilearn-td.herokuapp.com/api/records/save_record";
 		WWWForm form = new WWWForm ();
 		// pass the email authentication
 		string user_email = ButtonLogin.user_email;
