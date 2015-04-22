@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
 
+  resources :messages
+
   devise_for :teachers
   resources :teachers do
     collection do

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  semail: MyString
+  remail: MyString
+  text: MyString
+
+two:
+  semail: MyString
+  remail: MyString
+  text: MyString
