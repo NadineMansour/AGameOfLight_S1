@@ -11,6 +11,17 @@ public class load : MonoBehaviour {
 	public ArrayList times = new ArrayList();
 	public ArrayList scores = new ArrayList();
 
+
+	//Gameobjects for LOCKED Buttons in scenes to disable them upon the 
+	public GameObject ReflectionLock;
+	public GameObject RefractionLock;
+	public GameObject Lock2SL;
+	public GameObject Lock4RL;
+	public GameObject Lock5RL;
+	public GameObject Lock7RR;
+	public GameObject Lock8RR;
+
+
 	//3Dtext for levels in World1 scene
 	public bool level1 = false;
 	public bool level2 = false;
@@ -160,25 +171,33 @@ public class load : MonoBehaviour {
 				i = i + 1;
 			}
 			//Checks if level 2 is finished
-			if (level2 == true && levels.Contains(2)==false && levels.Contains(1)==false)
+			if (levels.Contains(2)==true || levels.Contains(1)==true)
 			{
-				GetComponent<TextMesh>().text = "LOCKED";
+				Lock2SL.SetActive(false);
 			}
-			if (level3 == true && levels.Contains(3)==false && levels.Contains(2)==false)
+			if (levels.Contains(2)==true && levels.Contains(1)==true)
 			{
-				GetComponent<TextMesh>().text = "LOCKED";
+				ReflectionLock.SetActive(false);
 			}
-			if (level4 == true && levels.Contains(4)==false && levels.Contains(3)==false)
+			if (levels.Contains(3)==true || levels.Contains(4)==true)
 			{
-				GetComponent<TextMesh>().text = "LOCKED";
+				Lock4RL.SetActive(false);
 			}
-			if (level5 == true && levels.Contains(5)==false && levels.Contains(4)==false)
+			if (levels.Contains(4)==true || levels.Contains(5)==true)
 			{
-				GetComponent<TextMesh>().text = "LOCKED";
+				Lock5RL.SetActive(false);
 			}
-			if (level6 == true && levels.Contains(6)==false && levels.Contains(5)==false)
+			if (levels.Contains(3)==true && levels.Contains(4)==true && levels.Contains (5)==true)
 			{
-				GetComponent<TextMesh>().text = "LOCKED";
+				RefractionLock.SetActive(false);
+			}
+			if (levels.Contains(6)==true || levels.Contains(7)==true)
+			{
+				Lock7RR.SetActive(false);
+			}
+			if (levels.Contains(7)==true || levels.Contains(8)==true)
+			{
+				Lock8RR.SetActive(false);
 			}
 		}
 	}
