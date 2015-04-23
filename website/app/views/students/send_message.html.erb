@@ -1,0 +1,8 @@
+<%= form_tag("/students/" + 
+              "/submit/" , method: :post)  do %>
+
+                  <%= text_field_tag :my_input   %>              
+                <%= button_tag(type: "submit", class: "btn btn-primary") do %>
+                    Send
+                <% end %>
+              <% end %>

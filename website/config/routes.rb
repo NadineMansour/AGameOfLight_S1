@@ -1,18 +1,24 @@
 Rails.application.routes.draw do
 
 
-  resources :messages
+   resources :messages
+   resources :subjects
+   resources :sessions, only: [:create, :destroy]  
+
 
   devise_for :teachers
-  resources :teachers do
+  resources :teachers  do
     collection do
       get 'view_game_records'
       get 'view_school_verified_students'
+      put 'send_message/:student_id'=> :send_message
+      get 'send_message'
+      post 'submit'
     end
   end
 
 
-  resources :subjects
+ 
 
   devise_for :school_admins 
   resources :school_admins do
@@ -32,13 +38,19 @@ Rails.application.routes.draw do
       get 'reject_school_admin'
     end
   end
-  devise_for :admin_users, ActiveAdmin::Devise.config
+
+devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
+
+
   devise_for :students
   resources :students do
     collection do
       get 'view_courses'
       get 'show_course'
+      get 'view_course_teachers/:subject_id'=> :view_course_teachers
+      put 'send_message/:student_id'=> :send_message
+       post 'submit'
     end
   end
 

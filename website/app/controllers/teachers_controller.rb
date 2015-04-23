@@ -14,9 +14,29 @@ class TeachersController < ApplicationController
 		end
 	end
 
+	def send_message
+      @message=Message.new
+      session[:x]=params[:student_id]
+    end 
+
+	
+	def submit 
+      @message=Message.new
+      @message.semail=Teacher.find(1)
+      @message.remail=session[:x]
+      @message.text=params[:my_input]
+       session = {}
+       @message.save
+       redirect_to view_school_verified_students_teachers_path
+      
+
+     
+	end 
+
+
 
 	def view_school_verified_students
-		@current_teacher = current_teacher
+		@current_teacher = Teacher.find(1)
 		# get the sorting method if available
 		@method = params[:sort_method]
 		@order = params[:order_method]
