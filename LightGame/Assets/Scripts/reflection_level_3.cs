@@ -126,7 +126,10 @@ public class reflection_level_3 : MonoBehaviour
 					DistanceY = collision.y + (2*DistanceY);
 					linePositions[2] = new Vector3 (linePositions[0].x,DistanceY,0);
 				}
+
+
 			}
+
 		}
 	}
 

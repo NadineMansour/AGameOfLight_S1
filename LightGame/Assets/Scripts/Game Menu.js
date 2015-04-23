@@ -27,7 +27,7 @@ function OnMouseUp()
 	}
 	else if (levels)
 	{
-		Application.LoadLevel("World1");
+		Application.LoadLevel("MainMenu");
 	}
 	else if (to_main_menu == true)
 	{
