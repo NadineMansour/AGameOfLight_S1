@@ -11,7 +11,7 @@ public class load : MonoBehaviour {
 	public ArrayList times = new ArrayList();
 	public ArrayList scores = new ArrayList();
 
-	//Gameobjects for LOCKED Buttons in scenes
+	//Gameobjects for LOCKED Buttons in scenes to disable them upon the 
 	public GameObject ReflectionLock;
 	public GameObject RefractionLock;
 	public GameObject Lock2SL;

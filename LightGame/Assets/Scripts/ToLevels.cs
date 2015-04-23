@@ -2,7 +2,8 @@
 using System.Collections;
 
 public class ToLevels : MonoBehaviour 
-{
+{	
+	//boolean values to detect the buttons
 	public bool level1;
 	public bool level2;
 	public bool level3;
