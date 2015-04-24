@@ -1,7 +1,6 @@
 class Api::RecordsController < Api::BaseController
 
 
-
 	def user_login
 		@email = params[:email]
 		@password = params[:password]
@@ -18,7 +17,6 @@ class Api::RecordsController < Api::BaseController
 	end
 		
 
-
 	def get_records_by_email
 		#get the email that identifies the user
 		@email = params[:email]
@@ -28,7 +26,6 @@ class Api::RecordsController < Api::BaseController
 	end
 
 
-	
 	def save_record
 		#get the parameters fom the post params
 		@time = params[:time]
@@ -48,7 +45,6 @@ class Api::RecordsController < Api::BaseController
 
 	end
 
-
   
     def get_level
 		@email = params[:email]
@@ -56,6 +52,24 @@ class Api::RecordsController < Api::BaseController
 	  	@record = @records.last
 	end
 
+
+	def save_answer
+		@email = params[:email]
+		@quizNumber = params[:quiz]
+		@question = params[:question]
+		@answer = params[:answer]
+		@correct = params[:correct].to_s
+		if @correct.eql?("1")
+			@inGameQuiz = InGameQuiz.new(email: @email, quiz: @quizNumber, question: @question, answer: @answer, correct: true)
+		else
+			@inGameQuiz = InGameQuiz.new(email: @email, quiz: @quizNumber, question: @question, answer: @answer, correct: false)
+		end
+		if @inGameQuiz.save
+			render status: 201
+		else
+			render status: 422
+		end
+	end
 
 
 end
