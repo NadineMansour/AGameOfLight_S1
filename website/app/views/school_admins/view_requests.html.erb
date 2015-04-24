@@ -28,10 +28,10 @@
   </div>
   <div class="col-md-8">
 	    <!-- just for now -->
-	<% @current_school_admin_id = 1 %>
-	<% if @students %>
+	<% @current_school_admin_id = current_school_admin_id %>
+	<% if @teachers %>
 		<table class="table table-hover">
-		   <caption>Unverified students</caption>
+		   <caption>Unverified teachers</caption>
 		   <thead>
 		      	<tr>
 			        <th>Name</th>
