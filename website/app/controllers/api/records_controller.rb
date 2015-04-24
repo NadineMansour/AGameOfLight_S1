@@ -58,8 +58,12 @@ class Api::RecordsController < Api::BaseController
 		@quizNumber = params[:quiz]
 		@question = params[:question]
 		@answer = params[:answer]
-		@correct = params[:correct]
-		@inGameQuiz = InGameQuiz.new(email: @email, quiz: @quizNumber, question: @question, answer: @answer, correct: @correct)
+		@correct = params[:correct].to_s
+		if @correct.eql?("1")
+			@inGameQuiz = InGameQuiz.new(email: @email, quiz: @quizNumber, question: @question, answer: @answer, correct: true)
+		else
+			@inGameQuiz = InGameQuiz.new(email: @email, quiz: @quizNumber, question: @question, answer: @answer, correct: false)
+		end
 		if @inGameQuiz.save
 			render status: 201
 		else
