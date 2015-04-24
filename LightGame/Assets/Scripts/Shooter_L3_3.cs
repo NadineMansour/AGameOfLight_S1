@@ -6,6 +6,7 @@ using System.Collections.Generic;
 
 public class Shooter_L3_3 : MonoBehaviour {
 
+
 	//For The Rotation 
 	public static bool RRight;					
 	public static bool RLeft;
@@ -26,12 +27,19 @@ public class Shooter_L3_3 : MonoBehaviour {
 
 	
 	public static bool gameOver;
-	//public GameObject line2;
+	public static int state;
+
+
+	public GameObject nextButton;
+	public GameObject Tip1;
+	public GameObject Tip2;
+	public GameObject Tip3;
+
+
 	public LineRenderer lightBeam;                      //the main lightbeam used in the refraction 
 	public LineRenderer lightBeam2;                     //simulates the reflection of the 1st lightbeam
-	private static List <Vector3> linePositions;        //array containing lightbeam points for setting and editing
-	private static List <Vector3> linePositions2;
-	//public GameObject mirrorFrame;
+	private static List <Vector3> linePositions;        //array containing lightbeam  points for setting and editing
+	private static List <Vector3> linePositions2; 		//array containing lightbeam2 points for setting and editing
 	
 
 	// Use this for initialization
@@ -47,30 +55,50 @@ public class Shooter_L3_3 : MonoBehaviour {
 		linePositions2.Add (new Vector3 (0, 0, 0));
 		linePositions2.Add (new Vector3 (0, 0, 0));
 		gameOver = false;
-		RRight   = false;
-		RLeft    = false;
-		angle    = 0.0f;
-		//mirrorFrame.SetActive (false);
+		RRight = false;
+		RLeft  = false;
+		angle = 0.0f;
+		level = 8; 
+		state = 0;
+		nextButton.SetActive (true);
+		Tip1.SetActive (true);
+		Tip2.SetActive (false);
+		Tip3.SetActive (false);
 	}
 
 
 	void Update () 
 	{
-		linePositions2[0] = new Vector3(0, 0,0);
-		linePositions2[1] = new Vector3(0, 0,0);
-		if (!gameOver) 
+		if (state == 1) 
 		{
-			if (RRight)
+			Tip1.SetActive(false);
+			Tip2.SetActive(true);
+		}
+		if (state == 2) 
+		{
+			Tip1.SetActive(false);
+			Tip2.SetActive(false);
+			nextButton.SetActive(false);
+			linePositions2 [0] = new Vector3 (0, 0, 0);
+			linePositions2 [1] = new Vector3 (0, 0, 0);
+			if (!gameOver) 
 			{
-				RotateRight();
+				if (RRight) 
+				{
+					RotateRight ();
+				}
+				if (RLeft) 
+				{
+					RotateLeft ();
+				}
+				detector ();
+				setLightBeam ();
 			}
-			if (RLeft)
-			{
-				RotateLeft();
-			}
-			lineExtender();
-			detector();
-			setLightBeam ();
+		}
+		if (state == 3) 
+		{
+			nextButton.SetActive(true);
+			Tip3.SetActive(true);
 		}
 	}
 
@@ -167,7 +195,7 @@ public class Shooter_L3_3 : MonoBehaviour {
 
 
 	//extends the light after being reflected 
-	void linelineExtender2(){
+	void lineExtender2(){
 		Vector3 testedPoint2 = linePositions2 [1];
 		if (testedPoint2.y != -5.0f) 
 		{
@@ -189,18 +217,19 @@ public class Shooter_L3_3 : MonoBehaviour {
 		//detects collision between the light beam and the mirror 
 		RaycastHit hit;
 		if (Physics.Linecast (linePositions [1], linePositions [2], out hit)) {
-			/*if (hit.collider.tag == "Obstacle") 
+			if (hit.collider.tag == "Obstacle") 
 			{
 				linePositions [2] = hit.point;
-				//linePositions[3] = linePositions[1];
-			}*/
+			}
+
+
 			if (hit.collider.tag == "Mirror") {
 				Vector3 temp = hit.point;
 				Vector3 p0 = linePositions[1];
 				float slope = (p0.y - temp.y)/(p0.x - temp.x);
-				float yKhara = p0.y - p0.x*slope;
+				float yIntercept = p0.y - p0.x*slope;
 				float newX = hit.point.x - 0.1f;
-				float newY = newX*slope + yKhara;
+				float newY = newX*slope + yIntercept;
 				linePositions[2] = new Vector3(newX, newY, 0);
 				linePositions2[0] = hit.point;
 				Vector3 P0 = linePositions2[0];
@@ -209,45 +238,23 @@ public class Shooter_L3_3 : MonoBehaviour {
 				P1.y = 2*(P0.y);
 				P1.z = 0;
 				linePositions2[1] = P1;
-				linelineExtender2();
-			}
-		}
-
-
-		/*
-		RaycastHit hit;
-		if (Physics.Linecast (linePositions [1], linePositions [2], out hit)) 
-		{
-			if (hit.collider.tag == "Obstacle") 
-			{
-				linePositions [2] = hit.point;
-				//linePositions[3] = linePositions[1];
-			}
-			if(hit.collider.tag == "Mirror")
-			{
-				//Have fun Doudy
-				linePositions[2]=hit.point;
-				float d = linePositions[1].y-hit.point.y;
-				d = d*2.0f;
-				linePositions[3]=new Vector3 (linePositions[1].x, -1*d, 0);
-			}
-			else
-			{
-				linePositions[3] = linePositions[1];
+				lineExtender2();
 			}
 		}
 
 
 		RaycastHit hit1;
-		if (Physics.Linecast (linePositions [2], linePositions [3], out hit1)) 
+		if (Physics.Linecast (linePositions2 [0], linePositions2 [1], out hit1)) 
 		{
 			if (hit1.collider.tag == "Target") 
 			{
-				//gameOver = true;
+				print("Hit target");
+				gameOver = true;
+				state++;
+				//conditions to adjust log
 				//Save record coroutine
 			}
 		}
-		*/
 	}
 
 

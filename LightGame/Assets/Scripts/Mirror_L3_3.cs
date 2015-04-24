@@ -16,8 +16,8 @@ public class Mirror_L3_3 : MonoBehaviour {
 
 	
 	void Update () {
-		//if(ShooterScript....
-		//{
+		if(Shooter_L3_3.state == 2)
+		{
 			if (MirrorR && transform.position.x < 1) 
 			{
 				transform.position = transform.position + new Vector3(0.05f, 0, 0); 
@@ -26,8 +26,7 @@ public class Mirror_L3_3 : MonoBehaviour {
 			{
 				transform.position = transform.position - new Vector3(0.05f, 0, 0); 
 			}
-
-		//}
+		}
 	}
 
 
