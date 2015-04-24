@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
 
+  resources :messes
+  
+
   devise_for :teachers
   resources :teachers do
     collection do
@@ -37,6 +40,9 @@ Rails.application.routes.draw do
     collection do
       get 'view_courses'
       get 'show_course'
+      get 'view_course_teachers/:subject_id'=> :view_course_teachers
+      put 'send_message/:teacher_id'=> :send_message
+      post 'submit/:teacher_id'=>:submit
     end
   end
 

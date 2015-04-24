@@ -17,7 +17,7 @@
       <thead>
         <tr>
           <th>Name</th>
-          <th>Code</th>
+          <th>Email</th>
 
           <th colspan="3"></th>
         </tr>
@@ -25,20 +25,19 @@
 
       <tbody>
       
-        <% @subjects.each do |subject| %>
+        <% @teachers.each do |teacher| %>
           <tr>
          
-            <td><%= subject.name %></td>
-            <td><%= subject.code %></td>            
-            <td><%= link_to 'Show', show_course_students_path(subject_id: subject[:id]) %></td>
-            <td>   <%= form_tag("/students/" + 
-              "/view_course_teachers/" + subject[:id].to_s, method: :get)  do %>
-                <%= button_tag(type: "submit", class: "btn btn-primary") do %>
-                    View teachers
-                <% end %>
-              <% end %></td>
-        
-          </tr>
+            <td><%= teacher.teacher_name %></td>
+            <td><%= teacher.email %></td>            
+         <td>   <%= form_tag("/students/" + 
+							"/send_message/" + teacher[:id].to_s, method: :put)  do %>
+								<%= button_tag(type: "submit", class: "btn btn-primary") do %>
+							    	Send message
+								<% end %>
+							<% end %></td>
+            
+            </tr>
         <% end %> 
         
       </tbody> 
