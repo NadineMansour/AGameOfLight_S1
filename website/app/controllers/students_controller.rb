@@ -4,6 +4,29 @@ class StudentsController < ApplicationController
   end
 
 
+  def view_course_teachers
+    @teachers_id=TeacherRequestSubject.where(subject: params[:subject_id] , verified: true).pluck(:teacher_id)
+    @teachers=Teacher.where(id:@teachers_id)
+
+
+  end
+
+  
+  def send_message
+    @message=Mess.new
+    @var=params[:teacher_id]
+  end 
+
+  def submit 
+      @message=Mess.new
+      @message.semail=current_student.email
+      @message.remail=Teacher.find(params[:teacher_id]).email
+      @message.text=params[:my_input]
+
+      @message.save
+      redirect_to view_courses_students_path
+  end 
+
 
   def new
     @user = Student.new
