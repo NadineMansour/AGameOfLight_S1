@@ -48,9 +48,9 @@ public class ShooterScript5 : MonoBehaviour {
 		score = 0;
 		log = "";
 		if (Application.loadedLevelName == "Level5")
-			level = 5;
-		else
 			level = 6;
+		else
+			level = 7;
 		position = transform.position;
 		//Initializing light beam
 		linePositions = new List<Vector3> ();   //a list that contains the main three points od the light beam 
