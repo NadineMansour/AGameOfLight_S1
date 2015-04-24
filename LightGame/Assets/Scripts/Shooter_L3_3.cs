@@ -19,6 +19,7 @@ public class Shooter_L3_3 : MonoBehaviour {
 	
 
 	//For score
+	public static int startTime;
 	public static int timeInLevel;
 	public static int clicks;
 	public int level;
@@ -248,11 +249,11 @@ public class Shooter_L3_3 : MonoBehaviour {
 		{
 			if (hit1.collider.tag == "Target") 
 			{
-				print("Hit target");
 				gameOver = true;
 				state++;
-				//conditions to adjust log
-				//Save record coroutine
+				timeInLevel = (int) Time.timeSinceLevelLoad - startTime;
+				calculateScore();
+				StartCoroutine(save_record());
 			}
 		}
 	}
@@ -269,6 +270,41 @@ public class Shooter_L3_3 : MonoBehaviour {
 		for (int i = 0; i < linePositions2.Count; i++) 
 		{
 			lightBeam2.SetPosition(i, linePositions2[i]);
+		}
+	}
+
+
+	void calculateScore()
+	{
+		score = (120 - timeInLevel) * 100 + (5 - clicks) * 50;
+		//to exclude negative scores
+		if (score <= 50) score = 50;
+	}
+
+
+	IEnumerator save_record() 
+	{
+		string urlMessage = "https://ilearn-td.herokuapp.com/api/records/save_record";
+		WWWForm form = new WWWForm ();
+		// pass the email authentication
+		string user_email = ButtonLogin.user_email;
+		form.AddField ("email", user_email);
+		form.AddField ("level", level);
+		form.AddField ("score", score);
+		form.AddField ("time", timeInLevel);
+		form.AddField ("clicks", clicks);
+		form.AddField ("logs", log);
+		WWW w = new WWW(urlMessage, form);
+		yield return w;
+		if (!string.IsNullOrEmpty (w.error)) 
+		{
+			// this is done if the authentication is rejected or the response has
+			// value >= 400 which means error in authentication or connection or server is down
+			Debug.Log("The record is not saved");
+		} 
+		else 
+		{
+			// if the response has OK status
 		}
 	}
 }
