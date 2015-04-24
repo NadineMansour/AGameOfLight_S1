@@ -5,10 +5,13 @@ class StudentsController < ApplicationController
 
 
   def view_course_teachers
+    @teachers_id=TeacherRequestSubject.where(subject: params[:subject_id] , verified: true).pluck(:teacher_id)
+    @teachers=Teacher.where(id:@teachers_id)
 
-    @teachers=Teacher.where(school: current_student.school)
 
   end
+
+  
   def send_message
     @message=Mess.new
     @var=params[:teacher_id]
