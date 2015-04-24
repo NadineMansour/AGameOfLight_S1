@@ -78,7 +78,7 @@ class TeachersController < ApplicationController
 
 
 	def reject_verification
-		# find the student who should been unverified using the id in the params
+		# find student who should been unverified using the id in the params
 		@student = Student.find(params[:student_id])
 		@student.verified = nil
 		# change the flash method according to the save action
