@@ -6,7 +6,7 @@ class StudentsController < ApplicationController
 
   def view_course_teachers
 
-    @teachers=Teacher.where(school: Student.find(1).school)
+    @teachers=Teacher.where(school: current_student.school)
 
   end
   def send_message
