@@ -6,4 +6,5 @@ class Teacher < ActiveRecord::Base
 
 
   has_many :teacher_request_subjects
+  has_many :questions
 end

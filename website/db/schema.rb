@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150424150053) do
+ActiveRecord::Schema.define(version: 20150424193251) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -63,6 +63,18 @@ ActiveRecord::Schema.define(version: 20150424150053) do
     t.string   "reply"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.string   "body"
+    t.string   "correct_answer"
+    t.string   "wrong_answer_one"
+    t.string   "wrong_answer_two"
+    t.string   "wrong_answer_three"
+    t.integer  "subject_id"
+    t.integer  "teacher_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
   create_table "records", force: :cascade do |t|
@@ -122,6 +134,7 @@ ActiveRecord::Schema.define(version: 20150424150053) do
   create_table "subjects", force: :cascade do |t|
     t.string   "name"
     t.string   "code"
+    t.string   "grade"
     t.integer  "school_admin_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
