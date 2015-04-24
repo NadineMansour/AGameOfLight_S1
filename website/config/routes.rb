@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     collection do
       get 'view_game_records'
       get 'view_school_verified_students'
+      put 'send_message/:student_id'=> :send_message
+      post 'submit/:student_id'=>:submit
     end
   end
 
