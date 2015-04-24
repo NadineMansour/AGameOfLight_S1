@@ -7,15 +7,17 @@ public class Mirror_L3_3 : MonoBehaviour {
 
 	public static bool MirrorL;
 	public static bool MirrorR;
+	
 
-
-	void Start () {
+	void Start () 
+	{
 		MirrorL = false;
 		MirrorR = false;
 	}
 
 	
-	void Update () {
+	void Update () 
+	{
 		if(Shooter_L3_3.state == 2)
 		{
 			if (MirrorR && transform.position.x < 1) 
@@ -33,20 +35,26 @@ public class Mirror_L3_3 : MonoBehaviour {
 	public static void moveMirror(int x)
 	{
 		//Go Right
-		if (x == 0) {
+		if (x == 0) 
+		{
 			MirrorR = true;
 		}
 		//Go Left
-		if (x == 1) {
+		if (x == 1) 
+		{
 			MirrorL = true;
 		}
 		//Stop Right
-		if (x == 2) {
+		if (x == 2) 
+		{
 			MirrorR = false;
 		}
 		//Stop Left
-		if (x == 3) {
+		if (x == 3) 
+		{
 			MirrorL = false;
 		}
 	}
+
+
 }

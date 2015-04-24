@@ -13,6 +13,10 @@ public class next_L3_3 : MonoBehaviour {
 		} 
 		else 
 		{
+			if (Shooter_L3_3.state == 1)
+			{
+				Shooter_L3_3.startTime = (int)Time.timeSinceLevelLoad;
+			}
 			Shooter_L3_3.state++;
 		}
 	}
