@@ -49,6 +49,7 @@ Rails.application.routes.draw do
           post 'save_record'
           get 'get_level'
           post 'user_login'
+          post 'save_answer'
         end
       end
   end
