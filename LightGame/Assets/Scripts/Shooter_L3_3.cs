@@ -35,6 +35,7 @@ public class Shooter_L3_3 : MonoBehaviour {
 	public GameObject Tip1;
 	public GameObject Tip2;
 	public GameObject Tip3;
+	public GameObject Stopwatch;
 
 
 	public LineRenderer lightBeam;                      //the main lightbeam used in the refraction 
@@ -92,14 +93,39 @@ public class Shooter_L3_3 : MonoBehaviour {
 				{
 					RotateLeft ();
 				}
+				updateStopWatch();
 				detector ();
 				setLightBeam ();
 			}
 		}
 		if (state == 3) 
 		{
+			updateStopWatch();
 			nextButton.SetActive(true);
 			Tip3.SetActive(true);
+		}
+	}
+
+
+	void updateStopWatch()
+	{
+		TextMesh textObject = Stopwatch.GetComponent<TextMesh>();
+		int mins = (int)((Time.timeSinceLevelLoad - Shooter_L3_3.startTime) / 60.0f);
+		int secs = (int)(Time.timeSinceLevelLoad  - Shooter_L3_3.startTime) - (mins * 60);
+		if (secs / 10 == 0)
+			textObject.text = (mins + ":0" + secs);
+		else
+			textObject.text = (mins+":"+secs);
+
+			
+		if (gameOver)
+		{
+			mins = (int)(Shooter_L3_3.timeInLevel / 60.0f);
+			secs = (int)(Shooter_L3_3.timeInLevel) - (mins * 60);
+			if (secs / 10 == 0)
+				textObject.text = (mins + ":0" + secs);
+			else
+				textObject.text = (mins+":"+secs);
 		}
 	}
 
