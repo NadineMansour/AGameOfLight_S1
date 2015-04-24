@@ -112,6 +112,7 @@ ActiveRecord::Schema.define(version: 20150421214445) do
   create_table "subjects", force: :cascade do |t|
     t.string   "name"
     t.string   "code"
+    t.string   "grade"
     t.integer  "school_admin_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
@@ -120,10 +121,12 @@ ActiveRecord::Schema.define(version: 20150421214445) do
 
   create_table "teacher_request_subjects", force: :cascade do |t|
     t.boolean  "verified"
+    t.integer  "school_admin_id"
     t.integer  "teacher_id"
     t.integer  "subject_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "school"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "teachers", force: :cascade do |t|
