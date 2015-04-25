@@ -44,8 +44,8 @@
       
         <% @teachers.each do |teacher| %>
           <tr>
-            <td>  <%= student[:student_name] %> </td>
-            <td> <%= student[:school] %></td>
+            <td>  <%= teacher[:teacher_name] %> </td>
+            <td> <%= teacher[:school] %></td>
             <td>
               <%= form_tag("/school_admins/" + 
               "/remove_verified_teacher/" + teacher[:id].to_s, method: :put)  do %>
