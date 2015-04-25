@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     collection do
       get 'view_game_records'
       get 'view_school_verified_students'
+      get 'view_courses'
+      put 'request_subject/:subject_id'=> :request_subject
     end
   end
 
