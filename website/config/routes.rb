@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
 
   devise_for :teachers
+  resources :questions
   resources :teachers do
     collection do
       get 'view_game_records'
