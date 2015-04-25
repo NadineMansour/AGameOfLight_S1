@@ -60,6 +60,12 @@
 						<td><%= student[:student_class] %> </td>
 						<td><%= student[:school] %>  </td>
 					</tr>
+					<td> <%= form_tag("/teachers/" + 
+							"/send_message/" + student[:id].to_s, method: :put)  do %>
+								<%= button_tag(type: "submit", class: "btn btn-primary") do %>
+							    	Send messsage
+								<% end %>
+							<% end %> </td>
 				<% end %>
 		   </tbody>
 		</table>
