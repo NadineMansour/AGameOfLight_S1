@@ -188,6 +188,14 @@ public class ShooterScript5 : MonoBehaviour {
 					linePositions[2] = hit.point;
 					EndGame();
 					gameOver = true;
+					if(left || right)
+					{
+						log += ", xEnd: " + position.x;
+					}
+					if(RRight || RLeft)
+					{
+						log += ", zEnd: " + angle + '\n';
+					}
 					timeInLevel = (int)Time.timeSinceLevelLoad;
 					calculateScore(); //score now has its right value
 					//timeInLevel, score, clicks, log & level ready	
@@ -218,7 +226,7 @@ public class ShooterScript5 : MonoBehaviour {
 		case 2:
 			if (right)
 			{
-				log += ", xEnd: " + position.x;
+				log += ", xEnd: " + position.x + '\n';
 			}
 			right = false;
 			break;
@@ -233,7 +241,7 @@ public class ShooterScript5 : MonoBehaviour {
 		case 4:
 			if (left)
 			{
-				log += ", xEnd: " + position.x;
+				log += ", xEnd: " + position.x + '\n';
 			}
 			left = false;
 			break;
@@ -248,7 +256,7 @@ public class ShooterScript5 : MonoBehaviour {
 		case 6:
 			if (RRight)
 			{
-				log += ", zEnd: " + angle;
+				log += ", zEnd: " + angle + '\n';
 			}
 			RRight = false;
 			break;
@@ -263,7 +271,7 @@ public class ShooterScript5 : MonoBehaviour {
 		case 8:
 			if (RLeft)
 			{
-				log += ", zEnd: " + angle;
+				log += ", zEnd: " + angle + '\n';
 			}
 			RLeft = false;
 			break;
@@ -331,7 +339,7 @@ public class ShooterScript5 : MonoBehaviour {
 
 	IEnumerator save_record() 
 	{
-		string urlMessage = "https://k12-mariammohamed.c9.io/api/records/save_record";
+		string urlMessage = "https://ilearn-td.herokuapp.com/api/records/save_record";
 		WWWForm form = new WWWForm ();
 		// pass the email authentication
 		string user_email = ButtonLogin.user_email;

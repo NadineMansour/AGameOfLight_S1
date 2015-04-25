@@ -36,6 +36,7 @@ public class Shooter_L3_3 : MonoBehaviour {
 	public GameObject Tip2;
 	public GameObject Tip3;
 	public GameObject Stopwatch;
+	public GameObject Mirror;
 
 
 	public LineRenderer lightBeam;                      //the main lightbeam used in the refraction 
@@ -241,12 +242,14 @@ public class Shooter_L3_3 : MonoBehaviour {
 
 	void detector()
 	{
-		//detects collision between the light beam and the mirror 
+		//detects collision between the light beam and the mirror
+		bool extend = true;
 		RaycastHit hit;
 		if (Physics.Linecast (linePositions [1], linePositions [2], out hit)) {
 			if (hit.collider.tag == "Obstacle") 
 			{
 				linePositions [2] = hit.point;
+				extend = false;
 			}
 
 
@@ -267,6 +270,24 @@ public class Shooter_L3_3 : MonoBehaviour {
 				linePositions2[1] = P1;
 				lineExtender2();
 			}
+			else
+			{
+				if(extend)
+				{
+					Vector3  mid  = linePositions[2];
+					Vector3 start = linePositions[1];
+					if(mid.x != start.x)
+					{
+						Vector3 end = new Vector3();
+						float slope = (mid.y - start.y)/(mid.x - start.x);
+						float yIntercept = mid.y - slope*mid.x;
+						end.y = -5.0f;
+						end.z = 0;
+						end.x = (-5.0f - yIntercept)/slope;
+						linePositions[2] = end;
+					}
+				}
+			}
 		}
 
 
@@ -276,9 +297,19 @@ public class Shooter_L3_3 : MonoBehaviour {
 			if (hit1.collider.tag == "Target") 
 			{
 				gameOver = true;
+				if (Mirror_L3_3.MirrorL || Mirror_L3_3.MirrorR)
+				{
+					log += "xEnd: " + Mirror.transform.position.x + '\n';
+				}
+				if(RRight || RLeft)
+				{
+					float Angle = transform.rotation.z * Mathf.Rad2Deg;
+					log += "angleEnd: " + Angle + '\n'; 
+				}
 				state++;
 				timeInLevel = (int) Time.timeSinceLevelLoad - startTime;
 				calculateScore();
+				print(log);
 				StartCoroutine(save_record());
 			}
 		}
