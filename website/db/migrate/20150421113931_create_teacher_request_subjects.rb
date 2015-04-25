@@ -1,7 +1,7 @@
 class CreateTeacherRequestSubjects < ActiveRecord::Migration
   def change
     create_table :teacher_request_subjects do |t|
-      t.boolean :verified
+      t.boolean :verified ,default:nil
       t.belongs_to :school_admin
       t.belongs_to :teacher
       t.belongs_to :subject
