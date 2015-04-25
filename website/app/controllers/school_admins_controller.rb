@@ -129,5 +129,25 @@ class SchoolAdminsController < ApplicationController
 		@verified_teachers = Teacher.where("school = ? AND verified = ?", @current_school_admin.school, true)
 	end
 
+	def view_verified_teachers
+		@current_admin=current_school_admin
+		if @current_admin
+			@teachers = Teacher.where("school = ? AND verified = ?" , 
+				@current_admin.school, true)
+		else
+			@teachers={}
+
+	end
+
+	def remove_verified_teacher
+		@current_admin = current_school_admin
+		@teacher = Teacher.find(params[:student_id])
+		@teacher.verified = nil
+		@teacher.save
+		redirect_to view_verified_teachers_school_admins_path
+	end
+
+end
+
 
 end

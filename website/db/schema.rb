@@ -122,6 +122,7 @@ ActiveRecord::Schema.define(version: 20150424150053) do
   create_table "subjects", force: :cascade do |t|
     t.string   "name"
     t.string   "code"
+    t.string   "grade"
     t.integer  "school_admin_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
