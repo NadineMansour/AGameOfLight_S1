@@ -38,7 +38,7 @@ public class R2Move_2 : MonoBehaviour {
 	public void OnMouseUp()
 	{
 		if (ShooterScript_2.RDown)
-			ShooterScript_2.log += ", ended: " + ShooterScript_2.angle;
+			ShooterScript_2.log += ", ended: " + ShooterScript_2.angle + '\n';
 		ShooterScript_2.RDown = false;
 	}
 }

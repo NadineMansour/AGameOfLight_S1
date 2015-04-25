@@ -41,7 +41,7 @@ public class UpMove_2 : MonoBehaviour {
 	{
 		if (ShooterScript_2.up) 
 		{
-			ShooterScript_2.log += ", yEnd: " + Shooter.transform.position.y;
+			ShooterScript_2.log += ", yEnd: " + Shooter.transform.position.y + '\n';
 		}
 		ShooterScript_2.up = false;
 	}

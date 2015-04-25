@@ -241,12 +241,14 @@ public class Shooter_L3_3 : MonoBehaviour {
 
 	void detector()
 	{
-		//detects collision between the light beam and the mirror 
+		//detects collision between the light beam and the mirror
+		bool extend = true;
 		RaycastHit hit;
 		if (Physics.Linecast (linePositions [1], linePositions [2], out hit)) {
 			if (hit.collider.tag == "Obstacle") 
 			{
 				linePositions [2] = hit.point;
+				extend = false;
 			}
 
 
@@ -266,6 +268,24 @@ public class Shooter_L3_3 : MonoBehaviour {
 				P1.z = 0;
 				linePositions2[1] = P1;
 				lineExtender2();
+			}
+			else
+			{
+				if(extend)
+				{
+					Vector3  mid  = linePositions[2];
+					Vector3 start = linePositions[1];
+					if(mid.x != start.x)
+					{
+						Vector3 end = new Vector3();
+						float slope = (mid.y - start.y)/(mid.x - start.x);
+						float yIntercept = mid.y - slope*mid.x;
+						end.y = -5.0f;
+						end.z = 0;
+						end.x = (-5.0f - yIntercept)/slope;
+						linePositions[2] = end;
+					}
+				}
 			}
 		}
 
