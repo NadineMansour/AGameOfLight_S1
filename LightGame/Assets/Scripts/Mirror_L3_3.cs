@@ -55,6 +55,4 @@ public class Mirror_L3_3 : MonoBehaviour {
 			MirrorL = false;
 		}
 	}
-
-
 }

@@ -36,6 +36,7 @@ public class Shooter_L3_3 : MonoBehaviour {
 	public GameObject Tip2;
 	public GameObject Tip3;
 	public GameObject Stopwatch;
+	public GameObject Mirror;
 
 
 	public LineRenderer lightBeam;                      //the main lightbeam used in the refraction 
@@ -296,9 +297,19 @@ public class Shooter_L3_3 : MonoBehaviour {
 			if (hit1.collider.tag == "Target") 
 			{
 				gameOver = true;
+				if (Mirror_L3_3.MirrorL || Mirror_L3_3.MirrorR)
+				{
+					log += "xEnd: " + Mirror.transform.position.x + '\n';
+				}
+				if(RRight || RLeft)
+				{
+					float Angle = transform.rotation.z * Mathf.Rad2Deg;
+					log += "angleEnd: " + Angle + '\n'; 
+				}
 				state++;
 				timeInLevel = (int) Time.timeSinceLevelLoad - startTime;
 				calculateScore();
+				print(log);
 				StartCoroutine(save_record());
 			}
 		}
