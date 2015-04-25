@@ -28,44 +28,40 @@
   </div>
   <div class="col-md-8">
 	    <!-- just for now -->
-	<% @current_school_admin_id = 1 %>
-	<% if @students %>
+	<% @current_school_admin_id = current_school_admin_id %>
+	<% if @teachers %>
 		<table class="table table-hover">
-		   <caption>Unverified students</caption>
+		   <caption>Unverified teachers</caption>
 		   <thead>
 		      	<tr>
 			        <th>Name</th>
 			        <th>Email</th>
-			        <th>Grade</th>
-			        <th>Class</th>
 			        <th>School</th>
 			        <th>Accept</th>
 			        <th>Reject</th>
 		      	</tr>
 		   </thead>
 		   <tbody>
-			    <% @students.each do |student| %>
+			    <% @teachers.each do |teacher| %>
 				<tr>
-					<td><% if student[:student_name] %> 
-							<%= student[:student_name] %>
+					<td><% if teacher[:teacher_name] %> 
+							<%= teacher[:teacher_name] %>
 						<% else %>
 							*No name yet
 						<% end %>
 						</td>
 
-						<td><%= student[:email] %> </td>
-						<td><%= student[:grade] %> </td>
-						<td><%= student[:student_class] %> </td>
-						<td><%= student[:school] %>  </td>
+						<td><%= teacher[:email] %> </td>
+						<td><%= teacher[:school] %>  </td>
 						<td>
-							<%= form_tag("/school_admins/accept_verification/" + student[:id].to_s, method: :put)  do %>
+							<%= form_tag("/school_admins/accept_verification/" + teacher[:id].to_s, method: :put)  do %>
 								<%= button_tag(type: "submit", class: "btn btn-primary") do %>
 							    	Accept
 								<% end %>
 							<% end %>
 						</td>
 						<td>
-							<%= form_tag("/school_admins/reject_verification/" + student[:id].to_s, method: :put)  do %>
+							<%= form_tag("/school_admins/reject_verification/" + teacher[:id].to_s, method: :put)  do %>
 								<%= button_tag(type: "submit", class: "btn btn-primary") do %>
 							    	Reject
 								<% end %>
@@ -76,7 +72,7 @@
 		   	</tbody>
 		</table>
 	<% else %>
-		No Students to display.
+		No Teachers to display.
 	<% end %>
   </div>
 </div>

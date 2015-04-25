@@ -44,11 +44,11 @@ class SchoolAdminsController < ApplicationController
 		# get the school admin from the url till now
 		@current_admin = current_school_admin
 		if @current_admin
-			# get students of their school who are not verified to display their scores in the view
-			@students = Student.where("school = ? AND verified = ?" , 
+			# get teachers of their school who are not verified to display their scores in the view
+			@teachers = Teacher.where("school = ? AND verified = ?" , 
 				@current_admin.school, false)
 		else
-			@students = {}
+			@teacherss = {}
 		end
 	end
 
@@ -75,24 +75,24 @@ class SchoolAdminsController < ApplicationController
 
 
 	def accept_verification
-		# find the student who should been verified using the id in the params
-		@student = Student.find(params[:student_id])
-		@student.verified = true
+		# find teacher who should been verified using the id in the params
+		@teacher = Teacher.find(params[:teacher_id])
+		@teacher.verified = true
 		# change the flash method according to the save action
-		if @student.save
-			redirect_to view_requests_school_admins_path, notice: 'The student has been verified successfully.'
+		if @teacher.save
+			redirect_to view_requests_school_admins_path, notice: 'The teacher has been verified successfully.'
 		else
-			redirect_to view_requests_school_admins_path, alert: 'The student has not been verified successfully.'
+			redirect_to view_requests_school_admins_path, alert: 'The teacher has not been verified successfully.'
 		end
 	end
 
 
 	def reject_verification
-		# find the student who should been unverified using the id in the params
-		@student = Student.find(params[:student_id])
-		@student.verified = nil
+		# find the teacher who should been unverified using the id in the params
+		@teacher = Teacher.find(params[:teacher_id])
+		@teacher.verified = nil
 		# change the flash method according to the save action
-		if @student.save
+		if @teacher.save
 			redirect_to view_requests_school_admins_path, notice: 'The verification request has been removed successfully.'
 		else
 			redirect_to view_requests_school_admins_path, alert: 'The verification request has not been removed successfully.'
