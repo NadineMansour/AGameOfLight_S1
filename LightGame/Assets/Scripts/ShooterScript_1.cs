@@ -157,8 +157,17 @@ public class ShooterScript_1 : MonoBehaviour {
 			{
 				linePositions [1] = hit.point;
 				gameover = true;
+				if(RUp || RDown)
+				{
+					log += ", ended: " + angle + '\n';
+				}
+				if(up || down)
+				{
+					log += ", yEnd: " + transform.position.y + '\n';
+				}
 				time = (int)Time.timeSinceLevelLoad - startTime;
 				calculateScore();
+				print (log);
 				//clicks, log, time and level are ready here.
 				EndGame();
 			}

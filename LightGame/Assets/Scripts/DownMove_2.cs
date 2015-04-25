@@ -40,7 +40,7 @@ public class DownMove_2 : MonoBehaviour {
 	{
 		if (ShooterScript_2.down) 
 		{
-			ShooterScript_2.log += ", yEnd: " + Shooter.transform.position.y;
+			ShooterScript_2.log += ", yEnd: " + Shooter.transform.position.y + '\n';
 		}
 		ShooterScript_2.down = false;
 	}
