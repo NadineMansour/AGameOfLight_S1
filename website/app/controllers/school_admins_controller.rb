@@ -48,7 +48,7 @@ class SchoolAdminsController < ApplicationController
 			@teachers = Teacher.where("school = ? AND verified = ?" , 
 				@current_admin.school, false)
 		else
-			@teacherss = {}
+			@teachers = {}
 		end
 	end
 
