@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 public class reflection_level_5 : MonoBehaviour {
 
+
 	//booleans to rotate left and right
 	public static bool rotateRight;
 	public static bool rotateLeft;
@@ -40,14 +41,12 @@ public class reflection_level_5 : MonoBehaviour {
 		linePositions.Add (line1Start);
 		linePositions.Add (line1End);
 		SetLightBeam (linePositions,lightBeam);
-
 		linpositions2 = new List<Vector3> ();
 		Vector3 line2Start = line1Start;
 		Vector3 line2End = line1Start;
 		linpositions2.Add (line2Start);
 		linpositions2.Add (line2End);
 		SetLightBeam (linpositions2,lightBeam2);
-
 		extendLightX (linePositions);
 		gameOver = false;
 		target.SetActive (true);
@@ -102,10 +101,6 @@ public class reflection_level_5 : MonoBehaviour {
 			EndGame();
 		}
 	}
-
-
-
-
 
 
 	void extendLightX(List<Vector3> l)

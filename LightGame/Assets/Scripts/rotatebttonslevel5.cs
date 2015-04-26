@@ -3,7 +3,6 @@ using System.Collections;
 
 public class rotatebttonslevel5 : MonoBehaviour 
 {
-
 	public bool right;
 	public bool left;
 
