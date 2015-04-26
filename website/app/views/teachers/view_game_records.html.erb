@@ -14,7 +14,10 @@
         <% end %>
         <%= link_to controller: "teachers", action: "view_courses"  do %>
           <i class="list-group-item">Request subject</i> 
-        <% end %>  
+        <% end %> 
+        <%= link_to controller: "teachers", action: "view_students_grades_in_questions"  do %>
+          <i class="list-group-item">View students' grades in questions</i> 
+        <% end %> 
     </div>
   </div>
   <div class="col-md-8">

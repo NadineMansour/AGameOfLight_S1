@@ -17,6 +17,13 @@
      		<p class="navbar-text navbar-right">
      			<b>Signed in as <%= current_school_admin.email %></b> 
      		</p>
+        <% elsif current_teacher %>
+            <p class="navbar-text navbar-right">  
+                <%= link_to "Sign out", destroy_teacher_session_path, :method => :delete %>
+            </p>
+            <p class="navbar-text navbar-right">
+                <b>Signed in as <%= current_teacher.email %></b> 
+            </p>
     	<% end %>
     </div>
 </div>
