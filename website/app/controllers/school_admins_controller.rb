@@ -102,7 +102,7 @@ class SchoolAdminsController < ApplicationController
 
 	def accept_teacher_verification
 		# find the teachers who should been verified using the id in the params
-		@teachers = Teacher.find(params[:teacher_id])
+		@teacher = Teacher.find(params[:teacher_id])
 		@teacher.verified = true
 		# change the flash method according to the save action
 		if @teacher.save
