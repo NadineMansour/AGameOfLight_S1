@@ -37,6 +37,7 @@ public class Shooter_L3_3 : MonoBehaviour {
 	public GameObject Tip3;
 	public GameObject Stopwatch;
 	public GameObject Mirror;
+	public GameObject numOfClicks;
 
 
 	public LineRenderer lightBeam;                      //the main lightbeam used in the refraction 
@@ -105,6 +106,9 @@ public class Shooter_L3_3 : MonoBehaviour {
 			nextButton.SetActive(true);
 			Tip3.SetActive(true);
 		}
+		//display the number of moves/clicks
+		TextMesh textObject = numOfClicks.GetComponent<TextMesh>();
+		textObject.text = "Moves: "+clicks;
 	}
 
 
