@@ -1,0 +1,73 @@
+<div class="row">
+  <br>
+  <br>
+  <br>
+</div>
+<div class="row">
+  <div class="col-md-2">
+		<%= link_to controller: "school_admins", action: "view_teacher_requests"  do %>
+		    <i class="list-group-item">View requests</i> 
+		<% end %>
+		<%= link_to controller: "school_admins", action: "view_school_subjects"  do %>
+	        <i class="list-group-item">View school subjects</i> 
+	    <% end %>
+	    <%= link_to controller: "school_admins", action: "view_teachers_subjects"  do %>
+        <i class="list-group-item">View teachers' subjects</i> 
+    	<% end %>
+    </div>
+  </div>
+  <div class="col-md-8">
+	    <!-- just for now -->
+	<% @current_school_admin_id = 1 %>
+	<% if @teachers %>
+		<table class="table table-hover">
+		   <caption>Unverified teachers</caption>
+		   <thead>
+		      	<tr>
+			        <th>Name</th>
+			        <th>Email</th>
+			        <th>School</th>
+			        <th>Accept</th>
+			        <th>Reject</th>
+		      	</tr>
+		   </thead>
+		   <tbody>
+			    <% @teachers.each do |teacher| %>
+				<tr>
+					<td><% if teacher[:teacher_name] %> 
+							<%= teacher[:teacher_name] %>
+						<% else %>
+							*No name yet
+						<% end %>
+						</td>
+
+						<td><%= teacher[:email] %> </td>
+						<td><%= teacher[:school] %>  </td>
+						<td>
+							<%= form_tag("/school_admins/accept_teacher_verification/" + teacher[:id].to_s, method: :put)  do %>
+								<%= button_tag(type: "submit", class: "btn btn-primary") do %>
+							    	Accept
+								<% end %>
+							<% end %>
+						</td>
+						<td>
+							<%= form_tag("/school_admins/reject_teacher_verification/" + teacher[:id].to_s, method: :put)  do %>
+								<%= button_tag(type: "submit", class: "btn btn-primary") do %>
+							    	Reject
+								<% end %>
+							<% end %>
+						</td>
+					</tr>
+				<% end %>
+		   	</tbody>
+		</table>
+	<% else %>
+		No Teachers to display.
+	<% end %>
+  </div>
+</div>
+
+
+
+
+
