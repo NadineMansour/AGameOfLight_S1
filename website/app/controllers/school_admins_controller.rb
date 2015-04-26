@@ -106,9 +106,9 @@ class SchoolAdminsController < ApplicationController
 		@teacher.verified = true
 		# change the flash method according to the save action
 		if @teacher.save
-			redirect_to view_requests_school_admins_path, notice: 'The teacher has been verified successfully.'
+			redirect_to view_teacher_requests_school_admins_path, notice: 'The teacher has been verified successfully.'
 		else
-			redirect_to view_requests_school_admins_path, alert: 'The teacher has not been verified successfully.'
+			redirect_to view_teacher_requests_school_admins_path, alert: 'The teacher has not been verified successfully.'
 		end
 	end
 
@@ -132,9 +132,9 @@ class SchoolAdminsController < ApplicationController
 		@teacher.verified = nil
 		# change the flash method according to the save action
 		if @teacher.save
-			redirect_to view_requests_school_admins_path, notice: 'The verification request has been removed successfully.'
+			redirect_to view_teacher_requests_school_admins_path, notice: 'The verification request has been removed successfully.'
 		else
-			redirect_to view_requests_school_admins_path, alert: 'The verification request has not been removed successfully.'
+			redirect_to view_teacher_requests_school_admins_path, alert: 'The verification request has not been removed successfully.'
 		end
 	end
 
