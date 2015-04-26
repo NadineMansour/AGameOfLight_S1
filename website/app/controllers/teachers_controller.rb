@@ -77,4 +77,17 @@ class TeachersController < ApplicationController
 			@students = {}
 		end
 	end
+
+
+	def view_students_grades_in_questions
+		@student_id = params[:student_id]
+		@teacher = current_teacher
+		if @teacher.verified
+			if @student_id
+				@students = Student.where("id = ?", @student_id)
+			else
+				@students = Student.where("school = ? AND verified = ?", @teacher.school, true)
+			end
+		end
+	end
 end

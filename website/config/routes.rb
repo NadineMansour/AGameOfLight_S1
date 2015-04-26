@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       get 'view_school_verified_students'
       get 'view_courses'
       put 'request_subject/:subject_id'=> :request_subject
+      get 'view_students_grades_in_questions'
     end
   end
 
