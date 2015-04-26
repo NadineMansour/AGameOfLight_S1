@@ -28,6 +28,7 @@ Rails.application.routes.draw do
       put 'accept_verification/:student_id' => :accept_verification
       put 'reject_verification/:student_id' => :reject_verification
       get 'view_teachers_subjects'
+      get 'view_verified_teachers'
     end
     member do
       get 'accept_school_admin'
