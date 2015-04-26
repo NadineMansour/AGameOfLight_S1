@@ -44,11 +44,11 @@ class SchoolAdminsController < ApplicationController
 		# get the school admin from the url till now
 		@current_admin = current_school_admin
 		if @current_admin
-			# get students of their school who are not verified to display their scores in the view
-			@students = Student.where("school = ? AND verified = ?" , 
+			# get teachers of their school who are not verified to display their scores in the view
+			@teachers = Teacher.where("school = ? AND verified = ?" , 
 				@current_admin.school, false)
 		else
-			@students = {}
+			@teacherss = {}
 		end
 	end
 

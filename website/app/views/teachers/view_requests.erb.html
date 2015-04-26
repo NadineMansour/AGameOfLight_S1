@@ -1,0 +1,72 @@
+<div class="row">
+  <br>
+  <br>
+  <br>
+</div>
+<div class="row">
+  <div class="col-md-2">
+    <div class="list-group" width="70px;">
+		<%= link_to controller: "teachers", action: "view_requests"  do %>
+		    <i class="list-group-item">View requests</i> 
+		<% end %>
+    </div>
+  </div>
+  <div class="col-md-8">
+	    <!-- just for now -->
+	<% @current_teachers_id = current_teacher_id %>
+	<% if @students %>
+		<table class="table table-hover">
+		   <caption>Unverified students</caption>
+		   <thead>
+		      	<tr>
+			        <th>Name</th>
+			        <th>Email</th>
+			        <th>Grade</th>
+			        <th>Class</th>
+			        <th>School</th>
+			        <th>Accept</th>
+			        <th>Reject</th>
+		      	</tr>
+		   </thead>
+		   <tbody>
+			    <% @students.each do |student| %>
+				<tr>
+					<td><% if student[:student_name] %> 
+							<%= student[:student_name] %>
+						<% else %>
+							*No name yet
+						<% end %>
+						</td>
+
+						<td><%= student[:email] %> </td>
+						<td><%= student[:grade] %> </td>
+						<td><%= student[:student_class] %> </td>
+						<td><%= student[:school] %>  </td>
+						<td>
+							<%= form_tag("/teachers/accept_verification/" + student[:id].to_s, method: :put)  do %>
+								<%= button_tag(type: "submit", class: "btn btn-primary") do %>
+							    	Accept
+								<% end %>
+							<% end %>
+						</td>
+						<td>
+							<%= form_tag("/teachers/reject_verification/" + student[:id].to_s, method: :put)  do %>
+								<%= button_tag(type: "submit", class: "btn btn-primary") do %>
+							    	Reject
+								<% end %>
+							<% end %>
+						</td>
+					</tr>
+				<% end %>
+		   	</tbody>
+		</table>
+	<% else %>
+		No Students to display.
+	<% end %>
+  </div>
+</div>
+
+
+
+
+
