@@ -52,6 +52,20 @@
               <td>Accept</td>
               <td>Reject</td>
             </tr> 
+              <tr>
+              <td>
+              <%= form_tag("/school_admins/accept_subject_request/" + s[:id].to_s, method: :put)  do %>
+                <%= button_tag(type: "submit", class: "btn btn-primary") do %>
+                    Accept
+                <% end %>
+              <% end %>
+            </td>
+            <td>
+              <%= form_tag("/school_admins/reject_subject_request/" + s[:id].to_s, method: :put)  do %>
+                <%= button_tag(type: "submit", class: "btn btn-primary") do %>
+                    Reject
+                <% end %>
+            </tr> 
         <% end %>
        </tbody>
     </table>
