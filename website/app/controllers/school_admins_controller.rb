@@ -97,6 +97,16 @@ class SchoolAdminsController < ApplicationController
 	end
 
 
+	def remove_teacher_subject
+		@current_admin = current_school_admin
+		@request = TeacherRequestSubject.find(params[:id])
+		@request.verified = nil
+		@request.save
+		#only until method is written
+		redirect_to view_verified_requests_school_admins_path
+	end
+
+
 	def add_subject
 		#create an instance of subject to pass it to the partial view local variables
 		@subject = Subject.new
