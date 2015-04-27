@@ -35,12 +35,14 @@ Rails.application.routes.draw do
       put 'accept_teacher_verification/:teacher_id' => :accept_teacher_verification
       put 'reject_teacher_verification/:teacher_id' => :reject_teacher_verification
       get 'view_teachers_subjects'
+      put 'remove_teacher_subject/:teacherRequestSubject_id' => :remove_teacher_subject
     end
     member do
       get 'accept_school_admin'
       get 'reject_school_admin'
     end
   end
+  
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :students

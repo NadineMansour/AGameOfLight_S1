@@ -50,6 +50,7 @@
                        <th>Subject id</th>
                        <th>Subject name</th>
                        <th>Subject code</th>
+                       <th>Remove</th>
                     </tr>
                  </thead>
                  <tbody>
@@ -59,6 +60,13 @@
                       <td><%= @subject.id %></td>
                       <td><%= @subject.name %></td>
                       <td><%= @subject.code %></td>
+                      <td>
+                        <%= form_tag("/school_admins/remove_teacher_subject/" + r[:id].to_s, method: :put)  do %>
+                       <%= button_tag(type: "submit", class: "btn btn-primary") do %>
+                           Remove
+                       <% end %>
+                       <% end %>
+                      </td>
                     </tr>
                   <% end %>
                  </tbody>

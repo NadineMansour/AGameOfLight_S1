@@ -73,6 +73,12 @@ class SchoolAdminsController < ApplicationController
 		@requests = @allRequests.where(verified: nil)
 	end
 
+	def remove_teacher_subject
+		@request = TeacherRequestSubject.find(params[:teacherRequestSubject_id])
+		@request.destroy
+		redirect_to view_teachers_subjects_school_admins_path
+	end
+
 
 	def accept_subject_request
 		#get the request
@@ -85,15 +91,6 @@ class SchoolAdminsController < ApplicationController
 		else
 			redirect_to view_subject_requests_school_admins_path, alert: 'The request has not been verified successfully.'
 		end
-	end
-
-
-	def remove_verified_student
-		@current_admin = current_school_admin
-		@student = Student.find(params[:student_id])
-		@student.verified = nil
-		@student.save
-		redirect_to view_verified_students_school_admins_path
 	end
 
 
