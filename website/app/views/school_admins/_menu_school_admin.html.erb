@@ -1,0 +1,54 @@
+		<div id="sidebar" class="nav-collapse " tabindex="5000" style="overflow: hidden; outline: none;">
+
+			<ul class="sidebar-menu" id="nav-accordion">
+
+                  <li class="sub-menu dcjq-parent-li">
+                      <%= link_to controller: "school_admins", action: "view_verified_students", class: 'dcjq-parent' do %>
+                      	<span>View verified students</span>
+                      <% end %>
+                  </li>
+
+                  <li class="sub-menu dcjq-parent-li">
+                      <%= link_to controller: "school_admins", action: "view_subject_requests" , class: 'dcjq-parent' do %>
+				       <span>View Subject Requests</span>
+				    	<% end %>
+                      
+                  </li>
+
+                  <li class="sub-menu dcjq-parent-li">
+                      <%= link_to controller: "school_admins", action: "view_students_records" , class: 'dcjq-parent' do %>
+					    <span>View students records</span> 
+					<% end %>
+                  </li>
+                  <li class="sub-menu dcjq-parent-li">
+                      <%= link_to controller: "school_admins", action: "view_requests" , class: 'dcjq-parent' do %>
+					    <span>View requests</span> 
+					<% end %>
+                  </li>
+                   <li class="sub-menu dcjq-parent-li">
+                  <%= link_to controller: "school_admins", action: "view_teacher_requests" ,class: 'dcjq-parent'  do %>
+				    <span>View teacher requests</span> 
+				<% end %>
+				</li>
+				 <li class="sub-menu dcjq-parent-li">
+				<%= link_to controller: "school_admins", action: "add_subject" ,class: 'dcjq-parent'  do %>
+		        	<span>Add new subject</span> 
+		    	<% end %>
+		    	</li>
+		    	 <li class="sub-menu dcjq-parent-li">
+				<%= link_to controller: "school_admins", action: "view_school_subjects"   , class: 'dcjq-parent' do %>
+			        <span>View school subjects</span> 
+			    <% end %>
+			    </li>
+			     <li class="sub-menu dcjq-parent-li">
+			    <%= link_to controller: "school_admins", action: "view_teachers_subjects" , class: 'dcjq-parent' do %>
+		        <span>View teachers' subjects</span> 
+		    	<% end %>
+		    	</li>
+		    	 <li class="sub-menu dcjq-parent-li">
+		    	<%= link_to controller: "school_admins", action: "view_verified_teachers", class: 'dcjq-parent' do %>
+		        <span>View verfied teachers</span>
+		        <% end %>
+		        </li>
+              </ul>
+            </div>

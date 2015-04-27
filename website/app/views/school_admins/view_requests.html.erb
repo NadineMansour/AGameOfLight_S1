@@ -5,29 +5,7 @@
 </div>
 <div class="row">
   <div class="col-md-2">
-    <div class="list-group" width="70px;">
-    	<%= link_to controller: "school_admins", action: "view_verified_students"  do %>
-		    <i class="list-group-item">View verified students</i> 
-		<% end %>
-		<%= link_to controller: "school_admins", action: "view_students_records"  do %>
-		    <i class="list-group-item">View students records</i> 
-		<% end %>
-		<%= link_to controller: "school_admins", action: "view_requests"  do %>
-		    <i class="list-group-item">View requests</i> 
-		<% end %>
-		<%= link_to controller: "school_admins", action: "add_subject"  do %>
-	        <i class="list-group-item">Add new subject</i> 
-	    <% end %>
-		<%= link_to controller: "school_admins", action: "view_school_subjects"  do %>
-	        <i class="list-group-item">View school subjects</i> 
-	    <% end %>
-	    <%= link_to controller: "school_admins", action: "view_teachers_subjects"  do %>
-        <i class="list-group-item">View teachers' subjects</i> 
-    	<% end %>
-    	 <%= link_to controller: "school_admins", action: "view_verified_teachers" do %>
-         <i class="list-group-item">View verfied teachers</i>
-         <% end %>
-    </div>
+    <%= render partial: 'menu_school_admin' %>
   </div>
   <div class="col-md-8">
 	    <!-- just for now -->
