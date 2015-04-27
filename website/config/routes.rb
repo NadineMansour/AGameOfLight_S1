@@ -35,7 +35,10 @@ Rails.application.routes.draw do
       put 'reject_teacher_verification/:teacher_id' => :reject_teacher_verification
       get 'view_teachers_subjects'
       get 'view_verified_teachers'
-      get 'view_verified_teachers'
+      get 'view_subject_requests'
+      put 'accept_subject_request/:teacherRequestSubject_id' => :accept_subject_request
+      put 'reject_subject_request/:teacherRequestSubject_id' => :reject_subject_request        
+      put 'remove_teacher_subject/:teacherRequestSubject_id' => :remove_teacher_subject
       put 'remove_verified_teacher/:teacher_id' => :remove_verified_teacher
     end
     member do
