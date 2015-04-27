@@ -22,11 +22,14 @@ Rails.application.routes.draw do
       get 'view_verified_students'
       get 'view_students_records'
       get 'view_requests'
+      get 'view_teacher_requests'
       put 'remove_verified_student/:student_id' => :remove_verified_student
       get 'add_subject'
       get 'view_school_subjects'
       put 'accept_verification/:student_id' => :accept_verification
-      put 'reject_verification/:student_id' => :reject_verification
+      put 'reject_verification/:student_id' => :reject_verification 
+      put 'accept_teacher_verification/:teacher_id' => :accept_teacher_verification
+      put 'reject_teacher_verification/:teacher_id' => :reject_teacher_verification
       get 'view_teachers_subjects'
     end
     member do
