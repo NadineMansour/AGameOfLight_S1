@@ -94,6 +94,15 @@ class SchoolAdminsController < ApplicationController
 	end
 
 
+	def remove_verified_student
+		@current_admin = current_school_admin
+		@student = Student.find(params[:student_id])
+		@student.verified = nil
+		@student.save
+		redirect_to view_verified_students_school_admins_path
+	end
+
+
 	def remove_teacher_subject
 		@current_admin = current_school_admin
 		@request = TeacherRequestSubject.find(params[:id])
