@@ -31,7 +31,6 @@
   </div>
   <div class="col-md-8">
     <table class="table table-hover">
-       <caption>Students' records</caption>
        <thead>
           <tr>
              <th>Subject code</th>
@@ -49,25 +48,20 @@
               <td><%= @subject.code %></td>
               <td><%= @subject.name %></td>
               <td><%= @teacher.email %></td>
-              <td>Accept</td>
-              <td>Reject</td>
-            </tr> 
-              <tr>
               <td>
-              <%= form_tag("/school_admins/accept_subject_request/" + s[:id].to_s, method: :put)  do %>
-                <%= button_tag(type: "submit", class: "btn btn-primary") do %>
-                    Accept
+                <%= form_tag("/school_admins/accept_subject_request/" + s[:id].to_s, method: :put)  do %>
+                  <%= button_tag(type: "submit", class: "btn btn-primary") do %>
+                      Accept
+                  <% end %>
                 <% end %>
-              <% end %>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <%= form_tag("/school_admins/reject_subject_request/" + s[:id].to_s, method: :put)  do %>
-                <%= button_tag(type: "submit", class: "btn btn-primary") do %>
-                    Reject
+              </td>
+              <td>
+                <%= form_tag("/school_admins/reject_subject_request/" + s[:id].to_s, method: :put)  do %>
+                  <%= button_tag(type: "submit", class: "btn btn-primary") do %>
+                      Reject
+                  <% end %>
                 <% end %>
-              <% end %>
+              </td>
             </tr> 
         <% end %>
        </tbody>

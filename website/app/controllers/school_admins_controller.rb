@@ -201,4 +201,18 @@ class SchoolAdminsController < ApplicationController
 	end
 
 
+	def reject_subject_request
+		#get the request
+		@request = TeacherRequestSubject.find(params[:teacherRequestSubject_id])
+		#change verification of request
+		@request.verified = false
+		#change the flash method depending on the save status
+		if @request.save
+			redirect_to view_subject_requests_school_admins_path, alert: 'The request has not been verified successfully.'
+			else
+			redirect_to view_subject_requests_school_admins_path, notice: 'The request has been verified successfully.'
+			end
+	end
+
+
 end
