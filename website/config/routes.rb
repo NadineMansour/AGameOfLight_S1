@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   resources :school_admins do
     collection do
       get 'view_verified_students'
+      get 'view_subject_requests'
       get 'view_students_records'
       get 'view_requests'
       get 'view_teacher_requests'

@@ -66,6 +66,12 @@ class SchoolAdminsController < ApplicationController
 	end
 
 
+	def view_subject_requests
+		@allRequests = TeacherRequestSubject.where("school = ?", current_school_admin.school)
+		@requests = @allRequests.where(verified: nil)
+	end
+
+
 	def remove_verified_student
 		@current_admin = current_school_admin
 		@student = Student.find(params[:student_id])
