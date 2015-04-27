@@ -76,7 +76,7 @@ class SchoolAdminsController < ApplicationController
 
 	def accept_subject_request
 		#get the request
-		@request = TeacherRequestSubject.find(params[:id])
+		@request = TeacherRequestSubject.find(params[:teacherRequestSubject_id])
 		#change verification of request
 		@request.verified = true
 		#change the flash method depending on the save status
