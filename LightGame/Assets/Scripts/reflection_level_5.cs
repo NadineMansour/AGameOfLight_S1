@@ -14,8 +14,15 @@ public class reflection_level_5 : MonoBehaviour {
 	private List <Vector3> linePositions;
 	public LineRenderer lightBeam2;
 	private List <Vector3> linpositions2;
+	public LineRenderer lightBeam3;
+	private List <Vector3> linpositions3;
+	public LineRenderer lightBeam4;
+	private List <Vector3> linpositions4;
+	public LineRenderer lightBeam5;
+	List<Vector3> linpositions5;
 	private float angle;
 	public static bool gameOver;
+	public static bool saveRec;
 	public GameObject target;
 	public GameObject target1;
 	public GameObject bam;
@@ -47,8 +54,27 @@ public class reflection_level_5 : MonoBehaviour {
 		linpositions2.Add (line2Start);
 		linpositions2.Add (line2End);
 		SetLightBeam (linpositions2,lightBeam2);
+		linpositions3 = new List<Vector3> ();
+		Vector3 line3Start = line1Start;
+		Vector3 line3End = line1Start;
+		linpositions3.Add (line3Start);
+		linpositions3.Add (line3End);
+		SetLightBeam (linpositions3,lightBeam3);
+		linpositions4 = new List<Vector3> ();
+		Vector3 line4Start = line1Start;
+		Vector3 line4End = line1Start;
+		linpositions4.Add (line4Start);
+		linpositions4.Add (line4End);
+		SetLightBeam (linpositions4,lightBeam4);
+		linpositions5 = new List<Vector3> ();
+		Vector3 line5Start = line1Start;
+		Vector3 line5End = line1Start;
+		linpositions5.Add (line5Start);
+		linpositions5.Add (line5End);
+		SetLightBeam (linpositions5, lightBeam5);
 		extendLightX (linePositions);
 		gameOver = false;
+		saveRec = true;
 		target.SetActive (true);
 		bam.SetActive (false);
 		gameOver = false;
@@ -71,10 +97,14 @@ public class reflection_level_5 : MonoBehaviour {
 	
 	void EndGame()
 	{
-		StartCoroutine (save_record ()); // save the record when the game ends
-		target.SetActive (false); //enables target halo, indicatingt that light reached it
-		bam.SetActive(true); //enables target halo, indicatingt that light reached it
-		to_next_level.SetActive (true);
+		if (saveRec) 
+		{
+			StartCoroutine (save_record ()); // save the record when the game ends
+			target.SetActive (false); //enables target halo, indicatingt that light reached it
+			bam.SetActive (true); //enables target halo, indicatingt that light reached it
+			to_next_level.SetActive (true);
+			saveRec = false;
+		}
 	}
 	
 	
@@ -93,12 +123,216 @@ public class reflection_level_5 : MonoBehaviour {
 			{
 				RotateLeft ();
 			}
+			detector();
 			SetLightBeam (linePositions,lightBeam);
 			SetLightBeam(linpositions2,lightBeam2);
+			SetLightBeam(linpositions3,lightBeam3);
+			SetLightBeam(linpositions4,lightBeam4);
+			SetLightBeam(linpositions5,lightBeam5);
 		} 
 		else 
 		{
 			EndGame();
+		}
+	}
+
+
+	void detector()
+	{
+		if (!gameOver) 
+		{
+			RaycastHit hit;
+			if(Physics.Linecast(linePositions[0],linePositions[1],out hit))
+			{
+				Vector3 collision = hit.point;
+				linePositions[1] = collision;
+				linpositions2[0] = collision;
+				
+				if(hit.collider.tag == "horizontal mirror")
+				{
+					
+					float x = 2*(collision.x - linePositions [0].x)+linePositions[0].x;
+					linpositions2 [1] = new Vector3 (x, linePositions[0].y, 0);
+					extendLightX(linpositions2);
+				}
+				else
+				{
+					if(hit.collider.tag == "vertical mirror")
+					{
+						float y = 2*(linePositions[0].y - collision.y) ;
+						linpositions2[1] = new Vector3(linePositions[0].x,-y + linePositions[0].y,0);
+						extendLightY(linpositions2);
+						extendLightX(linpositions2);
+					}
+				}
+				
+				if(hit.collider.tag == "Obstacle")
+				{
+					linpositions2[1] = hit.point;
+				}
+			}
+			else 
+			{
+				linpositions2[0] = linePositions[0];
+				linpositions2[1] = linePositions[0];
+				extendLightX(linePositions);
+				
+			}
+			
+			
+			if(Physics.Linecast(linpositions2[0],linpositions2[1],out hit))
+			{
+				Vector3 collision = hit.point;
+				linpositions2[1] = collision;
+				linpositions3[0] = collision;
+				
+				if(hit.collider.tag == "horizontal mirror")
+				{
+					float x = 2*(collision.x - linpositions2[0].x) + linpositions2[0].x;
+					linpositions3[1] = new Vector3(x,linpositions2[0].y,0);
+					extendLightX(linpositions3);
+				}
+				else 
+				{
+					if(hit.collider.tag == "vertical mirror")
+					{
+						float y = 2*(linpositions2[0].y - collision.y) ;
+						linpositions3[1] = new Vector3(linpositions2[0].x,-y + linpositions2[0].y,0);
+						extendLightY(linpositions3);
+						extendLightX(linpositions3);
+					} 
+					else
+					{
+						if (hit.collider.tag == "fixed mirror")
+						{
+							linpositions3[0] = collision;
+							linpositions3[1] = new Vector3(3,4,0);
+							extendLightY(linpositions3);
+						}
+					}
+				}
+				
+				if(hit.collider.tag == "Obstacle")
+				{
+					linpositions3[1] = collision;
+				}
+				if(hit.collider.tag == "Target")
+				{
+					gameOver = true;
+					saveRec = true;
+					linpositions3[1] = collision;
+				}
+				if(hit.collider.tag == "target 1")
+				{
+					target1.SetActive(false);
+				}
+				
+			}
+			else 
+			{
+				linpositions3[0] = linePositions[0];
+				linpositions3[1] = linePositions[0];
+				extendLightX(linpositions3);
+			}
+			
+			
+			if(Physics.Linecast(linpositions3[0],linpositions3[1],out hit))
+			{
+				Vector3 collision = hit.point;
+				linpositions3[1] = collision;
+				linpositions4[0] = collision;
+				if(hit.collider.tag == "horizontal mirror")
+				{
+					
+					float x = 2*(collision.x - linpositions3[0].x) + linpositions3[0].x;
+					linpositions4[1] = new Vector3(x,linpositions3[0].y,0);
+					extendLightX(linpositions4);
+				}
+				else
+				{
+					if(hit.collider.tag == "vertical mirror")
+					{
+						float y = 2*(linpositions3[0].y - collision.y) ;
+						linpositions4[1] = new Vector3(linpositions3[0].x,-y + linpositions3[0].y	,0);
+						extendLightY(linpositions4);
+					}
+				}
+				
+				if(hit.collider.tag == "Obstacle")
+				{
+					linpositions4[1] = hit.point;
+				}
+				if(hit.collider.tag == "Target")
+				{
+					gameOver = true;
+					saveRec = true;
+					linpositions4[1] = collision;
+				}
+			}
+			else
+			{
+				linpositions4[0] = linePositions[0];
+				linpositions4[1] = linePositions[0];
+			}
+			
+			
+			if(Physics.Linecast(linpositions4[0] , linpositions4[1] ,out hit))
+			{
+				Vector3 collision = hit.point;
+				linpositions4[1] = collision;
+				linpositions5[0] = collision;
+				
+				if(hit.collider.tag == "horizontal mirror")
+				{
+					float x = 2*(collision.x - linpositions4[0].x) + linpositions4[0].x;
+					linpositions5[1] =  new Vector3(x,linpositions4[0].y,0);
+					extendLightX(linpositions5);
+				}
+				else 
+				{
+					if(hit.collider.tag == "vertical mirror")
+					{
+						float y = 2*(linpositions4[0].y - collision.y);
+						linpositions5[1] = new Vector3(linpositions4[0].x,-y + linpositions4[0].y,0);
+						extendLightY(linpositions5);
+						extendLightX(linpositions5);
+					}
+				}
+				if (hit.collider.tag == "Target")
+				{
+					gameOver = true;
+					saveRec = true;
+					linpositions5[1] = hit.point;
+				}
+				
+				if(hit.collider.tag == "Obstacle")
+				{
+					linpositions5[1] = hit.point;
+				}
+			}
+			else
+			{
+				linpositions5[0] = linePositions[0];
+				linpositions5[1] = linePositions[0];
+				extendLightX(linpositions4);
+			}
+			
+			if(Physics.Linecast(linpositions5[0] , linpositions5[1],out hit))
+			{
+				Vector3 collision = hit.point;
+				
+				if(hit.collider.tag == "Obstacle")
+				{
+					linpositions5[1] = collision;
+					
+				}
+				if(hit.collider.tag == "Target")
+				{
+					gameOver = true;
+					saveRec = true;
+					linpositions5[1] = collision;
+				}
+			}
 		}
 	}
 
@@ -220,7 +454,12 @@ public class reflection_level_5 : MonoBehaviour {
 
 		linpositions2 [0] = linePositions [0];
 		linpositions2 [1] = linePositions [0];
-
+		linpositions3 [0] = linePositions [0];
+		linpositions3 [1] = linePositions [0];
+		linpositions4 [0] = linePositions [0];
+		linpositions4 [1] = linePositions [0];
+		linpositions5 [0] = linePositions [0];
+		linpositions5 [1] = linePositions [0];
 		extendLightX (linePositions);
 	}
 	
