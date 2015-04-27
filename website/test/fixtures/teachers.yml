@@ -26,3 +26,11 @@ two:
   encrypted_password: MyStringTry
 
 
+three:
+  teacher_name: soha
+  email: soha@gmail.com
+  verified: true
+  school: guc
+  encrypted_password: MyStringTry
+
+
