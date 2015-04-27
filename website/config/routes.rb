@@ -27,6 +27,9 @@ Rails.application.routes.draw do
       put 'remove_verified_student/:student_id' => :remove_verified_student
       get 'add_subject'
       get 'view_school_subjects'
+      put 'accept_subject_request/:teacherRequestSubject_id' => :accept_subject_request
+      put 'reject_subject_request/:teacherRequestSubject_id' => :reject_subject_request
+      
       put 'accept_verification/:student_id' => :accept_verification
       put 'reject_verification/:student_id' => :reject_verification 
       put 'accept_teacher_verification/:teacher_id' => :accept_teacher_verification
