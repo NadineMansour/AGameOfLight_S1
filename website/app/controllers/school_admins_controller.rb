@@ -67,8 +67,24 @@ class SchoolAdminsController < ApplicationController
 
 
 	def view_subject_requests
+		#get all requests from current school
 		@allRequests = TeacherRequestSubject.where("school = ?", current_school_admin.school)
+		#filter requests to only unverified ones
 		@requests = @allRequests.where(verified: nil)
+	end
+
+
+	def accept_subject_request
+		#get the request
+		@request = TeacherRequestSubject.find(params[:id])
+		#change verification of request
+		@request.verified = true
+		#change the flash method depending on the save status
+		if @request.save
+			redirect_to view_subject_requests_school_admins_path, notice: 'The request has been verified successfully.'
+		else
+			redirect_to view_subject_requests_school_admins_path, alert: 'The request has not been verified successfully.'
+		end
 	end
 
 
