@@ -133,5 +133,15 @@ class SchoolAdminsControllerTest < ActionController::TestCase
     assert_equal 1, assigns(:verified_teachers).count 
   end
 
+ test 'view verified teachers' do
+    get( :view_verified_teachers )
+    assert_response :success
+    assert_not_nil assigns(:teachers)
+    assert_not_nil assigns(:current_admin)
+    assert_equal 1, assigns(:teachers).count
+    assert_template :view_verified_teachers
+    assert_template layout: "layouts/application"
+  end
+
 
 end

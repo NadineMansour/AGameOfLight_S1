@@ -129,5 +129,17 @@ class SchoolAdminsController < ApplicationController
 		@verified_teachers = Teacher.where("school = ? AND verified = ?", @current_school_admin.school, true)
 	end
 
+	def view_verified_teachers
+        @current_admin=current_school_admin
+        if @current_admin
+          @teachers = Teacher.where("school = ? AND verified = ?" ,
+          @current_admin.school, true)
+        else
+        @teachers={}
+
+        end
+
+        end
+
 
 end
