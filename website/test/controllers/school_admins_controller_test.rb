@@ -130,18 +130,30 @@ class SchoolAdminsControllerTest < ActionController::TestCase
   test 'view teachers subjects' do
     get(:view_teachers_subjects)
     assert_not_nil assigns(:verified_teachers)
-    assert_equal 1, assigns(:verified_teachers).count 
+    assert_equal 2, assigns(:verified_teachers).count 
   end
 
  test 'view verified teachers' do
-    get( :view_verified_teachers )
-    assert_response :success
-    assert_not_nil assigns(:teachers)
-    assert_not_nil assigns(:current_admin)
-    assert_equal 1, assigns(:teachers).count
-    assert_template :view_verified_teachers
-    assert_template layout: "layouts/application"
-  end
+   get( :view_verified_teachers )
+   assert_response :success
+   assert_not_nil assigns(:teachers)
+   assert_not_nil assigns(:current_admin)
+   assert_equal 2, assigns(:teachers).count
+   assert_template :view_verified_teachers
+   assert_template layout: "layouts/application"
+ end
+
+
+test "teacher should be removed from verified teachers" do
+   assert_equal true, teachers(:three).verified
+   teachers3 = Teacher.where(school: school_admins(:one).school, verified: true)
+   assert_equal 2, teachers3.count
+   put(:remove_verified_teacher, {'teacher_id' => teachers(:three).id })
+   assert_not_nil assigns(:current_admin)
+   assert_not_nil assigns(:teacher)
+   teachers2 = Teacher.where(school: school_admins(:one).school, verified: true)
+   assert_equal 1, teachers2.count
+end
 
 
 end
