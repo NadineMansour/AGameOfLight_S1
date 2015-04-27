@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Semail:</strong>
+  <%= @mess.semail %>
+</p>
+
+<p>
+  <strong>Remail:</strong>
+  <%= @mess.remail %>
+</p>
+
+<p>
+  <strong>Text:</strong>
+  <%= @mess.text %>
+</p>
+
+<%= link_to 'Edit', edit_mess_path(@mess) %> |
+<%= link_to 'Back', messes_path %>

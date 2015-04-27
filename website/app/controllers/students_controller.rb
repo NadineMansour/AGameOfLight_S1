@@ -4,15 +4,40 @@ class StudentsController < ApplicationController
   end
 
 
-
   def new
     @user = Student.new
   end
+
 
   def view_courses
    @subjects = Subject.where(school: current_student.school)
   end
 
+
+  def view_course_teachers
+
+    @teachers=Teacher.where(school: current_student.school)
+
+  end
+
+
+  def send_message
+    @message=Mess.new
+    @var=params[:teacher_id]
+  end 
+
+
+  def submit 
+      @message=Mess.new
+      @message.semail=current_student.email
+      @message.remail=Teacher.find(params[:teacher_id]).email
+      @message.text=params[:my_input]
+
+      @message.save
+      redirect_to view_courses_students_path
+  end 
+
+  
   def show_course
    @subject = Subject.find(params[:subject_id])
   end

@@ -1,0 +1,9 @@
+<%= form_tag("/students/" + 
+              "/submit/"+@var, method: :post)  do %>
+              
+                   <%= text_area_tag(:my_input, "", size: "50x20") %>
+                          
+                <%= button_tag(type: "submit", class: "btn btn-primary") do %>
+                    Send
+                <% end %>
+              <% end %>
