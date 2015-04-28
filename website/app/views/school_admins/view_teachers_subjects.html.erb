@@ -8,13 +8,15 @@
     <%= render partial: 'menu_school_admin' %>
   </div>
   <div class="col-md-8">
-     <table class="table table-hover">
-         
+    <br>
+     <div class="content-panel">
+        <h4><i class="fa fa-angle-right"></i> Teachers' Subjects</h4><hr>
+        <table class="table table-striped table-advance table-hover">
          <thead>
             <tr>
-               <th>Name</th>
-               <th>Email</th>
-               
+              <th>Name</th>
+              <th>Email</th>
+              <th>Subjects</th>
             </tr>
          </thead>
          <tbody>
@@ -25,7 +27,7 @@
                <td><%= s[:teacher_name] %></td>
                <td><%= s[:email] %></td>
                <td>
-                <table class="table table-striped">
+                <table class="table table-hover">
                  <thead>
                     <tr>
                        <th>Subject id</th>
@@ -43,8 +45,8 @@
                       <td><%= @subject.code %></td>
                       <td>
                         <%= form_tag("/school_admins/remove_teacher_subject/" + r[:id].to_s, method: :put)  do %>
-                       <%= button_tag(type: "submit", class: "btn btn-primary") do %>
-                           Remove
+                       <%= button_tag(type: "submit", class: "btn btn-danger btn-xs") do %>
+                          <i class="fa fa-trash-o "></i>
                        <% end %>
                        <% end %>
                       </td>
