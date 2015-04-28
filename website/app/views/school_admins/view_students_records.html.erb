@@ -8,56 +8,59 @@
     <%= render partial: 'menu_school_admin' %>
   </div>
   <div class="col-md-8">
-    <table class="table table-hover">
-       <caption>Students' records</caption>
-       <thead>
-          <tr>
-             <th>Name</th>
-             <th>Email</th>
-             <th>Class</th>
-             <th>Grade</th>
-             <th>Records</th>
-          </tr>
-       </thead>
-       <tbody>
-         <% @students.each do |s| %>
-           <% @records = Record.where(email: s[:email]) %>
-           <% if @records.count > 0 %>
-             <tr>
-             <td><%= s[:student_name] %></td>
-             <td><%= s[:email] %></td>
-             <td><%= s[:student_class] %></td>
-             <td><%= s[:grade] %></td>
-             <td>
-              
-              <table class="table table-striped">
-               <thead>
-                  <tr>
-                     <th>Level</th>
-                     <th>Clicks</th>
-                     <th>Score</th>
-                     <th>time</th>
-                     <th>logs</th>
-                  </tr>
-               </thead>
-               <tbody>
-                <% @records.each do |r| %>
-                  <tr>
-                    <td><%= r[:level] %></td>
-                    <td><%= r[:clicks] %></td>
-                    <td><%= r[:score] %></td>
-                    <td><%= r[:time] %></td>
-                    <td><%= r[:logs] %></td>
-                  </tr>
-                <% end %>
-               </tbody>
-            </table>
-             </td>
-             </tr>
-           <% end %>
-      <% end %>
-       </tbody>
-    </table>
+    <br>
+    <div class="content-panel">
+        <h4><i class="fa fa-angle-right"></i> Students' records</h4><hr>
+        <table class="table table-hover">
+           <thead>
+              <tr>
+                 <th>Name</th>
+                 <th>Email</th>
+                 <th>Class</th>
+                 <th>Grade</th>
+                 <th>Records</th>
+              </tr>
+           </thead>
+           <tbody>
+             <% @students.each do |s| %>
+               <% @records = Record.where(email: s[:email]) %>
+               <% if @records.count > 0 %>
+                 <tr>
+                 <td><%= s[:student_name] %></td>
+                 <td><%= s[:email] %></td>
+                 <td><%= s[:student_class] %></td>
+                 <td><%= s[:grade] %></td>
+                 <td>
+                  
+                  <table class="table table-hover">
+                   <thead>
+                      <tr>
+                         <th>Level</th>
+                         <th>Clicks</th>
+                         <th>Score</th>
+                         <th>time</th>
+                         <th>logs</th>
+                      </tr>
+                   </thead>
+                   <tbody>
+                    <% @records.each do |r| %>
+                      <tr>
+                        <td><%= r[:level] %></td>
+                        <td><%= r[:clicks] %></td>
+                        <td><%= r[:score] %></td>
+                        <td><%= r[:time] %></td>
+                        <td><%= r[:logs] %></td>
+                      </tr>
+                    <% end %>
+                   </tbody>
+                </table>
+                 </td>
+                 </tr>
+               <% end %>
+          <% end %>
+           </tbody>
+        </table>
+    </div>
   </div>
 </div>
 
