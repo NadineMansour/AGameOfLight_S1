@@ -21,21 +21,18 @@
     </div>
   </div>
   <div class="col-md-8">
-	<p>Please select the sorting method</p>
+	<p>Filter by : </p>
 	<%= form_tag("/teachers/view_school_verified_students", method: :get)  do %>
-		<select name="sort_method">
+		<%= text_field_tag 'search', nil, placeholder: 'Enter search term...' %>
+		<select name="filter_method">
 		  	<option value="">Filter by</option>
 		  	<option value="1">Grade</option>
 		  	<option value="2">name</option>
-		  	<option value="3">signing up date</option>
-		</select>
-		<select name="order_method">
-		  	<option value="">order</option>
-		  	<option value="1">Ascendingly</option>
-		  	<option value="2">Descendingly</option>
+		  	<option value="3">Signing up date</option>
+		  	<option value="4">Class</option>
 		</select>
 		<%= button_tag(type: "submit", class: "btn btn-primary") do %>
-	    	Sort <i class="icon-repeat"></i>
+	    	Search<i class="icon-repeat"></i>
 		<% end %>
 	<% end %>
 
