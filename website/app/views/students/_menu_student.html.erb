@@ -1,0 +1,10 @@
+<div id="sidebar" class="nav-collapse " tabindex="5000" style="overflow: hidden; outline: none;">
+	<ul class="sidebar-menu" id="nav-accordion">
+		<h5 class="centered"><%= current_student.email %></h5>
+        <li class="sub-menu dcjq-parent-li">
+            <%= link_to controller: "students", action: "view_courses", class: 'dcjq-parent' do %>
+            	<span>School Courses</span>
+            <% end %>
+        </li>
+    </ul>
+</div>

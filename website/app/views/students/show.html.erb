@@ -4,19 +4,9 @@
   <br>
 </div>
 
-<%= link_to controller: "students", action: "view_courses"  do %>
-  <i class="list-group-item">Your School's Courses</i> 
-   <% end %>
-
 <div class="row">
   <div class="col-md-2">
-    <div class="list-group" width="70px;">
-      <a href="#" class="list-group-item">First item</a>
-      <a href="#" class="list-group-item">Second item</a>
-      <a href="#" class="list-group-item">Third item</a>
-      <a href="#" class="list-group-item">Fourth item</a>
-      <a href="#" class="list-group-item">Fifth item</a>
-    </div>
+      <%= render partial: "menu_student" %>
   </div>
   <div class="col-md-8">
     <% if current_student.verified %>

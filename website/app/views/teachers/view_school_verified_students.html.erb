@@ -5,67 +5,64 @@
 </div>
 <div class="row">
   <div class="col-md-2">
-    <div class="list-group" width="70px;">
-    	<%= link_to controller: "teachers", action: "view_game_records"  do %>
-        	<i class="list-group-item">View game records</i> 
-      	<% end %> 
-      	<%= link_to controller: "teachers", action: "view_school_verified_students"  do %>
-        	<i class="list-group-item">View verified students</i> 
-      	<% end %> 
-      	<%= link_to controller: "teachers", action: "view_courses"  do %>
-          <i class="list-group-item">Request subject</i> 
-        <% end %> 
-        <%= link_to controller: "teachers", action: "view_students_grades_in_questions"  do %>
-          <i class="list-group-item">View students' grades in questions</i> 
-        <% end %> 
-    </div>
+    <%= render partial: "menu_teacher" %>
   </div>
-  <div class="col-md-8">
-	<p>Filter by : </p>
-	<%= form_tag("/teachers/view_school_verified_students", method: :get)  do %>
-		<%= text_field_tag 'search', nil, placeholder: 'Enter search term...' %>
-		<select name="filter_method">
-		  	<option value="">Filter by</option>
-		  	<option value="1">Grade</option>
-		  	<option value="2">name</option>
-		  	<option value="3">Signing up date</option>
-		  	<option value="4">Class</option>
-		</select>
-		<%= button_tag(type: "submit", class: "btn btn-primary") do %>
-	    	Search<i class="icon-repeat"></i>
+  <div class="col-md-8">     
+	  	<br>
+	  	<div class="form-panel">
+		<h4 class="mb"><i class="fa fa-angle-right"></i> Filter by : </h4>
+		<%= form_tag("/teachers/view_school_verified_students", method: :get, class: "form-inline", role: "form")  do %>
+			<div class="form-group">
+	            <label class="sr-only" for="exampleInputEmail2">Email address</label>
+	            <%= text_field_tag 'search', nil, placeholder: 'Enter search term...', class: "form-control" %>
+	        </div>
+			
+			<select name="filter_method" class="btn btn-default dropdown-toggle">
+			  	<option value="">Filter by</option>
+			  	<option value="1">Grade</option>
+			  	<option value="2">name</option>
+			  	<option value="3">Signing up date</option>
+			  	<option value="4">Class</option>
+			</select>
+			<%= button_tag(type: "submit", class: "btn btn-theme") do %>
+		    	Search <span class="caret"></span>
+			<% end %>
 		<% end %>
-	<% end %>
+ 	</div>
 
 	 
 	<% if @students %>
-		<table class="table table-hover">
-		   <caption>verified students</caption>
-		   <thead>
-		      	<tr>
-			        <th>Name</th>
-			        <th>Email</th>
-			        <th>Grade</th>
-			        <th>Class</th>
-			        <th>School</th>
-		     	 </tr>
-		   </thead>
-		   <tbody>
-			   <% @students.each do |student| %>
-					<tr>
-						<td><% if student[:student_name] %> 
-							<%= student[:student_name] %>
-						<% else %>
-							*No name yet
-						<% end %>
-						</td>
-						<td><%= student[:email] %> </td>
-						<td><%= student[:grade] %> </td>
-						<td><%= student[:student_class] %> </td>
-						<td><%= student[:school] %>  </td>
-					</tr>
-				<% end %>
-		   </tbody>
-		</table>
+		<br>
+		<div class="content-panel">
+			<h4><i class="fa fa-angle-right"></i> Verified students</h4><hr>
+			<table class="table table-hover">
+			   <thead>
+			      	<tr>
+				        <th>Name</th>
+				        <th>Email</th>
+				        <th>Grade</th>
+				        <th>Class</th>
+				        <th>School</th>
+			     	 </tr>
+			   </thead>
+			   <tbody>
+				   <% @students.each do |student| %>
+						<tr>
+							<td><% if student[:student_name] %> 
+								<%= student[:student_name] %>
+							<% else %>
+								*No name yet
+							<% end %>
+							</td>
+							<td><%= student[:email] %> </td>
+							<td><%= student[:grade] %> </td>
+							<td><%= student[:student_class] %> </td>
+							<td><%= student[:school] %>  </td>
+						</tr>
+					<% end %>
+			   </tbody>
+			</table>
+		</div>
 	<% else %>
 		No Students to display.
 	<% end %>

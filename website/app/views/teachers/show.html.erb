@@ -5,19 +5,7 @@
 </div>
 <div class="row">
   <div class="col-md-2">
-    <div class="list-group" width="70px;">
-        <%= link_to controller: "teachers", action: "view_game_records"  do %>
-          <i class="list-group-item">View game records</i> 
-        <% end %> 
-        <%= link_to controller: "teachers", action: "view_school_verified_students"  do %>
-          <i class="list-group-item">View verified students</i> 
-        <% end %> 
-        <%= link_to controller: "teachers", action: "view_courses"  do %>
-          <i class="list-group-item">Request subject</i> 
-        <% end %> 
-        <%= link_to controller: "teachers", action: "view_students_grades_in_questions"  do %>
-          <i class="list-group-item">View students' grades in questions</i> 
-        <% end %>   
+      <%= render partial: "menu_teacher" %>
     </div>
   </div>
   <div class="col-md-8">
