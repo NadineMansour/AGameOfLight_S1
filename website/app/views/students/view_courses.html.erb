@@ -33,7 +33,7 @@
             <td><%= link_to 'Show', show_course_students_path(subject_id: subject[:id]) %></td>
              <td>   <%= form_tag("/students/" + 
               "/view_course_teachers/" + subject[:id].to_s, method: :get)  do %>
-                <%= button_tag(type: "submit", class: "btn btn-primary") do %>
+                <%= button_tag(type: "submit",  class:"btn btn-theme") do %>
                     View teachers
                 <% end %>
               <% end %></td>
