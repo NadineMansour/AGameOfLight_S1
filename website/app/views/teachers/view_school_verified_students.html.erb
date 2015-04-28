@@ -65,8 +65,9 @@
 							    	Send messsage
 								<% end %>
 							<% end %> </td>
-							<td>   <%= form_tag("/students/" + 
-							"/view_messages_students/" + teacher[:id].to_s, method: :put)  do %>
+
+							<td>   <%= form_tag("/teachers/" + 
+							"/view_messages_students/" + student[:id].to_s, method: :get)  do %>
 								<%= button_tag(type: "submit", class: "btn btn-primary") do %>
 							    	View Messages
 								<% end %>
