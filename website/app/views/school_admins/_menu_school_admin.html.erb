@@ -1,7 +1,6 @@
-		<div id="sidebar" class="nav-collapse " tabindex="5000" style="overflow: hidden; outline: none;">
-
+		<div id="sidebar" class="nav-collapse " tabindex="5000" style="overflow: scroll; outline: none;">
 			<ul class="sidebar-menu" id="nav-accordion">
-
+				<h5 class="centered"><%= current_school_admin.email %></h5>
                   <li class="sub-menu dcjq-parent-li">
                       <%= link_to controller: "school_admins", action: "view_verified_students", class: 'dcjq-parent' do %>
                       	<span>View verified students</span>
