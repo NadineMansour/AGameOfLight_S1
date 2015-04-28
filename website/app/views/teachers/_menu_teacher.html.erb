@@ -1,0 +1,19 @@
+<div id="sidebar" class="nav-collapse " tabindex="5000" style="overflow: hidden; outline: none;">
+	<ul class="sidebar-menu" id="nav-accordion">
+		<h5 class="centered"><%= current_teacher.email %></h5>
+        <li class="sub-menu dcjq-parent-li">
+            <%= link_to controller: "teachers", action: "view_game_records", class: 'dcjq-parent' do %>
+            	<span>Game Records</span>
+            <% end %>
+            <%= link_to controller: "teachers", action: "view_school_verified_students", class: 'dcjq-parent' do %>
+            	<span>Verified Students</span>
+            <% end %>
+            <%= link_to controller: "teachers", action: "view_courses", class: 'dcjq-parent' do %>
+            	<span>Request Course</span>
+            <% end %>
+            <%= link_to controller: "teachers", action: "view_students_grades_in_questions", class: 'dcjq-parent' do %>
+            	<span>Students' Grades</span>
+            <% end %>
+        </li>
+    </ul>
+</div>
