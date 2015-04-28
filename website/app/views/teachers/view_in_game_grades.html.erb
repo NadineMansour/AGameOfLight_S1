@@ -1,0 +1,71 @@
+<div class="row">
+  <br>
+  <br>
+  <br>
+</div>
+<div class="row">
+  <div class="col-md-2">
+    <%= render partial: 'menu_teacher' %>
+  </div>
+  <div class="col-md-8">
+    <br>
+    <div class="content-panel">
+        <h4><i class="fa fa-angle-right"></i> Students' in-game quizes</h4><hr>
+        <table class="table table-hover">
+           <thead>
+              <tr>
+                 <th>Name</th>
+                 <th>Email</th>
+                 <th>Class</th>
+                 <th>Grade</th>
+                 <th>In-game quizes</th>
+              </tr>
+           </thead>
+           <tbody>
+             <% @students.each do |s| %>
+               <% @grades = InGameQuiz.where(email: s[:email]) %>
+               <% if @grades.count > 0 %>
+                 <tr>
+                 <td><%= s[:student_name] %></td>
+                 <td><%= s[:email] %></td>
+                 <td><%= s[:student_class] %></td>
+                 <td><%= s[:grade] %></td>
+                 <td>
+                  
+                  <table class="table table-hover">
+                   <thead>
+                      <tr>
+                         <th>Quiz #</th>
+                         <th>Question</th>
+                         <th>Answer</th>
+                         <th>Valid answer</th>
+                      </tr>
+                   </thead>
+                   <tbody>
+                    <% @grades.each do |r| %>
+                      <tr>
+                        <td><%= r[:quiz] %></td>
+                        <td><%= r[:question] %></td>
+                        <td><%= r[:answer] %></td>
+                        <td><%= r[:correct] %></td>
+                      </tr>
+                    <% end %>
+                   </tbody>
+                </table>
+                 </td>
+                 </tr>
+               <% end %>
+          <% end %>
+           </tbody>
+        </table>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
