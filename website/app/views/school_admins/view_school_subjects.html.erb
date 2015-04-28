@@ -7,32 +7,38 @@
   <div class="col-md-2">
     <%= render partial: 'menu_school_admin' %>
   </div>
-  <div class="col-md-8">
-    <table class="table table-hover">
+ <div class="col-md-8 mt">
+  <div class="content-panel">
+    <h4><i class="fa fa-angle-right"></i> Hover Table</h4><hr>
+    <table class="table table-hover">                     
       <thead>
         <tr>
+          <th>#</th>
           <th>Name</th>
           <th>Code</th>
-
-          <th colspan="3"></th>
+          <th>Action</th>
         </tr>
       </thead>
-
       <tbody>
-      
+        <% @counter = 1 %>
         <% @subjects.each do |subject| %>
           <tr>
+            <td><%= @counter %></td>
             <td><%= subject.name %></td>
             <td><%= subject.code %></td>
-             <td><%= link_to 'Show', subject %></td>
+            <td>
+                <%= link_to subject, class: 'btn btn-theme' do %>
+                  <i class="fa fa-cog"></i> show
+                <% end %>
+            </td>
+            <% @counter = @counter + 1 %>
           </tr>
-        <% end %> 
-        
-      </tbody> 
-
-     </table>
-  </div>
-  </div>
+        <% end %>
+      </tbody>
+    </table>
+  </div><!-- --/content-panel ---->
+</div>
+</div>
 
 
 
