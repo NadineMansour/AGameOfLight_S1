@@ -4,56 +4,58 @@
   <br>
 </div>
 <div class="row">
-  	<%= render partial: 'menu_school_admin' %>
-  </div>
+  	<div class="col-md-2">
+    	<%= render partial: 'menu_school_admin' %>
+  	</div>
   <div class="col-md-8">
-	    <!-- just for now -->
-	<% @current_school_admin_id = 1 %>
-	<% if @teachers %>
-		<table class="table table-hover">
-		   <caption>Unverified teachers</caption>
-		   <thead>
-		      	<tr>
-			        <th>Name</th>
-			        <th>Email</th>
-			        <th>School</th>
-			        <th>Accept</th>
-			        <th>Reject</th>
-		      	</tr>
-		   </thead>
-		   <tbody>
-			    <% @teachers.each do |teacher| %>
-				<tr>
-					<td><% if teacher[:teacher_name] %> 
-							<%= teacher[:teacher_name] %>
-						<% else %>
-							*No name yet
-						<% end %>
-						</td>
+  	<br>
+	<div class="content-panel">
+		<h4><i class="fa fa-angle-right"></i> Teachers' requests</h4><hr>
+		<% if @teachers.count > 0 %>
+	        <table class="table table-striped table-advance table-hover">
+			   <thead>
+			      	<tr>
+				        <th>Name</th>
+				        <th>Email</th>
+				        <th>School</th>
+				        <th>Accept</th>
+				        <th>Reject</th>
+			      	</tr>
+			   </thead>
+			   <tbody>
+				    <% @teachers.each do |teacher| %>
+					<tr>
+						<td><% if teacher[:teacher_name] %> 
+								<%= teacher[:teacher_name] %>
+							<% else %>
+								*No name yet
+							<% end %>
+							</td>
 
-						<td><%= teacher[:email] %> </td>
-						<td><%= teacher[:school] %>  </td>
-						<td>
-							<%= form_tag("/school_admins/accept_teacher_verification/" + teacher[:id].to_s, method: :put)  do %>
-								<%= button_tag(type: "submit", class: "btn btn-primary") do %>
-							    	Accept
+							<td><%= teacher[:email] %> </td>
+							<td><%= teacher[:school] %>  </td>
+							<td>
+								<%= form_tag("/school_admins/accept_teacher_verification/" + teacher[:id].to_s, method: :put)  do %>
+									<%= button_tag(type: "submit", class: "btn btn-success btn-xs") do %>
+								    	<i class="fa fa-check"></i>
+									<% end %>
 								<% end %>
-							<% end %>
-						</td>
-						<td>
-							<%= form_tag("/school_admins/reject_teacher_verification/" + teacher[:id].to_s, method: :put)  do %>
-								<%= button_tag(type: "submit", class: "btn btn-primary") do %>
-							    	Reject
+							</td>
+							<td>
+								<%= form_tag("/school_admins/reject_teacher_verification/" + teacher[:id].to_s, method: :put)  do %>
+									<%= button_tag(type: "submit", class: "btn btn-danger btn-xs") do %>
+								    	<i class="fa fa-trash-o "></i>
+									<% end %>
 								<% end %>
-							<% end %>
-						</td>
-					</tr>
-				<% end %>
-		   	</tbody>
-		</table>
-	<% else %>
-		No Teachers to display.
-	<% end %>
+							</td>
+						</tr>
+					<% end %>
+			   	</tbody>
+			</table>
+		<% else %>
+			No Teachers to display.
+		<% end %>
+	</div>
   </div>
 </div>
 
