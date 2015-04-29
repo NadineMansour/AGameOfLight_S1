@@ -1,0 +1,53 @@
+<div class="row">
+  <br>
+  <br>
+  <br>
+</div>
+<div class="row">
+  <div class="col-md-2">
+    <div class="list-group" width="70px;">
+   
+    <%= link_to controller: "students", action: "view_contacts"  do %>
+        <i class="list-group-item">View Contacts</i> 
+    <% end %>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th> View messages </th>
+
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+      
+        <% @students.each do |student| %>
+          <tr>
+             
+            <td><%= student.student_name %></td>
+            <td><%= student.email %></td>  
+              <td>
+          <%= form_tag("/students/" +
+          "/view_messages_teacher/" + teacher[:id].to_s, method: :put) do %>
+            <%= button_tag(type: "submit", class: "btn btn-danger btn-xs") do %>
+              <i class="fa fa-trash-o "></i>
+            <% end %>
+          <% end %>          
+        
+            
+            </tr>
+        <% end %> 
+
+        
+      </tbody> 
+
+     </table>
+  </div>
+  </div>
+
+

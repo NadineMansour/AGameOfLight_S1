@@ -69,6 +69,9 @@ class TeachersController < ApplicationController
 	end
 
 
+
+
+
 	def view_students_grades_in_questions
 		@student_id = params[:student_id]
 		@teacher = current_teacher
