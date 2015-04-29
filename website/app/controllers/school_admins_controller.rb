@@ -45,6 +45,11 @@ class SchoolAdminsController < ApplicationController
 		# find the teachers who should been verified using the id in the params
 		@teacher = Teacher.find(params[:teacher_id])
 		@teacher.verified = nil
+		@t=TeacherRequestSubject.where(teacher_id: params[:teacher_id] )
+        #loop to change to nill
+            @t.each do |teacher|
+               teacher.verified=nil
+            end 
 		# change the flash method according to the save action
 		if @teacher.save
 			redirect_to view_teacher_requests_school_admins_path, notice: 'The verification request has been removed successfully.'
@@ -139,7 +144,7 @@ class SchoolAdminsController < ApplicationController
 		@current_admin = current_school_admin
 		@student = Student.find(params[:student_id])
 		@student.verified = nil
-		@student.save
+        @student.save
 		redirect_to view_verified_students_school_admins_path
 	end
 
@@ -229,6 +234,14 @@ class SchoolAdminsController < ApplicationController
         @teacher = Teacher.find(params[:teacher_id])
         @teacher.verified = nil
         @teacher.save
+        @t=TeacherRequestSubject.where(teacher_id: params[:teacher_id] )
+        #loop to change to nill
+         @t.each do |teacher|
+          teacher.verified=nil
+          teacher.save
+            end 
+
+
         redirect_to view_verified_teachers_school_admins_path
     end
 
