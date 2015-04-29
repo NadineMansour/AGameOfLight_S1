@@ -100,6 +100,28 @@ class TeachersController < ApplicationController
 	end
 
 
+def view_contacts
+	@user=current_teacher
+	@teacher=Teacher.where(school:current_teacher.school)
+
+end
+
+
+def view_messages
+  @user=current_teacher
+  @sender=Teacher.find(params[:teacher_id]) 
+  @message=Mess.where(semail:@sender.email)
+
+end
+
+def view_messages_students
+  @user=current_teacher
+  @sender=Student.find(params[:student_id]) 
+  @message=Mess.where(semail:@sender.email)
+
+end
+
+
 	def view_in_game_grades
 		if current_teacher.verified
 			@students = Student.where(school: current_teacher.school)
