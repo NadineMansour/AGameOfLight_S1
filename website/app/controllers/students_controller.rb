@@ -54,6 +54,27 @@ class StudentsController < ApplicationController
     end
   end
 
+  def view_contacts
+  @user=current_student
+
+  @students= Student.where(school:current_student.school)
+
+
+  end
+
+  def view_messages
+    @user=current_student
+    @sender=Student.find(params[:student_id]) 
+    @message=Mess.where(semail:@sender.email)
+
+  end
+
+  def view_messages_teacher
+    @user=current_student
+    @sender=Teacher.find(params[:teacher_id]) 
+    @message=Mess.where(semail:@sender.email)
+
+  end
 
 
   private
