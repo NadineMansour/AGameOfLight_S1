@@ -7,13 +7,19 @@ Rails.application.routes.draw do
   resources :questions
   resources :teachers do
     collection do
-      get 'view_game_records'
+     get 'view_game_records'
       get 'view_school_verified_students'
       get 'view_courses'
       put 'request_subject/:subject_id'=> :request_subject
       get 'view_students_grades_in_questions'
+
       get 'view_contacts'
       get 'view_messages'
+      
+
+      get 'view_in_game_grades'
+      put 'send_message/:student_id'=> :send_message
+      post 'submit/:student_id'=>:submit
       
     end
   end
