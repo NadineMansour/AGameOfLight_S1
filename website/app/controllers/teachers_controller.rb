@@ -80,4 +80,13 @@ class TeachersController < ApplicationController
 			end
 		end
 	end
+
+
+	def view_in_game_grades
+		if current_teacher.verified
+			@students = Student.where(school: current_teacher.school)
+		else
+			@students = {}
+		end
+	end
 end

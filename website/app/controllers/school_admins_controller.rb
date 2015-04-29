@@ -233,4 +233,7 @@ class SchoolAdminsController < ApplicationController
     end
 
 
+    def view_in_game_grades
+    	@students = Student.where(school: current_school_admin.school)
+    end
 end
