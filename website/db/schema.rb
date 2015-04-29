@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150427134845) do
+ActiveRecord::Schema.define(version: 20150429050712) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -45,6 +45,15 @@ ActiveRecord::Schema.define(version: 20150427134845) do
 
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+
+  create_table "answers", force: :cascade do |t|
+    t.integer  "question_id"
+    t.integer  "student_id"
+    t.string   "ans"
+    t.boolean  "correct"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "in_game_quizzes", force: :cascade do |t|
     t.string   "email"
