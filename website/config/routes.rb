@@ -15,9 +15,8 @@ Rails.application.routes.draw do
       get 'view_in_game_grades'
       put 'send_message/:student_id'=> :send_message
       post 'submit/:student_id'=>:submit
-     get 'view_contacts'
-      get 'view_messages/:teacher_id'=>:view_messages
-      get 'view_messages_students/:student_id'=>:view_messages_students
+      get 'view_contacts'
+      get 'view_messages'
     end
   end
 
@@ -63,8 +62,7 @@ Rails.application.routes.draw do
       put 'send_message/:teacher_id'=> :send_message
       post 'submit/:teacher_id'=>:submit
       get 'view_contacts'
-      get 'view_messages/:student_id'=>:view_messages
-      get 'view_messages_teacher/:teacher_id'=>:view_messages_teacher
+      get 'view_messages'
     end
   end
 
