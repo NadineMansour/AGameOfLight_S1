@@ -33,7 +33,7 @@
             <td><%= student.email %></td>  
               <td>
           <%= form_tag("/students/" +
-          "/view_messages_teacher/" + teacher[:id].to_s, method: :put) do %>
+          "/view_messages/" + student[:id].to_s, method: :put) do %>
             <%= button_tag(type: "submit", class: "btn btn-danger btn-xs") do %>
               <i class="fa fa-trash-o "></i>
             <% end %>
