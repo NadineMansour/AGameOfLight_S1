@@ -12,7 +12,9 @@ Rails.application.routes.draw do
       get 'view_courses'
       put 'request_subject/:subject_id'=> :request_subject
       get 'view_students_grades_in_questions'
-      get 'view_in_game_grades'
+      get 'view_contacts'
+      get 'view_messages'
+      
     end
   end
 
@@ -40,7 +42,6 @@ Rails.application.routes.draw do
       put 'reject_subject_request/:teacherRequestSubject_id' => :reject_subject_request        
       put 'remove_teacher_subject/:teacherRequestSubject_id' => :remove_teacher_subject
       put 'remove_verified_teacher/:teacher_id' => :remove_verified_teacher
-      get 'view_in_game_grades'
     end
     member do
       get 'accept_school_admin'
@@ -57,6 +58,7 @@ Rails.application.routes.draw do
       get 'view_course_teachers/:subject_id'=> :view_course_teachers
       put 'send_message/:teacher_id'=> :send_message
       post 'submit/:teacher_id'=>:submit
+      get 'view_contacts'
     end
   end
 
