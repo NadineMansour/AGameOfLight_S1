@@ -1,6 +1,22 @@
 class TeachersController < ApplicationController
 	def show
 	end
+	
+	def send_message
+@message=Mess.new
+#this was created to pass student id of
+#to the next page in the params
+@var=params[:student_id]
+end
+def submit
+@message=Mess.new
+@message.semail=current_teacher.email
+@message.remail=Student.find(params[:student_id]).email
+@message.text=params[:my_input]
+@message.save
+redirect_to view_school_verified_students_teachers_path
+end
+
 
 
 	def view_courses
