@@ -43,12 +43,11 @@ public class Player_L3_1 : MonoBehaviour {
 
 	void Start () 
 	{
-		nextButton.SetActive (true);
-		intro.SetActive (true);
+		nextButton.SetActive (false);
+		intro.SetActive (false);
 		intro1.SetActive (false);
 		tipStart.SetActive (false);
 		tipEnd.SetActive (false);
-		state = -2;
 		left = false;
 		right = false;
 		RRight = false;
@@ -56,10 +55,24 @@ public class Player_L3_1 : MonoBehaviour {
 		clicks = 0;
 		score = 0;
 		log = "";
-		if (Application.loadedLevelName == "Level6")
+		if (Application.loadedLevelName == "Level6") 
+		{
 			level = 6;
-		else
-			level = 7;
+			state = -2;
+		} 
+		else 
+		{
+			if (Application.loadedLevelName == "Level7") 
+			{
+				level = 7;
+				state = 0;
+			} 
+			else
+			{
+				state = 0;
+				level = 8;
+			}
+		}
 		linePositions = new List<Vector3> ();   //a list that contains the main three points od the light beam 
 		Vector3 start = transform.position;     // the starting point at the center of the player 
 		Vector3 mid = start;					
@@ -96,23 +109,41 @@ public class Player_L3_1 : MonoBehaviour {
 		position = transform.position;
 
 
+		if (state == -2) 
+		{
+			intro.SetActive (true);
+			nextButton.SetActive(true);
+			tipStart.SetActive(false);
+			tipEnd.SetActive(false);
+			intro1.SetActive(false);
+		}
+
 		if (state == -1) 
 		{
+			tipStart.SetActive(false);
+			tipEnd.SetActive(false);
 			intro.SetActive(false);
 			intro1.SetActive(true);
+			nextButton.SetActive(true);
 		}
 
 
 		if (state == 0) 
 		{
+			tipEnd.SetActive(false);
+			intro.SetActive(false);
 			intro1.SetActive(false);
 			tipStart.SetActive(true);
+			nextButton.SetActive(true);
 		}
 
 
 		if (state == 1) 
 		{
 			tipStart.SetActive(false);
+			tipEnd.SetActive(false);
+			intro.SetActive(false);
+			intro1.SetActive(false);
 			nextButton.SetActive (false);
 			if (right)
 			{
@@ -142,6 +173,9 @@ public class Player_L3_1 : MonoBehaviour {
 		{
 			nextButton.SetActive (true);
 			tipEnd.SetActive (true);
+			tipStart.SetActive(false);
+			intro.SetActive(false);
+			intro1.SetActive(false);
 		}
 	}
 
@@ -226,7 +260,7 @@ public class Player_L3_1 : MonoBehaviour {
 	void RotateRight()
 	{
 		float zCoordinate = transform.eulerAngles.z;
-		if ((zCoordinate < 40 || zCoordinate >=320)) 
+		if ((zCoordinate < 60 || zCoordinate >=300)) 
 		{
 			transform.Rotate (new Vector3(0,0,0.5f));
 			angle+= 0.5f;
@@ -238,7 +272,7 @@ public class Player_L3_1 : MonoBehaviour {
 	void RotateLeft()
 	{
 		float zCoordinate = transform.eulerAngles.z;
-		if ((zCoordinate<=41 || zCoordinate > 321)) 
+		if ((zCoordinate<=61 || zCoordinate > 301)) 
 		{
 			transform.Rotate (new Vector3(0,0,-0.5f));
 			angle-= 0.5f;
