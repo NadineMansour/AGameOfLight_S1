@@ -4,7 +4,7 @@
   <% @question.shuffled_answers.each do |answer| %>
     <div class="radio">
      	<label>
-     		<%= radio_button_tag :answer, answer %><%= answer%><br />
+     	  <%= radio_button_tag :answer, answer %><%= answer%><br />
      	</label>
      </div>
   <% end %>
