@@ -1,5 +1,15 @@
-<h1>New Answer</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Back', answers_path %>
+<div class='form-panel' style="margin-top:80px">
+  <h4 class="mb"><i class="fa fa-angle-right"></i> <%= @question.body %></h4>
+  <%= form_tag answers_path(question_id: @question.id), method: :post do %>
+    <% @question.shuffled_answers.each do |answer| %>
+      <div class="radio">
+       	<label>
+       	  <%= radio_button_tag :answer, answer %><%= answer%><br />
+       	</label>
+       </div>
+    <% end %>
+    <br />
+    <%= submit_tag 'Next Question', class: 'btn btn-theme' %>
+    <%= submit_tag 'Done', class: 'btn btn-theme'%>
+  <% end %>
+</div>
