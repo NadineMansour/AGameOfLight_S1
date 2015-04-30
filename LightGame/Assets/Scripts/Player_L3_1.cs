@@ -56,7 +56,7 @@ public class Player_L3_1 : MonoBehaviour {
 		clicks = 0;
 		score = 0;
 		log = "";
-		if (Application.loadedLevelName == "L3-1")
+		if (Application.loadedLevelName == "Level6")
 			level = 6;
 		else
 			level = 7;

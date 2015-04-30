@@ -38,7 +38,15 @@ public class Movement_L3_1 : MonoBehaviour {
 		{
 			if(Player_L3_1.state == 2)
 			{
-				Application.LoadLevel("L3-3");
+				if(Application.loadedLevelName == "Level6")
+				{
+					Application.LoadLevel("Level7");
+				}
+				if(Application.loadedLevelName == "Level7")
+				{
+					Application.LoadLevel("Level8");
+				}
+
 			}
 			else
 			{
