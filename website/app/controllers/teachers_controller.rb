@@ -129,4 +129,13 @@ end
 			@students = {}
 		end
 	end
+
+
+	def view_school_subjects
+		if current_teacher.verified
+			@subjects = Subject.where(school: current_teacher.school)
+		else
+			@subjects = {}
+		end
+	end
 end

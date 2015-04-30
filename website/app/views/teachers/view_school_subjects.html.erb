@@ -1,0 +1,63 @@
+<div class="row">
+  <br>
+  <br>
+  <br>
+</div>
+<div class="row">
+  <div class="col-md-2">
+    <%= render partial: "menu_teacher" %>
+  </div>
+  <div class="col-md-8">     
+	  	<br>
+	 
+	<% if @subjects %>
+		<br>
+		<div class="content-panel">
+			<h4><i class="fa fa-angle-right"></i> My school subjects</h4><hr>
+			<table class="table table-hover">
+			   <thead>
+			      	<tr>
+				        <th>Name</th>
+				        <th>Code</th>
+				        <th>status</th>
+			     	 </tr>
+			   </thead>
+			   <tbody>
+				   <% @subjects.each do |subject| %>
+						<tr>
+							<td><%= subject[:name] %> </td>
+							<td><%= subject[:code] %> </td>						
+							<td> 
+							<% @request = TeacherRequestSubject.find_by(teacher_id: current_teacher.id, subject_id: subject[:id]) %>
+							<% if @request %>
+								<% if @request.verified %>
+									Verified
+								<% else %>
+									Pending
+								<% end %>
+							<% else %>
+								<%= form_tag("/teachers/" + 
+				              "/request_subject/" + subject[:id].to_s, method: :put)  do %>
+				                <%= button_tag(type: "submit", class: "btn btn-theme") do %>
+				                    Request
+				                <% end %>
+				              <% end %>
+							<% end %>
+							
+							</td>
+						</tr>
+					<% end %>
+			   </tbody>
+			</table>
+		</div>
+	<% else %>
+		No subjects to display.
+	<% end %>
+  </div>
+</div>
+
+
+
+
+
+
