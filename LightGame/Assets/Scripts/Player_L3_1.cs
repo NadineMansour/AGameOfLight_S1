@@ -34,6 +34,8 @@ public class Player_L3_1 : MonoBehaviour {
 	//gameObjects
 	//public GameObject numOfClicks;
 	public GameObject nextButton;
+	public GameObject intro;
+	public GameObject intro1;
 	public GameObject tipStart;
 	public GameObject tipEnd;
 	public LineRenderer lightBeam;               //Lightbeam gameobject to edit positions and end points
@@ -42,9 +44,11 @@ public class Player_L3_1 : MonoBehaviour {
 	void Start () 
 	{
 		nextButton.SetActive (true);
-		tipStart.SetActive (true);
+		intro.SetActive (true);
+		intro1.SetActive (false);
+		tipStart.SetActive (false);
 		tipEnd.SetActive (false);
-		state = 0;
+		state = -2;
 		left = false;
 		right = false;
 		RRight = false;
@@ -90,6 +94,22 @@ public class Player_L3_1 : MonoBehaviour {
 
 	void Update () {
 		position = transform.position;
+
+
+		if (state == -1) 
+		{
+			intro.SetActive(false);
+			intro1.SetActive(true);
+		}
+
+
+		if (state == 0) 
+		{
+			intro1.SetActive(false);
+			tipStart.SetActive(true);
+		}
+
+
 		if (state == 1) 
 		{
 			tipStart.SetActive(false);
@@ -116,6 +136,8 @@ public class Player_L3_1 : MonoBehaviour {
 			detector ();
 			SetLightBeam();
 		} 
+
+
 		if (state == 2) 
 		{
 			nextButton.SetActive (true);
@@ -177,7 +199,7 @@ public class Player_L3_1 : MonoBehaviour {
 
 	void moveRight()
 	{
-		if (position.x < 5.5) 
+		if (position.x < 4) 
 		{
 			transform.position = transform.position + (new Vector3 (0.05f, 0, 0));
 			for (int i = 0; i < linePositions.Count; i++) 
@@ -190,7 +212,7 @@ public class Player_L3_1 : MonoBehaviour {
 	
 	void moveLeft()
 	{
-		if (position.x > -5.5)
+		if (position.x > -4)
 		{
 			transform.position = transform.position - (new Vector3 (0.05f, 0, 0));
 			for (int i = 0; i < linePositions.Count; i++) 
