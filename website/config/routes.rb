@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
 
 
-  resources :answers
+  resources :answers do
+   collection do
+      get :quiz
+    end
+  end
 
   resources :messes
 

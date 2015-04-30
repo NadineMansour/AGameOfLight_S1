@@ -2,19 +2,28 @@
 <p id="notice"><%= notice %></p>
 <p> 
 
+
 <strong>Name:</strong>
 <%= @subject.name %>
 </p>
+
 
 <p>
 <strong>Code:</strong>
 <%= @subject.code %>
 </p>
 
+
 <p>
 <strong>School:</strong>
 <%= @subject.school_admin.school %>
 </p>
 
-<%= link_to 'Back', view_school_subjects_school_admins_path %>
 
+<p>
+<strong>Take Quiz:</strong>
+<%= link_to 'Start', quiz_answers_path(subject_id: @subject.id)%>
+</p>
+
+
+<%= link_to 'Back', view_school_subjects_school_admins_path %>
