@@ -9,15 +9,49 @@ class StudentsController < ApplicationController
   end
 
 
+  def take_quiz
+    @no=params[:Q]
+    @que=Question.where(subject_id: params[:subject_id])
+    @questions=@que.first(@no.to_i)
+    @records= @questions.map(&:id)
+  end
+
+
+  def Answer_quiz
+     @que_np=params[:Q_no]
+     @records=params[:my_records].split(/,/)
+
+     @records.each  do |e|
+      
+      x=Answer.new
+      x.student_id=current_student.id
+      x.question_id=e.to_i
+      symbol=e.to_sym
+      x.ans=params[symbol]
+
+      if  x.ans==Question.find(e.to_i).correct_answer
+        x.correct=true
+      else 
+        x.correct=false
+
+      end
+      x.save
+        end
+      redirect_to view_courses_students_path
+  end  
+   
+
   def view_courses
    @subjects = Subject.where(school: current_student.school)
   end
 
 
   def view_course_teachers
-
-    @teachers=Teacher.where(school: current_student.school)
-
+    #get ids of teachers teaching in this school @teachers
+    #@t=Teacher.where(school: current_student.school).pluck(:id)
+    #get the ides of teachers teaching this subject
+    @t=TeacherRequestSubject.where( verified: true ,subject_id: params[:subject_id]).pluck(:teacher_id)
+    @teachers=Teacher.where(id:@t)
   end
 
 

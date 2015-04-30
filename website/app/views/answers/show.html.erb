@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Belongs to:</strong>
+  <%= @answer.belongs_to %>
+</p>
+
+<p>
+  <strong>Belongs to:</strong>
+  <%= @answer.belongs_to %>
+</p>
+
+<p>
+  <strong>Ans:</strong>
+  <%= @answer.ans %>
+</p>
+
+<p>
+  <strong>Correct:</strong>
+  <%= @answer.correct %>
+</p>
+
+<%= link_to 'Edit', edit_answer_path(@answer) %> |
+<%= link_to 'Back', answers_path %>

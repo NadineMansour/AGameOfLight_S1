@@ -1,0 +1,81 @@
+<br>
+<br>
+<div class="row">
+  <br>
+  <br>
+  <br>
+</div>
+<div class="row">
+  <div class="col-md-2">
+    <div class="list-group" width="70px;">
+   
+    <%= link_to controller: "students", action: "view_courses"  do %>
+        <i class="list-group-item">View Courses</i> 
+    <% end %>
+    </div>
+  </div>
+   
+  <div class="col-md-8">
+  
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Question</th>
+          <th>Ans1</th>
+           <th>Ans2</th>
+            <th>Ans3</th>
+             <th>Ans4</th>
+
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+         <tbody> 
+
+
+
+
+      <%= form_tag("/students/Answer_quiz/", method: :post)  do %>
+      <%=  hidden_field_tag :Q_no, params[:Q]%> 
+      <%=  hidden_field_tag :my_records,  @records.join(",") %> 
+    
+
+               
+    <%  @questions.each do |question| %>
+         <tr>
+      <td> <%=question.id.to_s%></td>
+     <td>   <%= question.body %> </td> 
+
+   
+        <td>   <input name=<%=question.id.to_s%> value=  <%=question.wrong_answer_one%>  type="radio"><%= question.wrong_answer_one %> <td/>
+
+           <td>   <input name=<%=question.id.to_s%>  value= <%= question.wrong_answer_two%>  type="radio"><%= question.wrong_answer_two %> <td/>
+
+           <td>   <input name=<%=question.id.to_s%> value=  <%=question.wrong_answer_three%>  type="radio"><%= question.wrong_answer_three %> <td/>
+
+           <td>   <input name=<%=question.id.to_s%> value=  <%=question.correct_answer%> type="radio"><%= question.correct_answer %> <td/>
+
+
+          </tr> 
+          <% end %>
+         <%= button_tag(type: "submit", class:"btn btn-theme") do %>
+                    Submit
+                
+              <% end %>
+    
+           
+        
+        
+      </tbody> 
+
+     </table>
+     
+  </div>
+  </div>
+
+<%end%>
+
+
+
+
+
+

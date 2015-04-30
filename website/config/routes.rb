@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
 
+  resources :answers
+
   resources :messes
 
   devise_for :teachers
@@ -63,6 +65,8 @@ Rails.application.routes.draw do
       get 'view_course_teachers/:subject_id'=> :view_course_teachers
       put 'send_message/:teacher_id'=> :send_message
       post 'submit/:teacher_id'=>:submit
+      get 'take_quiz/:subject_id' => :take_quiz
+      post 'Answer_quiz'=>:Answer_quiz
       get 'view_contacts'
       get 'view_messages/:student_id'=>:view_messages
       get 'view_messages_teacher/:teacher_id'=>:view_messages_teacher
