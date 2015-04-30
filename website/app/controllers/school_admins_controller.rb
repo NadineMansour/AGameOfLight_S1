@@ -236,4 +236,15 @@ class SchoolAdminsController < ApplicationController
     def view_in_game_grades
     	@students = Student.where(school: current_school_admin.school)
     end
+
+
+    def view_students_grades_in_questions
+		@student_id = params[:student_id]
+		@school_admin = current_school_admin
+		if @student_id
+			@students = Student.where("id = ?", @student_id)
+		else
+			@students = Student.where("school = ? AND verified = ?", @school_admin.school, true)
+		end
+	end
 end

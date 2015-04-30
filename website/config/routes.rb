@@ -45,6 +45,7 @@ Rails.application.routes.draw do
       put 'remove_teacher_subject/:teacherRequestSubject_id' => :remove_teacher_subject
       put 'remove_verified_teacher/:teacher_id' => :remove_verified_teacher
       get 'view_in_game_grades'
+      get 'view_students_grades_in_questions'
     end
     member do
       get 'accept_school_admin'
