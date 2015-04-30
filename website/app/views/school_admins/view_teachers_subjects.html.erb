@@ -30,7 +30,6 @@
                 <table class="table table-hover">
                  <thead>
                     <tr>
-                       <th>Subject id</th>
                        <th>Subject name</th>
                        <th>Subject code</th>
                        <th>Remove</th>
@@ -40,7 +39,6 @@
                   <% @subjects_requests_verified.each do |r| %>
                     <% @subject = Subject.find(r[:subject_id]) %>
                     <tr>
-                      <td><%= @subject.id %></td>
                       <td><%= @subject.name %></td>
                       <td><%= @subject.code %></td>
                       <td>
