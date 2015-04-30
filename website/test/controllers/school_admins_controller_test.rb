@@ -88,6 +88,18 @@ class SchoolAdminsControllerTest < ActionController::TestCase
   end
 
 
+  test "view teacher requests" do
+    get( :view_teacher_requests)
+    assert_response :success
+    assert_not_nil assigns(:current_admin)
+    assert_not_nil assigns(:teachers)
+    #only one teacher in the fixtures is unverified
+    assert_equal 1, assigns(:teachers).count
+    assert_template :view_teacher_requests
+    assert_template layout: "layouts/application"
+  end
+
+
   test "student should be removed from verified students" do
     assert_equal true, students(:two).verified
     students3 = Student.where(school: school_admins(:one).school, verified: true)
@@ -117,6 +129,17 @@ class SchoolAdminsControllerTest < ActionController::TestCase
   end
 
 
+  test "teacher verification request is accepted" do
+    teachers = Teacher.where(school: school_admins(:one).school, verified: true)
+    assert_equal 2, teachers.count
+    put(:accept_teacher_verification, {'teacher_id' => teachers(:three).id })
+    teacherts = Teacher.where(school: school_admins(:one).school, verified: true)
+    assert_equal 3, teachers.count
+    assert_redirected_to view_teacher_requests_school_admins_path
+  end
+
+
+
   test "verification request is rejected" do
     students = Student.where(school: school_admins(:one).school, verified: true)
     assert_equal 2, students.count
@@ -126,6 +149,15 @@ class SchoolAdminsControllerTest < ActionController::TestCase
     assert_redirected_to view_requests_school_admins_path
   end
 
+
+    test "teacher verification request is rejected" do
+    teachers = Teacher.where(school: school_admins(:one).school, verified: true)
+    assert_equal 2, teachers.count
+    put(:reject_teacher_verification, {'teacher_id' => teachers(:three).id })
+    teachers = Teacher.where(school: school_admins(:one).school, verified: true)
+    assert_equal 2, teachers.count
+    assert_redirected_to view_teacher_requests_school_admins_path
+  end
 
   test 'view teachers subjects' do
     get(:view_teachers_subjects)
