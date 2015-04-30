@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
-
+  resources :answers do
+    collection do
+      get :quiz
+    end
+  end
   resources :messes
 
   devise_for :teachers
