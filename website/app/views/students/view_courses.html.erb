@@ -5,14 +5,12 @@
 </div>
 <div class="row">
   <div class="col-md-2">
-    <div class="list-group" width="70px;">
-   
-    <%= link_to controller: "students", action: "view_courses"  do %>
-        <i class="list-group-item">View Courses</i> 
-    <% end %>
-    </div>
+      <%= render partial: "menu_student" %>
   </div>
   <div class="col-md-8">
+  <br>
+    <div class="content-panel">
+    <h4><i class="fa fa-angle-right"></i> School courses</h4><hr>
     <table class="table table-hover">
       <thead>
         <tr>
@@ -54,6 +52,7 @@
       </tbody> 
 
      </table>
+     </div>
   </div>
   </div>
 
