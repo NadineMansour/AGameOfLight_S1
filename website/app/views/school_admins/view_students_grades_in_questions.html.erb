@@ -1,0 +1,91 @@
+<div class="row">
+  <br>
+  <br>
+  <br>
+</div>
+<div class="row">
+  <div class="col-md-2">
+    <%= render partial: "menu_school_admin" %>
+  </div>
+  <div class="col-md-8">
+    <br>
+    <div class="content-panel">
+      <h4><i class="fa fa-angle-right"></i> Students' grades in questions</h4><hr>
+      <table class="table table-hover">
+                            
+       <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Grade</th>
+              <th>Class</th>
+              <th>School</th>
+              <th>Questions</th>
+           </tr>
+       </thead>
+       <tbody>
+        <% if @students %>
+         <% @students.each do |student| %>
+          <% @student = Student.find(student[:id]) %>
+          <% @student_questions = @student.student_answer_questions %>
+          <% if @student_questions.count > 0 %>
+            <tr>
+              <td><% if student[:student_name] %> 
+                    <%= student[:student_name] %>
+                  <% else %>
+                    *No name yet
+                  <% end %>
+              </td>
+              <td><%= link_to student[:email], view_students_grades_in_questions_school_admins_path(student_id: student[:id]) %> </td>
+              <td><%= student[:grade] %> </td>
+              <td><%= student[:student_class] %> </td>
+              <td><%= student[:school] %>  </td>
+              <td>
+                <table class="table table-hover">
+                 <thead>
+                    <tr>
+                       <th>Question</th>
+                       <th>Subject name</th>
+                       <th>Subject code</th>
+                       <th>Correct answer</th>
+                       <th>Wrong answer1</th>
+                       <th>Wrong answer2</th>
+                       <th>Wrong answer3</th>
+                       <th>Student's answer</th>
+                       <th>Correct/Wrong</th>
+                    </tr>
+                 </thead>
+                 <tbody>
+                  <% @student_questions.each do |sq| %>
+                    <% @question = Question.find(sq[:question_id]) %>
+                    <tr>
+                      <td><%= @question.body %></td>
+                      <% @subject = Subject.find(@question.subject_id) %>
+                      <td><%= @subject.name %></td>
+                      <td><%= @subject.code %></td>
+                      <td><%= @question.correct_answer %></td>
+                      <td><%=  @question.wrong_answer_one %></td>
+                      <td><%= @question.wrong_answer_two %></td>
+                      <td><%= @question.wrong_answer_three %></td>
+                      <td><%= sq[:answer] %></td>
+                      <td><%= sq[:correct] %></td>
+                    </tr>
+                  <% end %>
+                  </tbody>
+                  </table>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+        <% end %>
+       </tbody>
+    </table>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
