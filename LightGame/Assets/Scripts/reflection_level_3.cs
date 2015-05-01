@@ -42,7 +42,6 @@ public class reflection_level_3 : MonoBehaviour
 		linpoistions2.Add (start);
 		linpoistions2.Add (start);
 		SetLightBeam (linpoistions2 ,  lightBeam2);
-
 		toLevelsButton.SetActive(false);//Disabling the tolevels button initially
 		gameOver = false;
 		saveRec = false;
@@ -129,8 +128,7 @@ public class reflection_level_3 : MonoBehaviour
 					linePositions[1] = collision;
 				}
 			}
-			else
-			{
+			else{
 				linpoistions2[0] = linePositions[0];
 				linpoistions2[1] = linePositions[0];
 				extendLightY(linePositions);
@@ -141,21 +139,18 @@ public class reflection_level_3 : MonoBehaviour
 				Vector3 collision = hit.point;
 
 				if(hit.collider.tag == "Target")
-				{
 					gameOver = true;
 					saveRec = true;
 					linpoistions2[1] = collision;
 				}
 
-				if(hit.collider.tag == "Obstacle")
+				if (hit.collider.tag == "Obstacle")
 				{
 					linpoistions2[1] = collision;
 				}
-
 			}
 		}
 	}
-
 
 	void extendLightY(List <Vector3> l)
 	{
@@ -257,8 +252,9 @@ public class reflection_level_3 : MonoBehaviour
 		float angle1 = angle * Mathf.PI / 180.0f;
 		linePositions[1] = new Vector3((float)(Mathf.Cos(angle1) * Nx - Mathf.Sin(angle1) * Ny + pivotPoint.x), (float)(Mathf.Sin(angle1) * Nx + Mathf.Cos(angle1) * Ny + pivotPoint.y), 0);
 		linpoistions2 [0] = linePositions [0];
-		linpoistions2 [1] = linePositions [0];
+		linpoistions2 [1] = linePositions [0];	
 	}
+
 
 
 	//Called when player clicks on rotation buttons to rotate light beam with shooter
