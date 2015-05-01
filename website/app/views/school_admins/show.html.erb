@@ -8,8 +8,86 @@
     <%= render partial: 'menu_school_admin' %>
   </div>
   <div class="col-md-8">
-	
+	<div class="row mtbox">
+                  		<div class="col-md-2 col-sm-2 box0">
+                  			<div class="box1">
+					  			<span class="li_heart"></span>
+					  			<% @teacherRequests = Teacher.where(school: current_school_admin.school, verified: false) %>
+					  			<h3><%= @teacherRequests.count %></h3>
+                  			</div>
+                  				<% if @teacherRequests.count == 1 %>
+                  					<p><%= @teacherRequests.count %> teacher request</p>
+                  				<% else %>
+					  				<p><%= @teacherRequests.count %> teacher requests</p>
+					  			<% end %>
+                  		</div>
+                  		<div class="col-md-2 col-sm-2 box0">
+                  			<div class="box1">
+					  			<span class="li_cloud"></span>
+					  			<% @studentRequests = Student.where(school: current_school_admin.school, verified: false) %>
+					  			<h3><%= @studentRequests.count %></h3>
+                  			</div>
+                  				<% if @studentRequests.count == 1 %>
+                  					<p><%= @studentRequests.count %> student request</p>
+                  				<% else %>
+					  				<p><%= @studentRequests.count %> student requests</p>
+					  			<% end %>	
+					  		
+                  		</div>
+                  		<div class="col-md-2 col-sm-2 box0">
+                  			<div class="box1">
+					  			<span class="li_cloud"></span>
+					  			<% @verifiedStudents = Student.where(school: current_school_admin.school, verified: true) %>
+					  			<h3><%= @verifiedStudents.count %></h3>
+                  			</div>
+                  			<% if @verifiedStudents.count == 1 %>
+                  					<p><%= @verifiedStudents.count %> verified student</p>
+                  				<% else %>
+					  				<p><%= @verifiedStudents.count %> verified students</p>
+					  			<% end %>
+                  		</div>
+                  		<div class="col-md-2 col-sm-2 box0">
+                  			<div class="box1">
+					  			<span class="li_stack"></span>
+					  			<% @verifiedTeachers = Teacher.where(school: current_school_admin.school, verified: true) %>
+					  			<h3><%= @verifiedTeachers.count %></h3>
+                  			</div>
+                  			<% if @verifiedTeachers.count == 1 %>
+                  					<p><%= @verifiedTeachers.count %> verified teacher</p>
+                  				<% else %>
+					  				<p><%= @verifiedTeachers.count %> verified teachers</p>
+					  			<% end %>
+                  		</div>
+                  		<div class="col-md-2 col-sm-2 box0">
+                  			<div class="box1">
+					  			<span class="li_news"></span>
+					  			<% @subjects = Subject.where(school: current_school_admin.school) %>
+					  			<h3><%= @subjects.count %></h3>
+                  			</div>
+                  			<% if @subjects.count == 1 %>
+                  					<p><%= @subjects.count %> subject</p>
+                  				<% else %>
+					  				<p><%= @subjects.count %> subjects</p>
+					  			<% end %>
+					  			
+                  		</div>
+
+						<div class="col-md-2 col-sm-2 box0">
+                  			<div class="box1">
+					  			<span class="li_news"></span>
+					  			<% @subjectRequests = TeacherRequestSubject.where(school: current_school_admin.school, verified: nil) %>
+					  			<h3><%= @subjectRequests.count %></h3>
+                  			</div>
+                  			<% if @subjectRequests.count == 1 %>
+                  					<p><%= @subjectRequests.count %> subject request</p>
+                  				<% else %>
+					  				<p><%= @subjectRequests.count %> subject requests</p>
+					  			<% end %>
+					  			
+                  		</div>                  		
   </div>
+</div>
+</div>
 </div>
 
 

@@ -27,7 +27,7 @@
             <td><%= subject.name %></td>
             <td><%= subject.code %></td>
             <td>
-                <%= link_to subject, class: 'btn btn-theme' do %>
+                <%= link_to "/school_admins/show_course/" + subject.id.to_s, class: 'btn btn-theme' do %>
                   <i class="fa fa-cog"></i> show
                 <% end %>
             </td>

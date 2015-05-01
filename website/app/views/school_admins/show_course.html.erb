@@ -1,0 +1,37 @@
+<div class="row">
+  <br>
+  <br>
+  <br>
+</div>
+<div class="row">
+  <div class="col-md-2">
+    <%= render partial: 'menu_school_admin' %>
+  </div>
+  <div class="col-md-8">
+  	<br>
+  	<div class="content-panel">
+	    <h4><i class="fa fa-angle-right"></i> Course Info</h4><hr>
+		<strong>Name:</strong>
+		<%= @subject.name %>
+		</p>
+		<p>
+		<strong>Code:</strong>
+		<%= @subject.code %>
+		</p>
+		<p>
+		<strong>School:</strong>
+		<%= @subject.school_admin.school %>
+		</p>
+		<p>
+		<strong>Take Quiz:</strong>
+		<%= link_to 'Start', quiz_answers_path(subject_id: @subject.id)%>
+		</p>
+		<%= link_to 'Back', view_school_subjects_school_admins_path %>
+	</div>
+  </div>
+</div>
+
+
+
+
+
