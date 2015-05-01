@@ -8,7 +8,7 @@ public class MirrorMove_L3_3 : MonoBehaviour {
 
 
 	void OnMouseDown(){
-		if(Player_L3_3.state == 1){
+		if(Shooter_L3_3.state == 2){
 			if (tag == "MirrorRB") 
 			{
 				if(!Mirror_L3_3.MirrorR)
@@ -32,7 +32,7 @@ public class MirrorMove_L3_3 : MonoBehaviour {
 
 
 	void OnMouseUp(){
-		if (Player_L3_3.state == 1) 
+		if (Shooter_L3_3.state == 2) 
 		{
 			if (tag == "MirrorRB") 
 			{
