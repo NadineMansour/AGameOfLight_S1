@@ -99,6 +99,8 @@ class TeachersController < ApplicationController
 	def view_contacts
 		@user=current_teacher
 		@teacher=Teacher.where(school:current_teacher.school)
+		@t=Teacher.where(school:@user.school)
+       @teacher=@t.where.not(id:@user.id)
 	end
 
 

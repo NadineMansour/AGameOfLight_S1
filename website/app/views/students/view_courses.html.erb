@@ -22,6 +22,8 @@
       </thead>
 
       <tbody>
+      <% if current_student.verified==true %>
+
       
         <% @subjects.each do |subject| %>
           <tr>
@@ -48,7 +50,12 @@
         
           </tr>
         <% end %> 
-        
+         <% else%>
+ <br>
+ <br>
+ you are not verified yet
+
+ <%end%>
       </tbody> 
 
      </table>
