@@ -33,13 +33,16 @@ public class Player_L3_1 : MonoBehaviour {
 	
 	
 	//gameObjects
-	//public GameObject numOfClicks;
+	public GameObject numOfClicks;
 	public GameObject nextButton;
+	public LineRenderer lightBeam;               //Lightbeam gameobject to edit positions and end points
+	public GameObject Stopwatch;
+	//The following gameobjects are tips that appear according to the state of the game
 	public GameObject intro;
 	public GameObject intro1;
 	public GameObject tipStart;
 	public GameObject tipEnd;
-	public LineRenderer lightBeam;               //Lightbeam gameobject to edit positions and end points
+
 	
 	
 	void Start () 
@@ -89,13 +92,16 @@ public class Player_L3_1 : MonoBehaviour {
 		}
 	}
 	
-	
+
 	void Update () {
 		position = transform.position;
-		
+		TextMesh textClicks = numOfClicks.GetComponent<TextMesh>();
+		textClicks.text = "Clicks: " + clicks;
 		
 		if (state == -2) 
 		{
+			TextMesh textObject = Stopwatch.GetComponent<TextMesh>();
+			textObject.text = "0:00";
 			intro.SetActive (true);
 			nextButton.SetActive(true);
 			tipStart.SetActive(false);
@@ -105,6 +111,8 @@ public class Player_L3_1 : MonoBehaviour {
 		
 		if (state == -1) 
 		{
+			TextMesh textObject = Stopwatch.GetComponent<TextMesh>();
+			textObject.text = "0:00";
 			tipStart.SetActive(false);
 			tipEnd.SetActive(false);
 			intro.SetActive(false);
@@ -115,6 +123,8 @@ public class Player_L3_1 : MonoBehaviour {
 		
 		if (state == 0) 
 		{
+			TextMesh textObject = Stopwatch.GetComponent<TextMesh>();
+			textObject.text = "0:00";
 			tipEnd.SetActive(false);
 			intro.SetActive(false);
 			intro1.SetActive(false);
@@ -125,6 +135,15 @@ public class Player_L3_1 : MonoBehaviour {
 		
 		if (state == 1) 
 		{
+			TextMesh textObject = Stopwatch.GetComponent<TextMesh>();
+			int mins = (int)((Time.timeSinceLevelLoad - Player_L3_1.startTime) / 60.0f);
+			int secs = (int)(Time.timeSinceLevelLoad  - Player_L3_1.startTime) - (mins * 60);
+			if (secs / 10 == 0)
+				textObject.text = (mins + ":0" + secs);
+			else
+				textObject.text = (mins+":"+secs);
+
+
 			tipStart.SetActive(false);
 			tipEnd.SetActive(false);
 			intro.SetActive(false);
@@ -156,6 +175,15 @@ public class Player_L3_1 : MonoBehaviour {
 		
 		if (state == 2) 
 		{
+			TextMesh textObject = Stopwatch.GetComponent<TextMesh>();
+			int mins = (int)((Player_L3_1.timeInLevel) / 60.0f);
+			int secs = (int)(Player_L3_1.timeInLevel) - (mins * 60);
+			if (secs / 10 == 0)
+				textObject.text = (mins + ":0" + secs);
+			else
+				textObject.text = (mins+":"+secs);
+
+
 			nextButton.SetActive (true);
 			tipEnd.SetActive (true);
 			tipStart.SetActive(false);
