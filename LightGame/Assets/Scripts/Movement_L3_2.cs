@@ -35,6 +35,12 @@ public class Movement_L3_2 : MonoBehaviour {
 				Player_L3_2.state++;
 			}
 		}
+
+
+		if (tag == "Quit") 
+		{
+			Application.LoadLevel("MainMenu");
+		}
 	}
 
 

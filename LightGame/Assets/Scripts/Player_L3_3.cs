@@ -36,8 +36,8 @@ public class Player_L3_3 : MonoBehaviour {
 	public GameObject start;
 	public GameObject end;
 	public GameObject Mirror;
-	//public GameObject Stopwatch;
-	//public GameObject numOfClicks;
+	public GameObject Stopwatch;
+	public GameObject numOfClicks;
 	
 	
 	public LineRenderer lightBeam;                      //the main lightbeam used in the refraction 
@@ -72,10 +72,14 @@ public class Player_L3_3 : MonoBehaviour {
 	
 	void Update () {
 		position = transform.position;
-		
+		TextMesh textClicks = numOfClicks.GetComponent<TextMesh>();
+		textClicks.text = "Clicks: " + clicks;
+
 		
 		if (state == -1) 
 		{
+			TextMesh textObject = Stopwatch.GetComponent<TextMesh>();
+			textObject.text = "0:00";
 			nextButton.SetActive (true);
 			intro.SetActive (true);
 			start.SetActive (false);
@@ -85,6 +89,8 @@ public class Player_L3_3 : MonoBehaviour {
 		
 		if (state == 0) 
 		{
+			TextMesh textObject = Stopwatch.GetComponent<TextMesh>();
+			textObject.text = "0:00";
 			nextButton.SetActive (true);
 			intro.SetActive (false);
 			start.SetActive (true);
@@ -93,6 +99,15 @@ public class Player_L3_3 : MonoBehaviour {
 		
 		if(state == 1)
 		{
+			TextMesh textObject = Stopwatch.GetComponent<TextMesh>();
+			int mins = (int)((Time.timeSinceLevelLoad - Player_L3_3.startTime) / 60.0f);
+			int secs = (int)(Time.timeSinceLevelLoad  - Player_L3_3.startTime) - (mins * 60);
+			if (secs / 10 == 0)
+				textObject.text = (mins + ":0" + secs);
+			else
+				textObject.text = (mins+":"+secs);
+
+
 			nextButton.SetActive (false);
 			intro.SetActive (false);
 			start.SetActive (false);
@@ -117,6 +132,15 @@ public class Player_L3_3 : MonoBehaviour {
 		
 		if (state == 2) 
 		{
+			TextMesh textObject = Stopwatch.GetComponent<TextMesh>();
+			int mins = (int)((Player_L3_3.timeInLevel) / 60.0f);
+			int secs = (int)(Player_L3_3.timeInLevel) - (mins * 60);
+			if (secs / 10 == 0)
+				textObject.text = (mins + ":0" + secs);
+			else
+				textObject.text = (mins+":"+secs);
+			
+
 			nextButton.SetActive (true);
 			intro.SetActive (false);
 			start.SetActive (false);

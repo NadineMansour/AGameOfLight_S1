@@ -31,7 +31,8 @@ public class Player_L3_2 : MonoBehaviour {
 	
 	
 	//gameObjects
-	//public GameObject numOfClicks;
+	public GameObject numOfClicks;
+	public GameObject Stopwatch;
 	public GameObject tipStart;
 	public GameObject tipEnd;
 	public GameObject nextButton;
@@ -85,10 +86,14 @@ public class Player_L3_2 : MonoBehaviour {
 	void Update () 
 	{
 		position = transform.position;
+		TextMesh textClicks = numOfClicks.GetComponent<TextMesh>();
+		textClicks.text = "Clicks: " + clicks;
 		
 		
 		if (state == 0) 
 		{
+			TextMesh textObject = Stopwatch.GetComponent<TextMesh>();
+			textObject.text = "0:00";
 			tipEnd.SetActive(false);
 			tipStart.SetActive(true);
 			nextButton.SetActive(true);
@@ -97,6 +102,15 @@ public class Player_L3_2 : MonoBehaviour {
 		
 		if (state == 1) 
 		{
+			TextMesh textObject = Stopwatch.GetComponent<TextMesh>();
+			int mins = (int)((Time.timeSinceLevelLoad - Player_L3_2.startTime) / 60.0f);
+			int secs = (int)(Time.timeSinceLevelLoad  - Player_L3_2.startTime) - (mins * 60);
+			if (secs / 10 == 0)
+				textObject.text = (mins + ":0" + secs);
+			else
+				textObject.text = (mins+":"+secs);
+
+
 			tipStart.SetActive(false);
 			tipEnd.SetActive(false);
 			nextButton.SetActive (false);
@@ -118,6 +132,15 @@ public class Player_L3_2 : MonoBehaviour {
 		
 		if (state == 2) 
 		{
+			TextMesh textObject = Stopwatch.GetComponent<TextMesh>();
+			int mins = (int)((Player_L3_2.timeInLevel) / 60.0f);
+			int secs = (int)(Player_L3_2.timeInLevel) - (mins * 60);
+			if (secs / 10 == 0)
+				textObject.text = (mins + ":0" + secs);
+			else
+				textObject.text = (mins+":"+secs);
+
+
 			nextButton.SetActive (true);
 			tipEnd.SetActive (true);
 			tipStart.SetActive(false);

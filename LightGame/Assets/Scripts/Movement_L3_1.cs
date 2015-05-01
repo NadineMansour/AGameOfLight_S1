@@ -47,6 +47,12 @@ public class Movement_L3_1 : MonoBehaviour {
 				Player_L3_1.state++;
 			}
 		}
+
+
+		if (tag == "Quit") 
+		{
+			Application.LoadLevel("MainMenu");
+		}
 	}
 
 	void OnMouseUp()
