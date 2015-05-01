@@ -168,6 +168,7 @@ public class load : MonoBehaviour {
 			if (levels.Contains(2)==true || levels.Contains(1)==true)
 			{
 				Lock2SL.SetActive(false);
+				ReflectionLock.SetActive(false);
 			}
 			if (levels.Contains(2)==true && levels.Contains(1)==true)
 			{
