@@ -97,10 +97,14 @@ class TeachersController < ApplicationController
 
 
 	def view_contacts
-		@user=current_teacher
-		@teacher=Teacher.where(school:current_teacher.school)
-		@t=Teacher.where(school:@user.school)
-       @teacher=@t.where.not(id:@user.id)
+		if current_teacher.verified
+			@user=current_teacher
+			@teacher=Teacher.where(school:current_teacher.school)
+			@t=Teacher.where(school: @user.school, verified: true)
+	       @teacher=@t.where.not(id:@user.id)
+	   else 
+	   	@teacher = {}
+	   end
 	end
 
 
@@ -116,7 +120,10 @@ class TeachersController < ApplicationController
 	  @sender=Student.find(params[:student_id]) 
 	  @message=Mess.where("((semail = ? AND remail = ?) OR(semail = ? AND remail = ?))" ,
 	  	@sender.email, current_teacher.email, current_teacher.email, 
-	  	@sender.email).order(created_at: :desc)
+	  	@sender.email).order(created_at: :asc)
+	  #form
+	  @new_message=Mess.new
+	   @var=params[:student_id]
 	end
 
 

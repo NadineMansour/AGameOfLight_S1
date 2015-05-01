@@ -69,7 +69,8 @@ class StudentsController < ApplicationController
       @message.text=params[:my_input]
 
       @message.save
-      redirect_to view_courses_students_path
+      #redirect_to view_courses_students_path
+      redirect_to view_teachers_in_school_students_path
   end 
 
   
@@ -126,7 +127,10 @@ class StudentsController < ApplicationController
     @sender=Teacher.find(params[:teacher_id]) 
     @message=Mess.where("((semail = ? AND remail = ?) OR(semail = ? AND remail = ?))" ,
       @sender.email, current_student.email, current_student.email, 
-      @sender.email).order(created_at: :desc)
+      @sender.email).order(created_at: :asc)
+    #form
+     @new_message=Mess.new
+    @var=params[:teacher_id]
   end
 
 
