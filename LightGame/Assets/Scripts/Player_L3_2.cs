@@ -13,6 +13,7 @@ public class Player_L3_2 : MonoBehaviour {
 	
 	
 	//For score
+	public static int startTime;
 	public static int timeInLevel;
 	public static int clicks;
 	public int level;

@@ -55,6 +55,8 @@ public class Movement_L3_3 : MonoBehaviour {
 			}
 			else
 			{
+				if(Player_L3_3.state == 0)
++					Player_L3_3.startTime = (int)Time.timeSinceLevelLoad;
 				Player_L3_3.state++;
 			}
 		}

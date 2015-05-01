@@ -17,6 +17,13 @@ public class AddingMirror : MonoBehaviour
 	}
 
 
+	void OnMouseUp()
+	{
+		reflection_level_4.clicks++;
+		reflection_level_5.clicks++;
+	}
+
+
 	void OnMouseDrag() 
 	{ 
 		Vector3 curScreenPoint = new Vector3 (Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
