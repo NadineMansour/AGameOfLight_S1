@@ -16,12 +16,12 @@ public class AddingMirror : MonoBehaviour
 			offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint (new Vector3 (Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
 	}
 
-
 	void OnMouseUp()
 	{
 		reflection_level_4.clicks++;
 		reflection_level_5.clicks++;
 	}
+
 
 
 	void OnMouseDrag() 
