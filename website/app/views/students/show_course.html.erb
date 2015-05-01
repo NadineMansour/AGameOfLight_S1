@@ -1,25 +1,42 @@
 
-<p id="notice"><%= notice %></p>
-<p> 
+<div class="row">
+  <br>
+  <br>
+  <br>
+</div>
 
-<strong>Name:</strong>
-<%= @subject.name %>
-</p>
+<div class="row">
+  <div class="col-md-2">
+      <%= render partial: "menu_student" %>
+  </div>
+  <div class="col-md-8">
+  	<br>
+  	<div class="showback">
+    <% if current_student.verified %>
+      <strong>Name:</strong>
+	<%= @subject.name %>
+	</p>
 
-<p>
-<strong>Code:</strong>
-<%= @subject.code %>
-</p>
+	<p>
+	<strong>Code:</strong>
+	<%= @subject.code %>
+	</p>
 
-<p>
-<strong>School:</strong>
-<%= @subject.school_admin.school %>
-</p>
+	<p>
+	<strong>School:</strong>
+	<%= @subject.school_admin.school %>
+	</p>
 
-<p>
-<strong>Game:</strong>
-<iframe class="embed-responsive-item" src="/LightG.html" width="800px;" height="700px;"></iframe>
-</p>
+	<p>
+	<strong>Game:</strong>
+	<iframe class="embed-responsive-item" src="/LightG.html" width="800px;" height="700px;"></iframe>
+	</p>
 
-<%= link_to 'Back', view_courses_students_path %>
+	<%= link_to 'Back', view_courses_students_path %>
+
+
+    <% end %>
+    </div>
+  </div>
+</div>
 

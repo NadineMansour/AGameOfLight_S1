@@ -51,7 +51,8 @@ class StudentsController < ApplicationController
     #@t=Teacher.where(school: current_student.school).pluck(:id)
     #get the ides of teachers teaching this subject
     @t=TeacherRequestSubject.where( verified: true ,subject_id: params[:subject_id]).pluck(:teacher_id)
-    @teachers=Teacher.where(id:@t)
+    @t=Teacher.where(id:@t)
+    @teachers=Teacher.where(verified:true)
   end
 
 
@@ -68,7 +69,8 @@ class StudentsController < ApplicationController
       @message.text=params[:my_input]
 
       @message.save
-      redirect_to view_courses_students_path
+      #redirect_to view_courses_students_path
+      redirect_to view_teachers_in_school_students_path
   end 
 
   
@@ -90,8 +92,8 @@ class StudentsController < ApplicationController
 
    def view_contacts
   @user=current_student
-
-  @students= Student.where(school:current_student.school)
+  @s= Student.where(school:current_student.school)
+  @students=@s.where.not(id:@user.id)
 
 
   end
@@ -111,6 +113,25 @@ class StudentsController < ApplicationController
   end
 
 
+  def view_teachers_in_school
+    if current_student.verified
+      @teachers = Teacher.where(school: current_student.school, verified: true)
+    else
+      @teachers = {}
+    end
+  end
+
+
+  def view_teacher_messages
+     @user=current_student
+    @sender=Teacher.find(params[:teacher_id]) 
+    @message=Mess.where("((semail = ? AND remail = ?) OR(semail = ? AND remail = ?))" ,
+      @sender.email, current_student.email, current_student.email, 
+      @sender.email).order(created_at: :asc)
+    #form
+     @new_message=Mess.new
+    @var=params[:teacher_id]
+  end
 
 
   private

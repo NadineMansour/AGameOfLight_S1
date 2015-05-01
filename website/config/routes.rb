@@ -54,6 +54,7 @@ Rails.application.routes.draw do
       put 'remove_verified_teacher/:teacher_id' => :remove_verified_teacher
       get 'view_in_game_grades'
       get 'view_students_grades_in_questions'
+      get 'show_course/:course_id'=>:show_course
     end
     member do
       get 'accept_school_admin'
@@ -75,6 +76,8 @@ Rails.application.routes.draw do
       get 'view_contacts'
       get 'view_messages/:student_id'=>:view_messages
       get 'view_messages_teacher/:teacher_id'=>:view_messages_teacher
+      get 'view_teachers_in_school'
+      get 'view_teacher_messages/:teacher_id'=>:view_teacher_messages
     end
   end
 

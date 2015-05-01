@@ -43,7 +43,7 @@
 				        <th>Grade</th>
 				        <th>Class</th>
 				        <th>School</th>
-				        <th>Message</th>
+				        <th></th>
 			     	 </tr>
 			   </thead>
 			   <tbody>
@@ -59,19 +59,13 @@
 							<td><%= student[:grade] %> </td>
 							<td><%= student[:student_class] %> </td>
 							<td><%= student[:school] %>  </td>
-						
-						<td> <%= form_tag("/teachers/" + 
-							"send_message/" + student[:id].to_s, method: :put)  do %>
-								<%= button_tag(type: "submit", class: "btn btn-primary") do %>
-							    	Send messsage
+							<td>   
+								<%= form_tag("/teachers/" + 
+								"view_messages_students/" + student[:id].to_s, method: :get)  do %>
+									<%= button_tag(type: "submit", class: "btn btn-info") do %>
+								    	<i class="fa fa-envelope-o"></i>
+									<% end %>
 								<% end %>
-							<% end %> </td>
-							<td>   <%= form_tag("/teachers/" + 
-							"view_messages_students/" + student[:id].to_s, method: :put)  do %>
-								<%= button_tag(type: "submit", class: "btn btn-primary") do %>
-							    	View Messages
-								<% end %>
-							<% end %>
 							</td>
 							</tr>
 					<% end %>

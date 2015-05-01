@@ -19,9 +19,7 @@ public class nextButton_MM : MonoBehaviour {
 	{
 		if (ShooterScript_1.state == 3) 
 		{
-			int Current = Application.loadedLevel;
-			Current += 1;
-			Application.LoadLevel (Current);
+			Application.LoadLevel ("Level2_MM");
 		}
 		if (ShooterScript_1.state == 1) 
 		{

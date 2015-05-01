@@ -1,0 +1,49 @@
+<div class="row">
+  <br>
+  <br>
+  <br>
+</div>
+<div class="row">
+  <div class="col-md-2">
+      <%= render partial: "menu_student" %>
+  </div>
+  <div class="col-md-8">
+    <br>
+    <div class="content-panel">
+    <h4><i class="fa fa-angle-right"></i> My contacts</h4><hr>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Email</th>
+          <th></th>
+
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+      
+        <% @teachers.each do |teacher| %>
+          <tr>
+            <td><%= teacher[:email] %></td>  
+              <td>
+          <%= form_tag("/students/" +
+          "view_teacher_messages/" + teacher[:id].to_s, method: :get) do %>
+            <%= button_tag(type: "submit", class: "btn btn-info") do %>
+              <i class="fa fa-envelope-o"></i>
+            <% end %>
+          <% end %>          
+        
+            </td>
+            </tr>
+        <% end %> 
+
+        
+      </tbody> 
+
+     </table>
+     </div>
+  </div>
+  </div>
+
+

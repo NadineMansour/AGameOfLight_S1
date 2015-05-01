@@ -13,6 +13,7 @@ public class Player_L3_2 : MonoBehaviour {
 	
 	
 	//For score
+	public static int startTime;
 	public static int timeInLevel;
 	public static int clicks;
 	public int level;
@@ -85,7 +86,7 @@ public class Player_L3_2 : MonoBehaviour {
 	{
 		position = transform.position;
 		
-	
+		
 		if (state == 0) 
 		{
 			tipEnd.SetActive(false);

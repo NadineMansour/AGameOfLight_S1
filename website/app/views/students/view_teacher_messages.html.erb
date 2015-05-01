@@ -1,0 +1,68 @@
+<div class="row">
+  <br>
+  <br>
+  <br>
+</div>
+<div class="row">
+ <div class="col-md-2">
+    <%= render partial: "menu_student" %>
+  </div>
+  <div class="col-md-8">
+    <br>
+    <section class="task-panel tasks-widget">
+      <div class="panel-heading">
+          <div class="pull-left"><h5><i class="fa fa-tasks"></i> Messages</h5></div>
+          <br>
+      </div>
+      <% if @message.count > 0 %>
+      <div class="panel-body">
+          <div class="task-content">
+            <ul id="sortable" class="task-list ui-sortable">
+              <% @message.each do |m| %>
+                <% if m[:semail] == current_student.email %>
+                <li class="list-primary">
+                  <i class=" fa fa-ellipsis-v"></i>
+                  <div class="task-checkbox">
+               
+                      <p>Me: (at <%= m[:created_at] %>)</p>
+                   
+                    <br>
+                    <p><%= m[:text] %></p>
+                  </div>
+                 </li>
+                 <% else %>
+                  <li class="list-warning">
+                  <i class=" fa fa-ellipsis-v"></i>
+                  <div class="task-checkbox">
+                  
+                      <p><%= Teacher.find_by(email: m[:semail]).email %> (at <%= m[:created_at] %>)</p>
+                    
+                    <br>
+                    <p><%= m[:text] %></p>
+                  </div>
+                 </li>
+                 <% end %>
+               <% end %>
+            </ul>
+          </div>
+        </div>
+        <% else %>
+        <p>No messages.</p>
+        <% end %>
+
+        <%= form_tag("/students/" + 
+              "submit/"+@var, method: :post)  do %>
+              
+            <div>
+              <%= text_field_tag :my_input, "",class: "form-control", placeholder: "new message" %>
+            </div>
+            <div>        
+                <%= button_tag(type: "submit", class:"btn btn-theme") do %>
+                    Send
+                <% end %>
+            </div>
+        <% end %> 
+    </section>
+  </div>
+  </div>
+
