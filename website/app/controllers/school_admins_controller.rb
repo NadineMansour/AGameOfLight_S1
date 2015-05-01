@@ -258,4 +258,9 @@ class SchoolAdminsController < ApplicationController
 			@students = Student.where("school = ? AND verified = ?", @school_admin.school, true)
 		end
 	end
+
+
+	def show_course
+		@subject = Subject.find(params[:course_id])
+	end
 end

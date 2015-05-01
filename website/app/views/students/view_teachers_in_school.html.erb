@@ -15,7 +15,7 @@
       <thead>
         <tr>
           <th>Email</th>
-          <th> View messages </th>
+          <th></th>
 
           <th colspan="3"></th>
         </tr>
@@ -29,8 +29,8 @@
               <td>
           <%= form_tag("/students/" +
           "view_teacher_messages/" + teacher[:id].to_s, method: :get) do %>
-            <%= button_tag(type: "submit", class: "btn btn-theme") do %>
-              view messages
+            <%= button_tag(type: "submit", class: "btn btn-info") do %>
+              <i class="fa fa-envelope-o"></i>
             <% end %>
           <% end %>          
         

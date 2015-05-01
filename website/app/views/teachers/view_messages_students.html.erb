@@ -19,18 +19,29 @@
           <div class="task-content">
             <ul id="sortable" class="task-list ui-sortable">
               <% @message.each do |m| %>
+                <% if m[:semail] == current_teacher.email %>
                 <li class="list-primary">
                   <i class=" fa fa-ellipsis-v"></i>
                   <div class="task-checkbox">
-                    <% if m[:semail] == current_teacher.email %>
+                    
                       <p>Me: (at <%= m[:created_at] %>)</p>
-                    <% else %>
-                      <p><%= Student.find_by(email: m[:semail]).email %> (at <%= m[:created_at] %>)</p>
-                    <% end %>
+                    
                     <br>
                     <p><%= m[:text] %></p>
                   </div>
                  </li>
+                 <% else %>
+                  <li class="list-warning">
+                  <i class=" fa fa-ellipsis-v"></i>
+                  <div class="task-checkbox">
+                    
+                      <p><%= Student.find_by(email: m[:semail]).email %> (at <%= m[:created_at] %>)</p>
+                   
+                    <br>
+                    <p><%= m[:text] %></p>
+                  </div>
+                 </li>
+                 <% end %>
                <% end %>
             </ul>
           </div>
@@ -38,6 +49,19 @@
         <% else %>
         <p>No messages.</p>
         <% end %>
+
+        <%= form_tag("/teachers/" + 
+              "submit/"+@var, method: :post)  do %>
+            
+            <div>
+              <%= text_field_tag :my_input, "",class: "form-control", placeholder: "new message" %>
+            </div>
+            <div>        
+                <%= button_tag(type: "submit", class:"btn btn-theme") do %>
+                    Send
+                <% end %>
+            </div>
+        <% end %> 
     </section>
   </div>
   </div>
