@@ -29,7 +29,8 @@
             <td><%= subject.name %></td>
             <td><%= subject.code %></td>            
             <td><%= link_to 'Show', show_course_students_path(subject_id: subject[:id]) %></td>
-             <td>
+            <td><%= link_to 'take a quiz' , quiz_answers_path(subject_id: subject.id) %></td>         
+            <td>
               <%= form_tag("/students/" + 
               "/take_quiz/" + subject[:id].to_s, method: :get)  do %>
                       <%= text_field_tag :Q   %>  
