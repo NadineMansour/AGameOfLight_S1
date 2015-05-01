@@ -111,6 +111,22 @@ class StudentsController < ApplicationController
   end
 
 
+  def view_teachers_in_school
+    if current_student.verified
+      @teachers = Teacher.where(school: current_student.school, verified: true)
+    else
+      @teachers = {}
+    end
+  end
+
+
+  def view_teacher_messages
+     @user=current_student
+    @sender=Teacher.find(params[:teacher_id]) 
+    @message=Mess.where("((semail = ? AND remail = ?) OR(semail = ? AND remail = ?))" ,
+      @sender.email, current_student.email, current_student.email, 
+      @sender.email).order(created_at: :desc)
+  end
 
 
   private

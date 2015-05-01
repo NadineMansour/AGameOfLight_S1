@@ -75,6 +75,8 @@ Rails.application.routes.draw do
       get 'view_contacts'
       get 'view_messages/:student_id'=>:view_messages
       get 'view_messages_teacher/:teacher_id'=>:view_messages_teacher
+      get 'view_teachers_in_school'
+      get 'view_teacher_messages/:teacher_id'=>:view_teacher_messages
     end
   end
 

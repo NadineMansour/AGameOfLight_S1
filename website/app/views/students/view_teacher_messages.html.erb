@@ -5,7 +5,7 @@
 </div>
 <div class="row">
  <div class="col-md-2">
-    <%= render partial: "menu_teacher" %>
+    <%= render partial: "menu_student" %>
   </div>
   <div class="col-md-8">
     <br>
@@ -22,10 +22,10 @@
                 <li class="list-primary">
                   <i class=" fa fa-ellipsis-v"></i>
                   <div class="task-checkbox">
-                    <% if m[:semail] == current_teacher.email %>
+                    <% if m[:semail] == current_student.email %>
                       <p>Me: (at <%= m[:created_at] %>)</p>
                     <% else %>
-                      <p><%= Student.find_by(email: m[:semail]).email %> (at <%= m[:created_at] %>)</p>
+                      <p><%= Teacher.find_by(email: m[:semail]).email %> (at <%= m[:created_at] %>)</p>
                     <% end %>
                     <br>
                     <p><%= m[:text] %></p>
