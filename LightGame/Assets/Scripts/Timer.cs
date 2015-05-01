@@ -19,6 +19,7 @@ public class Timer : MonoBehaviour {
 		{
 			if (ShooterScript5.gameOver) 
 			{
+				//Show total time spent in level before winning
 				int mins = (int)(ShooterScript5.timeInLevel / 60.0f);
 				int secs = (int)(ShooterScript5.timeInLevel) - (mins * 60);
 				if (secs / 10 == 0)
@@ -28,6 +29,7 @@ public class Timer : MonoBehaviour {
 			} 
 			else 
 			{
+				//Show real time since finishing the tips
 				int mins = (int)(Time.timeSinceLevelLoad / 60.0f);
 				int secs = (int)(Time.timeSinceLevelLoad) - (mins * 60);
 				if (secs / 10 == 0)

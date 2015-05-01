@@ -43,18 +43,12 @@ public class load : MonoBehaviour {
 	public bool levelNo4;
 	public bool levelNo5;
 
+
 	// Use this for initialization
 	void Start () {
 		email = ButtonLogin.user_email;
 		StartCoroutine (get_records_by_email(email));
 	}
-
-	
-	// Update is called once per frame
-	void Update () {
-
-	}
-
 
 
 	void OnMouseUp()
@@ -98,7 +92,7 @@ public class load : MonoBehaviour {
 		clicks.Clear ();
 		times.Clear ();
 		scores.Clear ();
-		string urlMessage = "https://k12-mariammohamed.c9.io/api/records/get_records_by_email";
+		string urlMessage = "https://ilearn-td.herokuapp.com/api/records/get_records_by_email";
 		WWWForm form = new WWWForm();
 		form.AddField("email", user_email);
 		WWW w = new WWW(urlMessage, form);

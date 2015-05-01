@@ -76,6 +76,8 @@ public class Player_L3_3 : MonoBehaviour {
 		textClicks.text = "Clicks: " + clicks;
 
 		
+		//Show tip1 and next button only
+		//stopwatch text = "0:00"
 		if (state == -1) 
 		{
 			TextMesh textObject = Stopwatch.GetComponent<TextMesh>();
@@ -87,6 +89,8 @@ public class Player_L3_3 : MonoBehaviour {
 		}
 		
 		
+		//Show tip2 and next button only
+		//stopwatch text = "0:00"
 		if (state == 0) 
 		{
 			TextMesh textObject = Stopwatch.GetComponent<TextMesh>();
@@ -97,6 +101,9 @@ public class Player_L3_3 : MonoBehaviour {
 			end.SetActive (false);
 		}
 		
+
+		//Show none of the tips or the next button
+		//stopwatch text = real time spent in level since starting to play
 		if(state == 1)
 		{
 			TextMesh textObject = Stopwatch.GetComponent<TextMesh>();
@@ -112,6 +119,8 @@ public class Player_L3_3 : MonoBehaviour {
 			intro.SetActive (false);
 			start.SetActive (false);
 			end.SetActive (false);
+
+
 			linePositions2 [0] = new Vector3 (0, 0, 0);
 			linePositions2 [1] = new Vector3 (0, 0, 0);
 			if (RRight)
@@ -122,14 +131,16 @@ public class Player_L3_3 : MonoBehaviour {
 			{
 				RotateLeft();
 			}
-			endExtender();
-			limitChecker2();
-			limitChecker1();
-			detector ();
-			SetLightBeam();
+			endExtender();   //Makes sure lightBeam is reaching the bottom of the fish tank
+			limitChecker2(); //Makes sure lightBeam[2] isnt out of the tank's boundaries
+			limitChecker1(); //Makes sure lightBeam[1] isnt out of the tank's boundaries
+			detector ();     //detects collision with obstacles/target/mirror and reacts to it
+			SetLightBeam();  //Sets values of light beam
 		}
 		
 		
+		//Target reached
+		//Next button and congratulating message appears
 		if (state == 2) 
 		{
 			TextMesh textObject = Stopwatch.GetComponent<TextMesh>();

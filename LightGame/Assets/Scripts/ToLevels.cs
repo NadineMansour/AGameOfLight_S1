@@ -42,6 +42,10 @@ public class ToLevels : MonoBehaviour
 		{
 			Application.LoadLevel("level7");
 		}
+		if (level8)
+		{
+			Application.LoadLevel("level7");
+		}
 		if(GetComponent<Collider>().tag == "Finish")
 		{
 		int Current = Application.loadedLevel;
