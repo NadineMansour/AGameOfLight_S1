@@ -30,9 +30,10 @@
             <td><%= teacher.email %></td>  
               <td>
           <%= form_tag("/teachers/" +
-          "/view_messages/" + teacher[:id].to_s, method: :put) do %>
-            <%= button_tag(type: "submit", class: "btn btn-danger btn-xs") do %>
-              <i class="fa fa-trash-o "></i>
+          "/view_messages/" + teacher[:id].to_s, method: :get) do %>
+          <%= button_tag(type: "submit", class: "btn btn-theme03") do %>
+
+              View 
             <% end %>
           <% end %>          
         

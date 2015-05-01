@@ -12,15 +12,21 @@
     
   
 
-
+Send your message to : <%=Student.find(params[:student_id]).email%>
 <%= form_tag("/teachers/" + 
               "/submit/"+@var, method: :post)  do %>
             
+            <div>
               <%= text_area_tag(:my_input, "", size: "40x10") %>
-                          
+                    <br>
+                    <br>
+                    </div>
+                     <br>
+                    <div>        
                 <%= button_tag(type: "submit", class:"btn btn-theme") do %>
                     Send
                 <% end %>
+                </div>
               <% end %> 
 
             
