@@ -2,13 +2,21 @@
   <h2 class="form-login-heading">sign in now</h2>
   <div class="login-wrap">
     <%= f.text_field :email, class: 'form-control', placeholder: 'Email' %><br>
-    <%= f.password_field :password, autocomplete: "off", placeholder: 'Password', class: 'form-control' %><br>
+    <%= f.password_field :password, autocomplete: "off", placeholder: 'Password', class: 'form-control' %>
     <%= f.submit 'Sign up', class: 'btn btn-theme btn-block' %>
     <hr>
 
     <div class="registration">
-      Don't have an account yet?<br/>
+      Don't have an account yet?
+      <br>
       <%= link_to 'Create an account', new_student_registration_path %>
+      <br>
+      <%= link_to "sign in as a teacher", new_teacher_session_path %>
+      <br/> 
+      <%= link_to "sign in as a school admin", new_school_admin_session_path %>
+      <br>
+      <%= link_to "sign in as a system admin", new_admin_user_session_path %>
+      <br/>
     </div>
 
   </div>

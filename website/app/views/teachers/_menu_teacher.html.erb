@@ -7,8 +7,12 @@
             <% end %>
             </li>
             <li>
+            <%= link_to new_question_path , class: 'dcjq-parent' do %>
+            	<span>Add a question</span>
+            <% end %>
+             <li>
             <%= link_to controller: "teachers", action: "view_school_verified_students", class: 'dcjq-parent' do %>
-            	<span>Verified Students</span>
+                <span>Verified Students</span>
             <% end %>
             </li>
             <li>
