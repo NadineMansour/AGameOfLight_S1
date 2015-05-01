@@ -21,22 +21,23 @@ class StudentsController < ApplicationController
      @que_np=params[:Q_no]
      @records=params[:my_records].split(/,/)
 
-     @records.each  do |e|
-      
-      x=Answer.new
-      x.student_id=current_student.id
-      x.question_id=e.to_i
-      symbol=e.to_sym
-      x.ans=params[symbol]
+     @records.each  do |e| 
+        x=StudentAnswerQuestion.new
+        x.student_id = current_student.id
+        x.question_id = e.to_i
+        symbol =e.to_sym
+        x.answer =params[symbol]
 
-      if  x.ans==Question.find(e.to_i).correct_answer
-        x.correct=true
-      else 
-        x.correct=false
 
-      end
-      x.save
+        if  x.answer == Question.find(e.to_i).correct_answer
+          x.correct=true
+        else 
+          x.correct=false
         end
+        x.save
+      end
+
+
       redirect_to view_courses_students_path
   end  
    
@@ -138,5 +139,9 @@ class StudentsController < ApplicationController
     def user_params
       params.require(:student).permit(:email, :password,
                                    :password_confirmation)
+    end
+
+    def answer_params
+      params.permit(:question_id, :answer, :belongs_to, :belongs_to, :ans, :correct)
     end
 end
