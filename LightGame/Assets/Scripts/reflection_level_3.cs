@@ -26,8 +26,8 @@ public class reflection_level_3 : MonoBehaviour
 	public static string log;
 	public int score;
 	public int level;
-
-
+	
+	
 	void Start () 
 	{
 		linePositions = new List<Vector3> ();
@@ -37,11 +37,12 @@ public class reflection_level_3 : MonoBehaviour
 		linePositions.Add (start);//Adding shooter's position
 		linePositions.Add (end);//End of the lightbeam
 		SetLightBeam (linePositions , lightBeam);//Setting the values of the lightbeam
-
+		
 		linpoistions2 = new List<Vector3> ();
 		linpoistions2.Add (start);
 		linpoistions2.Add (start);
 		SetLightBeam (linpoistions2 ,  lightBeam2);
+		
 		toLevelsButton.SetActive(false);//Disabling the tolevels button initially
 		gameOver = false;
 		saveRec = false;
@@ -52,16 +53,16 @@ public class reflection_level_3 : MonoBehaviour
 		clicks = 0;
 		RotateLightBeam ();
 	}
-
-
+	
+	
 	void calculateScore()
 	{
 		score = (120 - timeInLevel) * 100 + (5 - clicks) * 50;
 		if (score <= 50) //to exclude negative scores
 			score = 50;
 	}
-
-
+	
+	
 	void EndGame()
 	{
 		if (saveRec) 
@@ -73,14 +74,14 @@ public class reflection_level_3 : MonoBehaviour
 			saveRec = false;
 		}
 	}
-
-
+	
+	
 	// Update is called once per frame
 	void Update () 
 	{
 		TextMesh textObject = numOfClicks.GetComponent<TextMesh>();
 		textObject.text = "Moves: " + clicks;
-
+		
 		//To prevent shooter from moving if game is over (light reached target).
 		if (!gameOver) 
 		{
@@ -88,7 +89,7 @@ public class reflection_level_3 : MonoBehaviour
 			if (rotateRight) 
 			{
 				RotateRight ();
-
+				
 			}
 			if (rotateLeft) 
 			{
@@ -103,8 +104,8 @@ public class reflection_level_3 : MonoBehaviour
 			EndGame ();
 		}
 	}
-
-
+	
+	
 	public void detector()
 	{
 		if (!gameOver) 
@@ -115,43 +116,47 @@ public class reflection_level_3 : MonoBehaviour
 				Vector3 collision = hit.point;
 				linePositions[1] = collision;
 				linpoistions2[0] = collision;
-
+				
 				if(hit.collider.tag == "Mirror")
 				{
 					float y = 2*(linePositions[0].y - collision.y) ;
 					linpoistions2[1] = new Vector3(linePositions[0].x,-y + linePositions[0].y,0);
 					extendLightY(linpoistions2);
 				}
-
+				
 				if(hit.collider.tag == "Obstacle")
 				{
 					linePositions[1] = collision;
 				}
 			}
-			else{
+			else
+			{
 				linpoistions2[0] = linePositions[0];
 				linpoistions2[1] = linePositions[0];
 				extendLightY(linePositions);
 			}
-
+			
 			if(Physics.Linecast(linpoistions2[0],linpoistions2[1],out hit))
 			{
 				Vector3 collision = hit.point;
-
+				
 				if(hit.collider.tag == "Target")
+				{
 					gameOver = true;
 					saveRec = true;
 					linpoistions2[1] = collision;
 				}
-
-				if (hit.collider.tag == "Obstacle")
+				
+				if(hit.collider.tag == "Obstacle")
 				{
 					linpoistions2[1] = collision;
 				}
+				
 			}
 		}
 	}
-
+	
+	
 	void extendLightY(List <Vector3> l)
 	{
 		if (l [1].y < 5) 
@@ -170,8 +175,8 @@ public class reflection_level_3 : MonoBehaviour
 			}
 		}
 	}
-
-
+	
+	
 	//updates light renderer parameters with those stored in linePositions array
 	void SetLightBeam(List <Vector3> l , LineRenderer light)
 	{
@@ -180,8 +185,8 @@ public class reflection_level_3 : MonoBehaviour
 			light.SetPosition(i, l[i]);
 		}
 	}
-
-
+	
+	
 	public static void RotateRightTrue()
 	{
 		if (!rotateRight) 
@@ -214,8 +219,8 @@ public class reflection_level_3 : MonoBehaviour
 	{
 		rotateLeft = false;
 	}
-
-
+	
+	
 	//Rotates shooter cw, if limit wasn't reached
 	public void RotateRight()
 	{
@@ -228,8 +233,8 @@ public class reflection_level_3 : MonoBehaviour
 		}
 		
 	}
-
-
+	
+	
 	//Rotates shooter ccw, if limit wasn't reached
 	void RotateLeft()
 	{
@@ -241,8 +246,8 @@ public class reflection_level_3 : MonoBehaviour
 			RotateLightBeam();
 		}
 	}
-
-
+	
+	
 	void PointRotator()
 	{
 		Vector3 pivotPoint = linePositions [0];
@@ -252,18 +257,17 @@ public class reflection_level_3 : MonoBehaviour
 		float angle1 = angle * Mathf.PI / 180.0f;
 		linePositions[1] = new Vector3((float)(Mathf.Cos(angle1) * Nx - Mathf.Sin(angle1) * Ny + pivotPoint.x), (float)(Mathf.Sin(angle1) * Nx + Mathf.Cos(angle1) * Ny + pivotPoint.y), 0);
 		linpoistions2 [0] = linePositions [0];
-		linpoistions2 [1] = linePositions [0];	
+		linpoistions2 [1] = linePositions [0];
 	}
-
-
-
+	
+	
 	//Called when player clicks on rotation buttons to rotate light beam with shooter
 	void RotateLightBeam()
 	{
 		PointRotator ();
 		SetLightBeam (linePositions ,  lightBeam);
 	}
-
+	
 	
 	IEnumerator save_record() 
 	{
