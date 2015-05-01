@@ -5,16 +5,16 @@
         </h5>
             <li class="sub-menu dcjq-parent-li">
             <%= link_to controller: "teachers", action: "view_game_records", class: 'dcjq-parent' do %>
-            	<span>Game Records</span>
+            	<span>Game records</span>
             <% end %>
             </li>
             <li>
             <%= link_to new_question_path , class: 'dcjq-parent' do %>
-            	<span>Add a question</span>
+            	<span>New question</span>
             <% end %>
              <li>
             <%= link_to controller: "teachers", action: "view_school_verified_students", class: 'dcjq-parent' do %>
-                <span>Verified Students</span>
+                <span>Students</span>
             <% end %>
             </li>
             
@@ -25,17 +25,17 @@
             </li>
             <li>
             <%= link_to controller: "teachers", action: "view_in_game_grades", class: 'dcjq-parent' do %>
-                <span>Students' in-game quizes</span>
+                <span>In-game quizzes</span>
             <% end %>
             </li>
             <li>
             <%= link_to controller: "teachers", action: "view_school_subjects", class: 'dcjq-parent' do %>
-                <span>My school subjects</span>
+                <span>Courses</span>
             <% end %>
             </li>
              <li>
             <%= link_to controller: "teachers", action: "view_contacts", class: 'dcjq-parent' do %>
-                <span>Other teachers</span>
+                <span>Teachers</span>
             <% end %>
             </li>
     </ul>
