@@ -31,7 +31,7 @@ function OnMouseUp()
 	}
 	else if (to_main_menu == true)
 	{
-		Application.LoadLevel("scene");
+		Application.LoadLevel("MainMenu");
 	}
 	else if (quit == true)
 	{
