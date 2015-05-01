@@ -30,6 +30,7 @@ public class TextScript : MonoBehaviour {
 		{
 			if (Application.loadedLevelName == "Level1")
 			{
+				//Tips to introduce buttons
 				if (Time.realtimeSinceStartup - StartTime < 5) {
 					SetText ("You can use this button to move up.");
 				} else {
@@ -60,6 +61,7 @@ public class TextScript : MonoBehaviour {
 		}
 		else
 		{
+			//congratulating messages when targets are reached
 			if (Application.loadedLevelName == "Level1")
 				SetText ("Congrats!! People of planet Redo thank you");
 			else

@@ -22,6 +22,7 @@ public class TextScript2 : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
 	{
+		//Text saying "Congrats!! You win!!" appears when target is reached
 		if (!ShooterScript5.gameOver) 
 		{
 			SetText(" ");

@@ -4,10 +4,9 @@ using System.Collections;
 
 public class UpMove_2 : MonoBehaviour {
 
+
 	public GameObject Shooter;
 	
-	void Start () {
-	}
 	
 	void Update()
 	{
