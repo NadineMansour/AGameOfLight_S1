@@ -4,16 +4,20 @@ using System.Collections;
 using System.Collections.Generic;
 
 
-public class Player_L3_1 : MonoBehaviour {
+public class Player_L3_3 : MonoBehaviour {
 
 
-	//For movement & rotation
-	public static bool left;
-	public static bool right;
+	//For The Rotation 
 	public static bool RRight;					
 	public static bool RLeft;
-
-
+	
+	
+	//Used in the Refraction
+	private static float angle ;
+	float NI = 1.000293f;						 
+	float NR = 1.3330f;
+	
+	
 	//For score
 	public static int startTime;
 	public static int timeInLevel;
@@ -21,52 +25,104 @@ public class Player_L3_1 : MonoBehaviour {
 	public int level;
 	public int score;
 	public static string log;
-
-
-	public static int state;
-	public static Vector3 position;
+	
+	
 	public static bool gameOver;
-	private static List <Vector3> linePositions;        //array containing lightbeam points for setting and editing
-	private static float angle ;                        //degree of rotation of light beam
-	float NI = 1.000293f;						 
-	float NR = 1.3330f;
-
-
-	//gameObjects
-	//public GameObject numOfClicks;
+	public static int state;
+	
+	
 	public GameObject nextButton;
 	public GameObject intro;
-	public GameObject intro1;
-	public GameObject tipStart;
-	public GameObject tipEnd;
-	public LineRenderer lightBeam;               //Lightbeam gameobject to edit positions and end points
+	public GameObject start;
+	public GameObject end;
+	public GameObject Mirror;
+	//public GameObject Stopwatch;
+	//public GameObject numOfClicks;
+	
+	
+	public LineRenderer lightBeam;                      //the main lightbeam used in the refraction 
+	public LineRenderer lightBeam2;                     //simulates the reflection of the 1st lightbeam
+	public static Vector3 position;
+	private static List <Vector3> linePositions;        //array containing lightbeam  points for setting and editing
+	private static List <Vector3> linePositions2; 		//array containing lightbeam2 points for setting and editing
 
 
-	void Start () 
-	{
+	void Start () {
+		float x = transform.position.x;
+		float y = transform.position.y;
+		linePositions  = new List<Vector3> ();
+		linePositions2 = new List<Vector3> (); 
+		linePositions.Add (new Vector3(x, y, 0));
+		linePositions.Add (new Vector3(x, 0, 0));
+		linePositions.Add (new Vector3(x, -4.0f, 0));
+		linePositions2.Add (new Vector3 (0, 0, 0));
+		linePositions2.Add (new Vector3 (0, 0, 0));
+		gameOver = false;
+		RRight = false;
+		RLeft  = false;
+		angle = 0.0f;
+		level = 8; 
+		state = -1;
 		nextButton.SetActive (false);
 		intro.SetActive (false);
-		intro1.SetActive (false);
-		tipStart.SetActive (false);
-		tipEnd.SetActive (false);
-		left = false;
-		right = false;
-		RRight = false;
-		RLeft = false;
-		clicks = 0;
-		score = 0;
-		log = "";
-		level = 6;
-		state = -2;
-		linePositions = new List<Vector3> ();   //a list that contains the main three points od the light beam 
-		Vector3 start = transform.position;     // the starting point at the center of the player 
-		Vector3 mid = start;					
-		mid.y = 0;
-		Vector3 end = start;
-		end.y = -4;                             
-		linePositions.Add (start);              //adding shooter's position as start point to light beam
-		linePositions.Add (mid);                //adding the mid point to light beams points list
-		linePositions.Add (end);                //adding the end point to light beams points list
+		start.SetActive (false);
+		end.SetActive (false);
+	}
+
+
+	void Update () {
+		position = transform.position;
+
+
+		if (state == -1) 
+		{
+			nextButton.SetActive (true);
+			intro.SetActive (true);
+			start.SetActive (false);
+			end.SetActive (false);
+		}
+
+
+		if (state == 0) 
+		{
+			nextButton.SetActive (true);
+			intro.SetActive (false);
+			start.SetActive (true);
+			end.SetActive (false);
+		}
+
+		if(state == 1)
+		{
+			nextButton.SetActive (false);
+			intro.SetActive (false);
+			start.SetActive (false);
+			end.SetActive (false);
+			linePositions2 [0] = new Vector3 (0, 0, 0);
+			linePositions2 [1] = new Vector3 (0, 0, 0);
+			if (RRight)
+			{
+				RotateRight();
+			}
+			if (RLeft)
+			{
+				RotateLeft();
+			}
+			endExtender();
+			limitChecker2();
+			limitChecker1();
+			detector ();
+			SetLightBeam();
+		}
+
+
+		if (state == 2) 
+		{
+			nextButton.SetActive (true);
+			intro.SetActive (false);
+			start.SetActive (false);
+			end.SetActive (true);
+		}
+		
 	}
 
 
@@ -90,88 +146,50 @@ public class Player_L3_1 : MonoBehaviour {
 	}
 
 
-	void Update () {
-		position = transform.position;
-
-
-		if (state == -2) 
+	public static void movement(int x)
+	{
+		switch(x)
 		{
-			intro.SetActive (true);
-			nextButton.SetActive(true);
-			tipStart.SetActive(false);
-			tipEnd.SetActive(false);
-			intro1.SetActive(false);
-		}
-
-		if (state == -1) 
-		{
-			tipStart.SetActive(false);
-			tipEnd.SetActive(false);
-			intro.SetActive(false);
-			intro1.SetActive(true);
-			nextButton.SetActive(true);
-		}
-
-
-		if (state == 0) 
-		{
-			tipEnd.SetActive(false);
-			intro.SetActive(false);
-			intro1.SetActive(false);
-			tipStart.SetActive(true);
-			nextButton.SetActive(true);
-		}
-
-
-		if (state == 1) 
-		{
-			tipStart.SetActive(false);
-			tipEnd.SetActive(false);
-			intro.SetActive(false);
-			intro1.SetActive(false);
-			nextButton.SetActive (false);
-			if (right)
+		case 5:
+			if(!RRight)
 			{
-				moveRight();
-			} 
-			if (left)
-			{
-				moveLeft();
+				clicks++;
+				log += "-Rotation ccw, zStart: " + angle;
 			}
+			RRight = true;
+			break;
+		case 6:
 			if (RRight)
 			{
-				RotateRight();
+				log += ", zEnd: " + angle + '\n';
 			}
+			RRight = false;
+			break;
+		case 7:
+			if(!RLeft)
+			{
+				clicks++;
+				log += "-Rotation cw, zStart: " + angle;
+			}
+			RLeft = true;
+			break;
+		case 8:
 			if (RLeft)
 			{
-				RotateLeft();
+				log += ", zEnd: " + angle + '\n';
 			}
-			endExtender();
-			limitChecker2();
-			limitChecker1();
-			detector ();
-			SetLightBeam();
-		} 
-
-
-		if (state == 2) 
-		{
-			nextButton.SetActive (true);
-			tipEnd.SetActive (true);
-			tipStart.SetActive(false);
-			intro.SetActive(false);
-			intro1.SetActive(false);
-		}
+			RLeft = false;
+			break;
+		}	
 	}
-
-
+	
 	void limitChecker1()
 	{
 		float slope, yIntercept, newY;
 		Vector3 top = linePositions [0];
 		Vector3 mid = linePositions [1];
-
-
+		
+		
 		if (mid.x <= -5.8f || mid.x >= 5.8f) 
 		{
 			linePositions [2] = linePositions [0];
@@ -189,14 +207,14 @@ public class Player_L3_1 : MonoBehaviour {
 			}	
 		} 
 	}
-
+	
 	void limitChecker2()
 	{
 		Vector3 mid = linePositions [1];
 		Vector3 end = linePositions [2];
 		float newY;
-
-
+		
+		
 		if((end.x <= -6.1f || end.x >= 6.1f))
 		{
 			float slope = (end.y - mid.y) / (end.x - mid.x);
@@ -212,10 +230,10 @@ public class Player_L3_1 : MonoBehaviour {
 				linePositions [2] = new Vector3 (6.1f, newY, 0);
 			}	
 		}
-
+		
 	}
-
-
+	
+	
 	void moveRight()
 	{
 		if (position.x < 4) 
@@ -272,117 +290,113 @@ public class Player_L3_1 : MonoBehaviour {
 		{
 			lightBeam.SetPosition(i, linePositions[i]);
 		}
+
+
+		for (int i = 0; i < linePositions2.Count; i++) 
+		{
+			lightBeam2.SetPosition(i, linePositions2[i]);
+		}
 	}
 
-
-	void EndGame()
-	{
-		nextButton.SetActive (true);
-		tipEnd.SetActive (true);
-	}
-
+	
 	//Detects collision of light with other gameobjects
 	void detector()
 	{
 		if (!gameOver) 
 		{
+			bool extend = true;
 			RaycastHit hit;
-			if (Physics.Linecast (linePositions [1], linePositions [2], out hit)) 
-			{
-				if (hit.collider.tag == "Target") 
-				{
-					linePositions[2] = hit.point;
-					EndGame();
-					gameOver = true;
-					state++;
-					if(left || right)
-					{
-						log += ", xEnd: " + position.x;
-					}
-					if(RRight || RLeft)
-					{
-						log += ", zEnd: " + angle + '\n';
-					}
-					timeInLevel = (int)Time.timeSinceLevelLoad - startTime;
-					calculateScore(); //score now has its right value
-					//timeInLevel, score, clicks, log & level ready	
-					StartCoroutine(save_record());
-				}
+			if (Physics.Linecast (linePositions [1], linePositions [2], out hit)) {
 				if (hit.collider.tag == "Obstacle") 
 				{
 					linePositions [2] = hit.point;
+					extend = false;
+				}
+				
+				
+				if (hit.collider.tag == "Mirror") {
+					Vector3 temp = hit.point; 
+					Vector3 p0 = linePositions[1];
+					float slope = (p0.y - temp.y)/(p0.x - temp.x);
+					float yIntercept = p0.y - p0.x*slope;
+					float newX = hit.point.x - 0.1f;
+					float newY = newX*slope + yIntercept;
+					linePositions[2] = new Vector3(newX, newY, 0);
+					linePositions2[0] = hit.point;
+					Vector3 P0 = linePositions2[0];
+					Vector3 P1 = new Vector3();
+					P1.x = linePositions[1].x;
+					P1.y = 2*(P0.y);
+					P1.z = 0;
+					linePositions2[1] = P1;
+					lineExtender2();
+				}
+				else
+				{
+					if(extend)
+					{
+						Vector3  mid  = linePositions[2];
+						Vector3 start = linePositions[1];
+						if(mid.x != start.x)
+						{
+							Vector3 end = new Vector3();
+							float slope = (mid.y - start.y)/(mid.x - start.x);
+							float yIntercept = mid.y - slope*mid.x;
+							end.y = -4.0f;
+							end.z = 0;
+							end.x = (-4.0f - yIntercept)/slope;
+							linePositions[2] = end;
+						}
+					}
 				}
 			}
+			
+			
+			RaycastHit hit1;
+			if (Physics.Linecast (linePositions2 [0], linePositions2 [1], out hit1)) 
+			{
+				if (hit1.collider.tag == "Target") 
+				{
+					gameOver = true;
+					if (Mirror_8.MirrorL || Mirror_8.MirrorR)
+					{
+						Mirror_8.MirrorL = false;
+						Mirror_8.MirrorR = false;
+						log += "xEnd: " + Mirror.transform.position.x + '\n';
+					}
+					if(RRight || RLeft)
+					{
+						RRight = false;
+						RLeft  = false;
+						log += " zEnd: " + angle + '\n'; 
+					}
+					state++;
+					timeInLevel = (int) Time.timeSinceLevelLoad - startTime;
+					calculateScore();
+					print(log);
+					StartCoroutine(save_record());
+				}
+			}
+
+
 		}
 	}
-	
-	
-	public static void movement(int x)
-	{
-		
-		switch(x)
+
+
+	void lineExtender2(){
+		Vector3 testedPoint2 = linePositions2 [1];
+		if (testedPoint2.y != -4.0f) 
 		{
-		case 1: 
-			if(!right)
+			Vector3 P1 = linePositions2[0];
+			Vector3 P2 = linePositions2[1];
+			if(P2.x != P1.x) //To avoid dividing by 0
 			{
-				clicks++;
-				log += "-Moving right, xStart: " + position.x;
+				float slope = (P2.y - P1.y) / (P2.x - P1.x);
+				float yIntercept = P1.y - slope*P1.x;
+				float newX = (-4.0f - yIntercept)/slope;
+				linePositions2[1] = new Vector3(newX, -4.0f, 0);
 			}
-			right = true;
-			break;
-		case 2:
-			if (right)
-			{
-				log += ", xEnd: " + position.x + '\n';
-			}
-			right = false;
-			break;
-		case 3:
-			if(!left)
-			{
-				clicks++;
-				log+= "-Moving left, xStart: " + position.x;
-			}
-			left = true;
-			break;
-		case 4:
-			if (left)
-			{
-				log += ", xEnd: " + position.x + '\n';
-			}
-			left = false;
-			break;
-		case 5:
-			if(!RRight)
-			{
-				clicks++;
-				log += "-Rotation ccw, zStart: " + angle;
-			}
-			RRight = true;
-			break;
-		case 6:
-			if (RRight)
-			{
-				log += ", zEnd: " + angle + '\n';
-			}
-			RRight = false;
-			break;
-		case 7:
-			if(!RLeft)
-			{
-				clicks++;
-				log += "-Rotation cw, zStart: " + angle;
-			}
-			RLeft = true;
-			break;
-		case 8:
-			if (RLeft)
-			{
-				log += ", zEnd: " + angle + '\n';
-			}
-			RLeft = false;
-			break;
-		}	
+		}
 	}
 
 
@@ -454,8 +468,8 @@ public class Player_L3_1 : MonoBehaviour {
 			// if the response has OK status
 		}
 	}
-
-
+	
+	
 	void calculateScore()
 	{
 		score = (120 - timeInLevel) * 100 + (5 - clicks) * 50;

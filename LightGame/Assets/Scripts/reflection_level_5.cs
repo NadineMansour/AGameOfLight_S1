@@ -23,7 +23,6 @@ public class reflection_level_5 : MonoBehaviour {
 	private float angle;
 	public static bool gameOver;
 	public static bool saveRec;
-	public static bool target1Dead;
 	public GameObject target;
 	public GameObject target1;
 	public GameObject bam;
@@ -76,7 +75,6 @@ public class reflection_level_5 : MonoBehaviour {
 		extendLightX (linePositions);
 		gameOver = false;
 		saveRec = true;
-		target1Dead = false;
 		target.SetActive (true);
 		bam.SetActive (false);
 		gameOver = false;
@@ -220,17 +218,12 @@ public class reflection_level_5 : MonoBehaviour {
 				}
 				if(hit.collider.tag == "Target")
 				{
-					if(target1Dead)
-					{
-						gameOver = true;
-					}
+					gameOver = true;
 					saveRec = true;
 					linpositions3[1] = collision;
-					
 				}
 				if(hit.collider.tag == "target 1")
 				{
-					target1Dead = true;
 					target1.SetActive(false);
 				}
 				
@@ -271,17 +264,9 @@ public class reflection_level_5 : MonoBehaviour {
 				}
 				if(hit.collider.tag == "Target")
 				{
-					if(target1Dead)
-					{
-						gameOver = true;
-					}
+					gameOver = true;
 					saveRec = true;
 					linpositions4[1] = collision;
-				}
-				if(hit.collider.tag == "target 1")
-				{
-					target1Dead = true;
-					target1.SetActive(false);
 				}
 			}
 			else
@@ -315,10 +300,7 @@ public class reflection_level_5 : MonoBehaviour {
 				}
 				if (hit.collider.tag == "Target")
 				{
-					if(target1Dead)
-					{
-						gameOver = true;
-					}
+					gameOver = true;
 					saveRec = true;
 					linpositions5[1] = hit.point;
 				}
@@ -346,10 +328,7 @@ public class reflection_level_5 : MonoBehaviour {
 				}
 				if(hit.collider.tag == "Target")
 				{
-					if(target1Dead)
-					{
-						gameOver = true;
-					}
+					gameOver = true;
 					saveRec = true;
 					linpositions5[1] = collision;
 				}
