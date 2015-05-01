@@ -3,7 +3,7 @@ class QuestionsController < ApplicationController
   def create
     @question = Question.new question_params
     @question.teacher = current_teacher
-    @subjects = Subject.all
+    @subjects = current_teacher.subjects
     if @question.save
       render 'new', notice: 'Successfully created question.' 
     else
@@ -13,7 +13,7 @@ class QuestionsController < ApplicationController
 
   def new
     @question = Question.new
-    @subjects = Subject.all
+    @subjects =current_teacher.subjects
   end
 
   def index
