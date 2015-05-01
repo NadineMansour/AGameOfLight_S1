@@ -15,6 +15,7 @@ public class Player_L3_1 : MonoBehaviour {
 
 
 	//For score
+	public static int startTime;
 	public static int timeInLevel;
 	public static int clicks;
 	public int level;
@@ -302,7 +303,7 @@ public class Player_L3_1 : MonoBehaviour {
 					{
 						log += ", zEnd: " + angle + '\n';
 					}
-					timeInLevel = (int)Time.timeSinceLevelLoad;
+					timeInLevel = (int)Time.timeSinceLevelLoad - startTime;
 					calculateScore(); //score now has its right value
 					//timeInLevel, score, clicks, log & level ready	
 					StartCoroutine(save_record());
