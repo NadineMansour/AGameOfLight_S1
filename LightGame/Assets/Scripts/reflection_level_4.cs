@@ -77,31 +77,36 @@ public class reflection_level_4 : MonoBehaviour {
 		extendLightX (linePositions);
 	
 	}
-
+	
 
 	// Update is called once per frame
 	void Update () 
 	{
 		TextMesh textObject = numOfClicks.GetComponent<TextMesh>();
 		textObject.text = "Moves: " + clicks;
-		if (!gameOver) {
-			if (rotateRight) {
-				RotateRight ();
-			}
-			if (rotateLeft) {
-				RotateLeft ();
-			}
-			detector ();
-			SetLightBeam ();
-			setLightBeam2 ();
-			setLightBeam3 ();
-			setLightBeam4 ();
 
-		} 
-		else 
-		{
-			EndGame();
-		}
+
+			if (!gameOver) 
+			{
+				if (rotateRight) 
+				{
+					RotateRight ();
+				}
+				if (rotateLeft) 
+				{
+					RotateLeft ();
+				}
+				detector ();
+				SetLightBeam ();
+				setLightBeam2 ();
+				setLightBeam3 ();
+				setLightBeam4 ();
+
+			} 
+			else 
+			{
+				EndGame ();
+			}
 	}
 
 
