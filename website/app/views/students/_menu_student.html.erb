@@ -5,9 +5,16 @@
             <%= link_to controller: "students", action: "view_courses", class: 'dcjq-parent' do %>
             	<span>School Courses</span>
             <% end %>
+        </li>
+        <li>
             <%= link_to controller: "students", action: "view_contacts", class: 'dcjq-parent' do %>
             	<span>View Contacts</span>
-            		<%end%>
+            <%end%>
+        </li>
+        <li>
+            <%= link_to controller: "students", action: "view_teachers_in_school", class: 'dcjq-parent' do %>
+                <span>My school's teachers</span>
+            <%end%>
         </li>
     </ul>
 </div>

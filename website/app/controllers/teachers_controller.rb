@@ -112,7 +112,9 @@ class TeachersController < ApplicationController
 	def view_messages_students
 	  @user=current_teacher
 	  @sender=Student.find(params[:student_id]) 
-	  @message=Mess.where(semail:@sender.email)
+	  @message=Mess.where("((semail = ? AND remail = ?) OR(semail = ? AND remail = ?))" ,
+	  	@sender.email, current_teacher.email, current_teacher.email, 
+	  	@sender.email).order(created_at: :desc)
 	end
 
 
