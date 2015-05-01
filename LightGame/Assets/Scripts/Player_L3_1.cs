@@ -5,15 +5,15 @@ using System.Collections.Generic;
 
 
 public class Player_L3_1 : MonoBehaviour {
-
-
+	
+	
 	//For movement & rotation
 	public static bool left;
 	public static bool right;
 	public static bool RRight;					
 	public static bool RLeft;
-
-
+	
+	
 	//For score
 	public static int startTime;
 	public static int timeInLevel;
@@ -21,8 +21,8 @@ public class Player_L3_1 : MonoBehaviour {
 	public int level;
 	public int score;
 	public static string log;
-
-
+	
+	
 	public static int state;
 	public static Vector3 position;
 	public static bool gameOver;
@@ -30,8 +30,8 @@ public class Player_L3_1 : MonoBehaviour {
 	private static float angle ;                        //degree of rotation of light beam
 	float NI = 1.000293f;						 
 	float NR = 1.3330f;
-
-
+	
+	
 	//gameObjects
 	//public GameObject numOfClicks;
 	public GameObject nextButton;
@@ -40,8 +40,8 @@ public class Player_L3_1 : MonoBehaviour {
 	public GameObject tipStart;
 	public GameObject tipEnd;
 	public LineRenderer lightBeam;               //Lightbeam gameobject to edit positions and end points
-
-
+	
+	
 	void Start () 
 	{
 		nextButton.SetActive (false);
@@ -68,8 +68,8 @@ public class Player_L3_1 : MonoBehaviour {
 		linePositions.Add (mid);                //adding the mid point to light beams points list
 		linePositions.Add (end);                //adding the end point to light beams points list
 	}
-
-
+	
+	
 	void endExtender()
 	{
 		if (linePositions[2].y != -4.0f)
@@ -88,12 +88,12 @@ public class Player_L3_1 : MonoBehaviour {
 			}
 		}
 	}
-
-
+	
+	
 	void Update () {
 		position = transform.position;
-
-
+		
+		
 		if (state == -2) 
 		{
 			intro.SetActive (true);
@@ -102,7 +102,7 @@ public class Player_L3_1 : MonoBehaviour {
 			tipEnd.SetActive(false);
 			intro1.SetActive(false);
 		}
-
+		
 		if (state == -1) 
 		{
 			tipStart.SetActive(false);
@@ -111,8 +111,8 @@ public class Player_L3_1 : MonoBehaviour {
 			intro1.SetActive(true);
 			nextButton.SetActive(true);
 		}
-
-
+		
+		
 		if (state == 0) 
 		{
 			tipEnd.SetActive(false);
@@ -121,8 +121,8 @@ public class Player_L3_1 : MonoBehaviour {
 			tipStart.SetActive(true);
 			nextButton.SetActive(true);
 		}
-
-
+		
+		
 		if (state == 1) 
 		{
 			tipStart.SetActive(false);
@@ -152,8 +152,8 @@ public class Player_L3_1 : MonoBehaviour {
 			detector ();
 			SetLightBeam();
 		} 
-
-
+		
+		
 		if (state == 2) 
 		{
 			nextButton.SetActive (true);
@@ -163,15 +163,15 @@ public class Player_L3_1 : MonoBehaviour {
 			intro1.SetActive(false);
 		}
 	}
-
-
+	
+	
 	void limitChecker1()
 	{
 		float slope, yIntercept, newY;
 		Vector3 top = linePositions [0];
 		Vector3 mid = linePositions [1];
-
-
+		
+		
 		if (mid.x <= -5.8f || mid.x >= 5.8f) 
 		{
 			linePositions [2] = linePositions [0];
@@ -189,14 +189,14 @@ public class Player_L3_1 : MonoBehaviour {
 			}	
 		} 
 	}
-
+	
 	void limitChecker2()
 	{
 		Vector3 mid = linePositions [1];
 		Vector3 end = linePositions [2];
 		float newY;
-
-
+		
+		
 		if((end.x <= -6.1f || end.x >= 6.1f))
 		{
 			float slope = (end.y - mid.y) / (end.x - mid.x);
@@ -212,10 +212,10 @@ public class Player_L3_1 : MonoBehaviour {
 				linePositions [2] = new Vector3 (6.1f, newY, 0);
 			}	
 		}
-
+		
 	}
-
-
+	
+	
 	void moveRight()
 	{
 		if (position.x < 4) 
@@ -273,14 +273,14 @@ public class Player_L3_1 : MonoBehaviour {
 			lightBeam.SetPosition(i, linePositions[i]);
 		}
 	}
-
-
+	
+	
 	void EndGame()
 	{
 		nextButton.SetActive (true);
 		tipEnd.SetActive (true);
 	}
-
+	
 	//Detects collision of light with other gameobjects
 	void detector()
 	{
@@ -384,8 +384,8 @@ public class Player_L3_1 : MonoBehaviour {
 			break;
 		}	
 	}
-
-
+	
+	
 	void PointRotator()
 	{
 		//Rotates light beam with specified degree indicate dy variable degree around its starting point (Center of shooter
@@ -454,8 +454,8 @@ public class Player_L3_1 : MonoBehaviour {
 			// if the response has OK status
 		}
 	}
-
-
+	
+	
 	void calculateScore()
 	{
 		score = (120 - timeInLevel) * 100 + (5 - clicks) * 50;

@@ -28,7 +28,7 @@ public class Movement_L3_3 : MonoBehaviour {
 				if (!Mirror_8.MirrorL)
 				{
 					Player_L3_3.clicks++;
-					Player_L3_3.log += "-Mirror B, xStart: " + Mirror.transform.position.x +", ";
+					Player_L3_3.log += "-Mirror L, xStart: " + Mirror.transform.position.x +", ";
 				}
 				Mirror_8.moveMirror(1);
 			}
