@@ -11,6 +11,11 @@ public class reflection_level_3 : MonoBehaviour
 	private List <Vector3> linePositions;//array containing lightbeam points for setting and editing
 	public LineRenderer lightBeam2;
 	private List <Vector3> linpoistions2;
+	public GameObject tip1;
+	public GameObject tip2;
+	public GameObject tip3;
+	public GameObject nexttip;
+
 	private float angle;//degree of rotation of light beam
 	public static bool gameOver;//check whether target is reached or not
 	public static bool saveRec;
@@ -20,6 +25,7 @@ public class reflection_level_3 : MonoBehaviour
 	public GameObject numOfClicks;
 	//Variables for records table
 	public float StartTime;
+	public static int state;
 	public float FinishTime;
 	public static int timeInLevel;
 	public static int clicks;
@@ -42,13 +48,18 @@ public class reflection_level_3 : MonoBehaviour
 		linpoistions2.Add (start);
 		linpoistions2.Add (start);
 		SetLightBeam (linpoistions2 ,  lightBeam2);
-		
+
+		tip1.SetActive (true);
+		tip2.SetActive (false);
+		tip3.SetActive (false);
+		nexttip.SetActive (true);
 		toLevelsButton.SetActive(false);//Disabling the tolevels button initially
 		gameOver = false;
 		saveRec = false;
 		target.SetActive (true);
 		bam.SetActive (false);
 		level = 3;
+		state = 0;
 		StartTime = Time.realtimeSinceStartup;
 		clicks = 0;
 		RotateLightBeam ();
@@ -61,17 +72,46 @@ public class reflection_level_3 : MonoBehaviour
 		if (score <= 50) //to exclude negative scores
 			score = 50;
 	}
+
+
+	void OnMouseDown()
+	{
+		if (tag == "next tip") 
+		{
+			if(state == 2)
+			{
+				tip3.SetActive(false);
+				state++;
+				nexttip.SetActive(false);
+			}
+			if(state == 1)
+			{
+				tip2.SetActive(false);
+				state++;
+				tip3.SetActive(true);
+			}
+			if(state == 0)
+			{
+				tip1.SetActive(false);
+				state++;
+				tip2.SetActive(true);
+			}
+
+		}
+	}
 	
 	
 	void EndGame()
 	{
-		if (saveRec) 
+		if (state == 3) 
 		{
-			StartCoroutine (save_record ()); // save the record when the game ends
-			target.SetActive (false); //enables target halo, indicatingt that light reached it
-			toLevelsButton.SetActive (true); //enables the button that's used to redirect to other scene
-			bam.SetActive (true); //enables target halo, indicatingt that light reached it
-			saveRec = false;
+			if (saveRec) {
+				StartCoroutine (save_record ()); // save the record when the game ends
+				target.SetActive (false); //enables target halo, indicatingt that light reached it
+				toLevelsButton.SetActive (true); //enables the button that's used to redirect to other scene
+				bam.SetActive (true); //enables target halo, indicatingt that light reached it
+				saveRec = false;
+			}
 		}
 	}
 	
@@ -81,27 +121,29 @@ public class reflection_level_3 : MonoBehaviour
 	{
 		TextMesh textObject = numOfClicks.GetComponent<TextMesh>();
 		textObject.text = "Moves: " + clicks;
-		
-		//To prevent shooter from moving if game is over (light reached target).
-		if (!gameOver) 
+		if (state == 3) 
 		{
-			//Checks if any of the buttons are pressed and calls the method responsible for moving/rotating in specified direction
-			if (rotateRight) 
+			//To prevent shooter from moving if game is over (light reached target).
+			if (!gameOver) 
 			{
-				RotateRight ();
+				//Checks if any of the buttons are pressed and calls the method responsible for moving/rotating in specified direction
+				if (rotateRight) 
+				{
+					RotateRight ();
 				
-			}
-			if (rotateLeft) 
+				}
+				if (rotateLeft) 
+				{
+					RotateLeft ();
+				}
+				detector ();
+				SetLightBeam (linePositions, lightBeam);
+				SetLightBeam (linpoistions2, lightBeam2);
+			} 
+			else 
 			{
-				RotateLeft ();
+				EndGame ();
 			}
-			detector ();
-			SetLightBeam (linePositions , lightBeam);
-			SetLightBeam(linpoistions2 , lightBeam2);
-		} 
-		else
-		{
-			EndGame ();
 		}
 	}
 	
