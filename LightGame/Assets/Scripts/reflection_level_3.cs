@@ -107,6 +107,7 @@ public class reflection_level_3 : MonoBehaviour
 		{
 			if (saveRec) {
 				StartCoroutine (save_record ()); // save the record when the game ends
+				calculateScore();
 				target.SetActive (false); //enables target halo, indicatingt that light reached it
 				toLevelsButton.SetActive (true); //enables the button that's used to redirect to other scene
 				bam.SetActive (true); //enables target halo, indicatingt that light reached it
