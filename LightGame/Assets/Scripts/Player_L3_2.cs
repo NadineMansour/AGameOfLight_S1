@@ -86,7 +86,7 @@ public class Player_L3_2 : MonoBehaviour {
 	{
 		position = transform.position;
 		
-	
+		
 		if (state == 0) 
 		{
 			tipEnd.SetActive(false);

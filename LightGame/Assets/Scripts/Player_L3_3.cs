@@ -5,8 +5,8 @@ using System.Collections.Generic;
 
 
 public class Player_L3_3 : MonoBehaviour {
-
-
+	
+	
 	//For The Rotation 
 	public static bool RRight;					
 	public static bool RLeft;
@@ -45,8 +45,8 @@ public class Player_L3_3 : MonoBehaviour {
 	public static Vector3 position;
 	private static List <Vector3> linePositions;        //array containing lightbeam  points for setting and editing
 	private static List <Vector3> linePositions2; 		//array containing lightbeam2 points for setting and editing
-
-
+	
+	
 	void Start () {
 		float x = transform.position.x;
 		float y = transform.position.y;
@@ -68,12 +68,12 @@ public class Player_L3_3 : MonoBehaviour {
 		start.SetActive (false);
 		end.SetActive (false);
 	}
-
-
+	
+	
 	void Update () {
 		position = transform.position;
-
-
+		
+		
 		if (state == -1) 
 		{
 			nextButton.SetActive (true);
@@ -81,8 +81,8 @@ public class Player_L3_3 : MonoBehaviour {
 			start.SetActive (false);
 			end.SetActive (false);
 		}
-
-
+		
+		
 		if (state == 0) 
 		{
 			nextButton.SetActive (true);
@@ -90,7 +90,7 @@ public class Player_L3_3 : MonoBehaviour {
 			start.SetActive (true);
 			end.SetActive (false);
 		}
-
+		
 		if(state == 1)
 		{
 			nextButton.SetActive (false);
@@ -113,8 +113,8 @@ public class Player_L3_3 : MonoBehaviour {
 			detector ();
 			SetLightBeam();
 		}
-
-
+		
+		
 		if (state == 2) 
 		{
 			nextButton.SetActive (true);
@@ -124,8 +124,8 @@ public class Player_L3_3 : MonoBehaviour {
 		}
 		
 	}
-
-
+	
+	
 	void endExtender()
 	{
 		if (linePositions[2].y != -4.0f)
@@ -144,8 +144,8 @@ public class Player_L3_3 : MonoBehaviour {
 			}
 		}
 	}
-
-
+	
+	
 	public static void movement(int x)
 	{
 		switch(x)
@@ -290,14 +290,14 @@ public class Player_L3_3 : MonoBehaviour {
 		{
 			lightBeam.SetPosition(i, linePositions[i]);
 		}
-
-
+		
+		
 		for (int i = 0; i < linePositions2.Count; i++) 
 		{
 			lightBeam2.SetPosition(i, linePositions2[i]);
 		}
 	}
-
+	
 	
 	//Detects collision of light with other gameobjects
 	void detector()
@@ -377,12 +377,12 @@ public class Player_L3_3 : MonoBehaviour {
 					StartCoroutine(save_record());
 				}
 			}
-
-
+			
+			
 		}
 	}
-
-
+	
+	
 	void lineExtender2(){
 		Vector3 testedPoint2 = linePositions2 [1];
 		if (testedPoint2.y != -4.0f) 
@@ -398,8 +398,8 @@ public class Player_L3_3 : MonoBehaviour {
 			}
 		}
 	}
-
-
+	
+	
 	void PointRotator()
 	{
 		//Rotates light beam with specified degree indicate dy variable degree around its starting point (Center of shooter
