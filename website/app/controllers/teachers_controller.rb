@@ -1,13 +1,14 @@
 class TeachersController < ApplicationController
-	def show
-	end
+  def show
+  
+
+  end
 
   def send_message
    @message=Mess.new
    #this was created to pass student id of 
    #to the next page in the params
    @var=params[:student_id]
-
    end
     
 
@@ -21,32 +22,27 @@ class TeachersController < ApplicationController
   end 
 
 
-	def view_courses
-
-   @sub = Subject.where(school: current_teacher.school)
-   @taken_id=TeacherRequestSubject.where(teacher: current_teacher , verified: true ).pluck(:subject_id)
-   @subjects=@sub.where.not(id:@taken_id) #i have all records with false not accepted and nill pending
-   @not_accepted=TeacherRequestSubject.where(teacher: current_teacher , verified: false ).pluck(:subject_id)
-   @subjects=@subjects.where.not(id:@not_accepted) 
-   @not_yet=TeacherRequestSubject.where(teacher: current_teacher , verified: nil ).pluck(:subject_id)
-   @subjects2=@subjects.where(id:@not_yet) #3shan azhr gambha pending 
-   @subjects=@subjects.where.not(id:@not_yet) 
-
-    end
+   def view_courses
+	   @sub = Subject.where(school: current_teacher.school)
+	   @taken_id=TeacherRequestSubject.where(teacher: current_teacher , verified: true ).pluck(:subject_id)
+	   @subjects=@sub.where.not(id:@taken_id) #i have all records with false not accepted and nill pending
+	   @not_accepted=TeacherRequestSubject.where(teacher: current_teacher , verified: false ).pluck(:subject_id)
+	   @subjects=@subjects.where.not(id:@not_accepted) 
+	   @not_yet=TeacherRequestSubject.where(teacher: current_teacher , verified: nil ).pluck(:subject_id)
+	   @subjects2=@subjects.where(id:@not_yet) #3shan azhr gambha pending 
+	   @subjects=@subjects.where.not(id:@not_yet) 
+   end
 
 
-  def  request_subject
-     
+   def  request_subject
      @request=TeacherRequestSubject.new
      @request.teacher_id=current_teacher.id
      @request.subject_id=params[:subject_id]
      @request.school=current_teacher.school
      #@request.school_admin_id=current_teacher.school_admin_id
      @request.save
-     redirect_to view_courses_teachers_path
-     
+     redirect_to view_courses_teachers_path  
    end 
-
 
 
 	def view_game_records
@@ -100,26 +96,24 @@ class TeachersController < ApplicationController
 	end
 
 
-def view_contacts
-	@user=current_teacher
-	@teacher=Teacher.where(school:current_teacher.school)
+	def view_contacts
+		@user=current_teacher
+		@teacher=Teacher.where(school:current_teacher.school)
+	end
 
-end
+
+	def view_messages
+	  @user=current_teacher
+	  @sender=Teacher.find(params[:teacher_id]) 
+	  @message=Mess.where(semail:@sender.email)
+	end
 
 
-def view_messages
-  @user=current_teacher
-  @sender=Teacher.find(params[:teacher_id]) 
-  @message=Mess.where(semail:@sender.email)
-
-end
-
-def view_messages_students
-  @user=current_teacher
-  @sender=Student.find(params[:student_id]) 
-  @message=Mess.where(semail:@sender.email)
-
-end
+	def view_messages_students
+	  @user=current_teacher
+	  @sender=Student.find(params[:student_id]) 
+	  @message=Mess.where(semail:@sender.email)
+	end
 
 
 	def view_in_game_grades
