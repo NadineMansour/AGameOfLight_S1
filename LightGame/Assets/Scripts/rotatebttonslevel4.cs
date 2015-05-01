@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class rotate_level4 : MonoBehaviour 
+public class rotatebttonslevel4 : MonoBehaviour 
 {
 
 	public bool right;
