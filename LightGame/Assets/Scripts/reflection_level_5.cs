@@ -20,6 +20,10 @@ public class reflection_level_5 : MonoBehaviour {
 	private List <Vector3> linpositions4;
 	public LineRenderer lightBeam5;
 	List<Vector3> linpositions5;
+	public GameObject tip1;
+	public GameObject tip2;
+	public GameObject nexttip;
+	public static int state;
 	private float angle;
 	public static bool gameOver;
 	public static bool saveRec;
@@ -74,6 +78,10 @@ public class reflection_level_5 : MonoBehaviour {
 		linpositions5.Add (line5End);
 		SetLightBeam (linpositions5, lightBeam5);
 		extendLightX (linePositions);
+		tip1.SetActive (true);
+		tip2.SetActive (false);
+		nexttip.SetActive (true);
+		state = 0;
 		gameOver = false;
 		saveRec = true;
 		target1Dead = false;
@@ -86,6 +94,26 @@ public class reflection_level_5 : MonoBehaviour {
 		level = 4;
 		StartTime = Time.realtimeSinceStartup;
 		clicks = 0;
+	}
+
+
+	void OnMouseDown()
+	{
+		if (tag == "next tip") 
+		{
+			if(state == 1)
+			{
+				tip2.SetActive(false);
+				state++;
+				nexttip.SetActive(false);
+			}
+			if(state == 0)
+			{
+				tip1.SetActive(false);
+				state++;
+				tip2.SetActive(true);
+			}
+		}
 	}
 	
 	
@@ -115,26 +143,29 @@ public class reflection_level_5 : MonoBehaviour {
 	{
 		TextMesh textObject = numOfClicks.GetComponent<TextMesh>();
 		textObject.text = "Moves: " + clicks;
-		if (!gameOver) 
+		if (state == 2) 
 		{
-			if (rotateRight) 
+			if (!gameOver) 
 			{
-				RotateRight ();
-			}
-			if (rotateLeft)
+				if (rotateRight) 
+				{
+					RotateRight ();
+				}
+				if (rotateLeft) 
+				{
+					RotateLeft ();
+				}
+				detector ();
+				SetLightBeam (linePositions, lightBeam);
+				SetLightBeam (linpositions2, lightBeam2);
+				SetLightBeam (linpositions3, lightBeam3);
+				SetLightBeam (linpositions4, lightBeam4);
+				SetLightBeam (linpositions5, lightBeam5);
+			} 
+			else 
 			{
-				RotateLeft ();
+				EndGame ();
 			}
-			detector();
-			SetLightBeam (linePositions,lightBeam);
-			SetLightBeam(linpositions2,lightBeam2);
-			SetLightBeam(linpositions3,lightBeam3);
-			SetLightBeam(linpositions4,lightBeam4);
-			SetLightBeam(linpositions5,lightBeam5);
-		} 
-		else 
-		{
-			EndGame();
 		}
 	}
 
