@@ -16,35 +16,35 @@ public class ToLevels : MonoBehaviour
 	{
 		if (level1)
 		{
-			Application.LoadLevel("level1");
+			Application.LoadLevel("Level1_MM");
 		}
 		if (level2)
 		{
-			Application.LoadLevel("level2");
+			Application.LoadLevel("Level2_MM");
 		}
 		if (level3)
 		{
-			Application.LoadLevel("level3");
+			Application.LoadLevel("Level3");
 		}
 		if (level4)
 		{
-			Application.LoadLevel("level4");
+			Application.LoadLevel("Level4");
 		}
 		if (level5)
 		{
-			Application.LoadLevel("level5");
+			Application.LoadLevel("reflection level 5");
 		}
 		if (level6)
 		{
-			Application.LoadLevel("level6");
+			Application.LoadLevel("Level6");
 		}
 		if (level7)
 		{
-			Application.LoadLevel("level7");
+			Application.LoadLevel("Level7");
 		}
 		if (level8)
 		{
-			Application.LoadLevel("level7");
+			Application.LoadLevel("Level8");
 		}
 		if(GetComponent<Collider>().tag == "Finish")
 		{
